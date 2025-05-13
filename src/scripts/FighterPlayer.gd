@@ -38,9 +38,10 @@ func _process(delta: float) -> void:
 func shoot():
 	print("FighterPlayer Shot")
 	var bullet_instance = bullet.instantiate()
+	bullet_instance.transform = muzzle.global_transform
 	var mouse_direction = bullet_instance.global_position.direction_to(get_global_mouse_position()).normalized()
 	attack.attack_position = mouse_direction
 	bullet_instance.attack = self.attack
 	bullet_instance.set_direction(mouse_direction)
 	owner.add_child(bullet_instance)
-	bullet_instance.transform = muzzle.global_transform
+	
