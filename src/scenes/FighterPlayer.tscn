@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4kmnpg5sx6je"]
+
+[ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/FighterPlayer.gd" id="1_rwx8l"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
+[ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/Bullet.tscn" id="2_p35ce"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_p35ce"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_p35ce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv166"]
+size = Vector2(16, 20)
+
+[node name="FighterPlayer" type="CharacterBody2D"]
+script = ExtResource("1_rwx8l")
+bullet = ExtResource("2_p35ce")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.76837e-07, -0.999999)
+scale = Vector2(16, 20)
+texture = SubResource("CanvasTexture_p35ce")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("2_5qbrv")
+metadata/_custom_type_script = "uid://dgjjb82suvscb"
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+script = ExtResource("3_p35ce")
+metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_bv166")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(10, 0)
