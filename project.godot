@@ -13,3 +13,8 @@ config_version=5
 config/name="Co-op Video Game"
 config/description="Top Down Wave Defender with a Co-op Feature"
 config/features=PackedStringArray("4.4")
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
