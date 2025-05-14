@@ -15,6 +15,11 @@ config/description="Top Down Wave Defender with a Co-op Feature"
 run/main_scene="uid://do5d4h3xsmbgt"
 config/features=PackedStringArray("4.4")
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [input]
 
 move_left={
@@ -46,8 +51,3 @@ shoot={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-
-[editor]
-
-version_control/plugin_name="GitPlugin"
-version_control/autoload_on_startup=true
