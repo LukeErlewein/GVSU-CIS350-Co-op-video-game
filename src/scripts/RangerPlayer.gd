@@ -1,4 +1,4 @@
-class_name FighterPlayer extends CharacterBody2D
+extends CharacterBody2D
 
 @export var SPEED: float = 55
 @export var ACCELERATION: float = 5
@@ -13,10 +13,17 @@ var can_shoot: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	attack = Attack.new()
-	attack.attack_damage = 1.0
-	attack.bullet_speed = 40.0
-	attack.knockback_force = 10.0
-	attack.attack_cooldown = 0.2
+	attack.attack_damage = 3.0
+	attack.hurt_cell_holders = true
+	attack.bullet_speed = 50.0
+	attack.knockback_force = 15.0
+	attack.attack_cooldown = 0.6
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Player shoots on "shoot" action if cooldown bool is true
+	if event.is_action_pressed("shoot") and can_shoot:
+		shoot()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,10 +40,6 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	# Rotate player towards mouse
 	look_at(get_global_mouse_position())
-	
-	# Player shoots on "shoot" action if cooldown bool is true
-	if Input.is_action_pressed("shoot") and can_shoot:
-		shoot()
 
 func shoot():
 	can_shoot = false
@@ -49,6 +52,7 @@ func shoot():
 	owner.add_child(bullet_instance)
 	shot_cooldown_timer.start(attack.attack_cooldown)
 	
+
 
 func _on_shot_cooldown_timer_timeout() -> void:
 	can_shoot = true

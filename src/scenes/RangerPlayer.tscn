@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7wa2n7d0dfkp"]
+
+[ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/RangerPlayer.gd" id="1_rkl73"]
+[ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://artifacts/AssetArt/FighterCharacter.png" id="2_d7q17"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="3_gfmhh"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fcnqf"]
+radius = 15.0333
+
+[node name="RangerPlayer" type="CharacterBody2D"]
+script = ExtResource("1_rkl73")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(3, 3)
+texture = ExtResource("2_d7q17")
+
+[node name="PhysicsBox" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rkl73")
+debug_color = Color(0.724014, 0.477071, 0.0157364, 0.42)
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("3_gfmhh")
+metadata/_custom_type_script = "uid://dgjjb82suvscb"
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("4_ci0ff")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
+
+[node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
+visible = false
+shape = SubResource("CircleShape2D_fcnqf")
+
+[node name="Muzzle" type="Marker2D" parent="."]
+position = Vector2(15, 0)
+
+[node name="ShotCooldownTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]
