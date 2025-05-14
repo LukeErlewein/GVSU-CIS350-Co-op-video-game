@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgnk11kgdpql3"]
+[gd_scene load_steps=10 format=3 uid="uid://bvuobmv2lbok2"]
 
-[ext_resource type="Script" uid="uid://cp7up8a08gy2e" path="res://src/scripts/menu.gd" id="1_2521n"]
-[ext_resource type="Theme" uid="uid://uutwoo57qh5p" path="res://Themes/TitleTheme.tres" id="2_h7v81"]
-[ext_resource type="Texture2D" uid="uid://emxpwiiae345" path="res://src/Assets/Menu Background.png" id="2_nr8cr"]
-[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/Assets/Title Font.ttf" id="4_t7jdw"]
+[ext_resource type="Script" uid="uid://cp7up8a08gy2e" path="res://src/scripts/Menu.gd" id="1_b0okb"]
+[ext_resource type="Texture2D" uid="uid://emxpwiiae345" path="res://src/assets/MenuBackground.png" id="2_gnfu8"]
+[ext_resource type="Theme" uid="uid://uutwoo57qh5p" path="res://src/assets/themes/TitleTheme.tres" id="3_rx48v"]
+[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/TitleFont.ttf" id="4_dmamv"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t7jdw"]
-texture = ExtResource("2_nr8cr")
+texture = ExtResource("2_gnfu8")
 expand_margin_top = 252.0
 expand_margin_bottom = 284.0
 modulate_color = Color(0.601223, 0.601223, 0.601223, 1)
@@ -34,7 +34,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2521n")
+script = ExtResource("1_b0okb")
 
 [node name="Background Image" type="Panel" parent="."]
 layout_mode = 1
@@ -89,7 +89,7 @@ layout_mode = 0
 offset_left = 1.0
 offset_right = 9.0
 offset_bottom = 8.0
-theme = ExtResource("2_h7v81")
+theme = ExtResource("3_rx48v")
 text = "Very Cool Title"
 
 [node name="Label" type="Label" parent="."]
@@ -102,7 +102,7 @@ offset_top = 96.0
 offset_right = 186.0
 offset_bottom = 262.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("4_t7jdw")
+theme_override_fonts/font = ExtResource("4_dmamv")
 theme_override_font_sizes/font_size = 80
 text = "POWER CORE
 DEFENDERS"

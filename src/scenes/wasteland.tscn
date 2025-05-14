@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://do5d4h3xsmbgt"]
 
-[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_4x7es"]
+[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/Wasteland.gd" id="1_4x7es"]
 
 [node name="Wasteland" type="Node2D"]
 script = ExtResource("1_4x7es")

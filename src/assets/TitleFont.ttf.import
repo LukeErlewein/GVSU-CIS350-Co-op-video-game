@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://fnqi7h5g1cgb"
-path="res://.godot/imported/Title Font.ttf-e458243c9d731214f66519bddcec3fb8.fontdata"
+path="res://.godot/imported/TitleFont.ttf-f982d1c223fcad2ae9de20510350adaa.fontdata"
 
 [deps]
 
-source_file="res://src/Assets/Title Font.ttf"
-dest_files=["res://.godot/imported/Title Font.ttf-e458243c9d731214f66519bddcec3fb8.fontdata"]
+source_file="res://src/assets/TitleFont.ttf"
+dest_files=["res://.godot/imported/TitleFont.ttf-f982d1c223fcad2ae9de20510350adaa.fontdata"]
 
 [params]
 
