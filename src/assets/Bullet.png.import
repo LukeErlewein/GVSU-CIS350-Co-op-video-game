@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k38ru1yn5as5"
-path="res://.godot/imported/FighterCharacter.png-b76bc776bab6937068f95bce6c72d9df.ctex"
+uid="uid://caq0byjoffp1d"
+path="res://.godot/imported/Bullet.png-d3cd3f5bde188a901015af71993e7c73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://artifacts/AssetArt/FighterCharacter.png"
-dest_files=["res://.godot/imported/FighterCharacter.png-b76bc776bab6937068f95bce6c72d9df.ctex"]
+source_file="res://src/assets/Bullet.png"
+dest_files=["res://.godot/imported/Bullet.png-d3cd3f5bde188a901015af71993e7c73.ctex"]
 
 [params]
 
