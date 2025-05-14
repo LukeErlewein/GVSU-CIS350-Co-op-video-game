@@ -1,0 +1,5 @@
+[gd_resource type="Theme" format=3 uid="uid://uutwoo57qh5p"]
+
+[resource]
+TextEdit/colors/font_placeholder_color = Color(0.875, 0.875, 0.875, 0.6)
+TextEdit/fonts/font = null
