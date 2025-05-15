@@ -12,6 +12,7 @@
 radius = 16.0312
 
 [node name="FighterPlayer" type="CharacterBody2D"]
+position = Vector2(420, 223)
 script = ExtResource("1_rwx8l")
 bullet = ExtResource("2_p35ce")
 
