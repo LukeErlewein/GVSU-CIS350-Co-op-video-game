@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjf3ya17vty25"]
+
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="1_rkllt"]
+[ext_resource type="Script" uid="uid://d0hxxyghh1k8m" path="res://src/scripts/Core.gd" id="1_w8q82"]
+[ext_resource type="Texture2D" uid="uid://b551hsp4glne4" path="res://src/assets/power core/Powercore.png" id="2_gjfl5"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="2_xxp6h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxp6h"]
+size = Vector2(103, 133)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_w8q82")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(558.75, 335.4)
+scale = Vector2(0.186508, 0.195082)
+texture = ExtResource("2_gjfl5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(558.75, 334.4)
+shape = SubResource("RectangleShape2D_xxp6h")
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("2_xxp6h")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(558.75, 334.4)
+shape = SubResource("RectangleShape2D_xxp6h")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("1_rkllt")
+MAX_HEALTH = 100.0
+metadata/_custom_type_script = "uid://dgjjb82suvscb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(558.75, 334.4)
+shape = SubResource("RectangleShape2D_xxp6h")
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = 526.0
+offset_top = 180.0
+offset_right = 593.0
+offset_bottom = 211.0
+text = "Charge "
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
