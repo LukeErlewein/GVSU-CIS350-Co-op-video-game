@@ -15,6 +15,6 @@ func set_direction(direction: Vector2):
 	self.direction = direction
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is HitboxComponent:
+	if body is HitboxComponent and body.is_in_group("Enemies"):
 		var hitbox: HitboxComponent = body
 		hitbox.damage(self.attack)

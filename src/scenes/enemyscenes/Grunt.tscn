@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://m151ri7kcj54"]
+
+[ext_resource type="Script" uid="uid://do140pc8maduf" path="res://src/scripts/enemyscripts/Grunt.gd" id="1_hwoom"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_fafvl"]
+[ext_resource type="Resource" uid="uid://f1tlj7lltnt0" path="res://src/resources/EnemyResources/GruntStats.tres" id="2_givgt"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_givgt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gyinp"]
+
+[node name="Grunt" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_hwoom")
+stats = ExtResource("2_givgt")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("2_fafvl")
+metadata/_custom_type_script = "uid://dgjjb82suvscb"
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_givgt")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
+
+[node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_gyinp")
+
+[node name="PhysicsBox" type="CollisionShape2D" parent="."]
