@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://m151ri7kcj54"]
+[gd_scene load_steps=7 format=3 uid="uid://m151ri7kcj54"]
 
 [ext_resource type="Script" uid="uid://do140pc8maduf" path="res://src/scripts/enemyscripts/Grunt.gd" id="1_hwoom"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_fafvl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_givgt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gyinp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fafvl"]
 
 [node name="Grunt" type="CharacterBody2D" groups=["Enemies"]]
 script = ExtResource("1_hwoom")
@@ -24,3 +26,15 @@ metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 shape = SubResource("CircleShape2D_gyinp")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fafvl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="DebugPath" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[connection signal="timeout" from="DebugPath" to="." method="_on_debug_path_timeout"]

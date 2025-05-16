@@ -1,11 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://bd2xqhpdcvncq"]
 
-[ext_resource type="PackedScene" uid="uid://dx8f1tjne3q63" path="res://src/scenes/MouseEnemy.tscn" id="1_ubpg4"]
-[ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="2_ti78g"]
-
+[ext_resource type="PackedScene" uid="uid://m151ri7kcj54" path="res://src/scenes/enemyscenes/Grunt.tscn" id="1_ubpg4"]
+[ext_resource type="PackedScene" uid="uid://d2g2sm3bnk4tj" path="res://src/scenes/playerscenes/FighterPlayer.tscn" id="2_ti78g"]
 
 [node name="TestScene" type="Node2D"]
 
-[node name="Area2D2" parent="." instance=ExtResource("2_ti78g")]
+[node name="Grunt" parent="." node_paths=PackedStringArray("target") instance=ExtResource("1_ubpg4")]
+position = Vector2(504, 228)
+target = NodePath("../FighterPlayer")
 
-[node name="Area2D" parent="." instance=ExtResource("1_ubpg4")]
+[node name="FighterPlayer" parent="." instance=ExtResource("2_ti78g")]

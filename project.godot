@@ -15,6 +15,10 @@ config/description="Top Down Wave Defender with a Co-op Feature"
 run/main_scene="uid://k8rs6ix3ky54"
 config/features=PackedStringArray("4.4")
 
+[autoload]
+
+Global="*res://src/scripts/Global.gd"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
