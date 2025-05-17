@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://m151ri7kcj54"]
+
+[ext_resource type="Script" uid="uid://do140pc8maduf" path="res://src/scripts/enemyscripts/Grunt.gd" id="1_hwoom"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_fafvl"]
+[ext_resource type="Script" uid="uid://csmsjn5wqit5i" path="res://src/scripts/enemyscripts/EnemyStats.gd" id="2_givgt"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_givgt"]
+[ext_resource type="Texture2D" uid="uid://binvi6mn0qcvp" path="res://src/assets/Enemies/GruntEnemy.png" id="3_vqydx"]
+
+[sub_resource type="Resource" id="Resource_70ydb"]
+script = ExtResource("2_givgt")
+health = 10.0
+damage = 5.0
+speed = 40.0
+texture = ExtResource("3_vqydx")
+target = "CORE"
+enemyType = "GRUNT"
+metadata/_custom_type_script = "uid://csmsjn5wqit5i"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gyinp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fafvl"]
+size = Vector2(13, 16)
+
+[node name="Grunt" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_hwoom")
+STATS = SubResource("Resource_70ydb")
+
+[node name="HealthComponent" type="Node2D" parent="."]
+script = ExtResource("2_fafvl")
+metadata/_custom_type_script = "uid://dgjjb82suvscb"
+
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("3_givgt")
+health_component = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
+
+[node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_gyinp")
+
+[node name="PhysicsBox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_fafvl")
+debug_color = Color(0.695721, 0.492956, 0.109621, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="DebugPath" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
+[node name="AttackCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
+[connection signal="timeout" from="DebugPath" to="." method="_on_debug_path_timeout"]
+[connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

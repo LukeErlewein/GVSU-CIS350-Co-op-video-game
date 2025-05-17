@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://7yqsmb8rlqdl"]
 
-[ext_resource type="Script" uid="uid://c1ko673w5o1c" path="res://src/scripts/Bullet.gd" id="1_7q1d6"]
+[ext_resource type="Script" uid="uid://c1ko673w5o1c" path="res://src/scripts/gameplayscripts/Bullet.gd" id="1_7q1d6"]
 [ext_resource type="Texture2D" uid="uid://caq0byjoffp1d" path="res://src/assets/Bullet.png" id="2_6qdk2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7q1d6"]
@@ -21,3 +21,4 @@ texture = ExtResource("2_6qdk2")
 shape = SubResource("CircleShape2D_7q1d6")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

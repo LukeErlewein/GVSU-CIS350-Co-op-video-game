@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://b8h5o804b1nkr"]
+
+[ext_resource type="Script" uid="uid://csmsjn5wqit5i" path="res://src/scripts/enemyscripts/EnemyStats.gd" id="1_5rgbg"]
+[ext_resource type="Texture2D" uid="uid://binvi6mn0qcvp" path="res://src/assets/Enemies/GruntEnemy.png" id="2_ok1fl"]
+
+[resource]
+script = ExtResource("1_5rgbg")
+health = 10.0
+damage = 5.0
+speed = 40.0
+texture = ExtResource("2_ok1fl")
+target = "CORE"
+enemyType = "GRUNT"
+metadata/_custom_type_script = "uid://csmsjn5wqit5i"

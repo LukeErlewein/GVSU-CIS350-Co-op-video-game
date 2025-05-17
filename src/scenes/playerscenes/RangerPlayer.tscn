@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7wa2n7d0dfkp"]
 
-[ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/RangerPlayer.gd" id="1_rkl73"]
+[ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/playerscripts/RangerPlayer.gd" id="1_rkl73"]
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="2_d7q17"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="3_gfmhh"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]

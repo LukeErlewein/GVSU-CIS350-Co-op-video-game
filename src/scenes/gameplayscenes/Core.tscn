@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://cjf3ya17vty25"]
 
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="1_rkllt"]
-[ext_resource type="Script" uid="uid://d0hxxyghh1k8m" path="res://src/scripts/Core.gd" id="1_w8q82"]
+[ext_resource type="Script" uid="uid://d0hxxyghh1k8m" path="res://src/scripts/gameplayscripts/Core.gd" id="1_w8q82"]
 [ext_resource type="Texture2D" uid="uid://b551hsp4glne4" path="res://src/assets/power core/Powercore.png" id="2_gjfl5"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="2_xxp6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxp6h"]
 size = Vector2(103, 133)
 
-[node name="Area2D" type="Area2D"]
+[node name="Core" type="Area2D"]
 script = ExtResource("1_w8q82")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
