@@ -48,6 +48,4 @@ offset_right = 593.0
 offset_bottom = 211.0
 text = "Charge "
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

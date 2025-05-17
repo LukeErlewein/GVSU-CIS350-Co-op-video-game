@@ -46,7 +46,7 @@ func shoot():
 	attack.attack_position = mouse_direction
 	bullet_instance.attack = self.attack
 	bullet_instance.set_direction(mouse_direction)
-	owner.add_child(bullet_instance)
+	get_parent().add_child(bullet_instance)
 	shot_cooldown_timer.start(attack.attack_cooldown)
 	
 

@@ -6,14 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="3_bv166"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_p35ce"]
 
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ng22"]
 radius = 16.0312
 
 [node name="FighterPlayer" type="CharacterBody2D"]
-position = Vector2(420, 223)
 script = ExtResource("1_rwx8l")
 bullet = ExtResource("2_p35ce")
 
