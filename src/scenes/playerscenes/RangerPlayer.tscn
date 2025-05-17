@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="2_d7q17"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="3_gfmhh"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]
+[ext_resource type="Script" uid="uid://bev0dwxmfmofp" path="res://src/scripts/playerscripts/RangerCamera.gd" id="5_7q8dk"]
+[ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/RangerHeath.gd" id="6_6f2tg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
 
@@ -49,6 +51,32 @@ shape = SubResource("CircleShape2D_fcnqf")
 position = Vector2(15, 0)
 
 [node name="ShotCooldownTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("5_7q8dk")
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+
+[node name="PlayerHealthUI" type="Control" parent="PlayerUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_6f2tg")
+player_node_path = NodePath("../..")
+
+[node name="HealthLabel" type="Label" parent="PlayerUI/PlayerHealthUI"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerUI/PlayerHealthUI"]
+layout_mode = 0
+offset_left = -34.0
+offset_top = 2.0
+offset_right = 108.0
+offset_bottom = 21.0
+show_percentage = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7q8dk")
