@@ -27,11 +27,12 @@ shape = SubResource("CircleShape2D_gyinp")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fafvl")
+debug_color = Color(0.695721, 0.492956, 0.109621, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="DebugPath" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

@@ -10,14 +10,16 @@ class_name Grunt extends BaseEnemy
 func _ready() -> void:
 	health_component.MAX_HEALTH = stats.health
 	sprite_2d.texture = stats.texture
-	sprite_2d.rotate(-PI * 0.5)
 	#set_target(stats.target)
 	
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * stats.speed
 	move_and_slide()
+	sprite_2d.look_at(target.global_position)
+	sprite_2d.rotate(-PI * 0.5)
+
 
 func make_path() -> void:
 	nav_agent.target_position = target.global_position
