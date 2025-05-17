@@ -18,8 +18,15 @@ func _ready() -> void:
 	attack.knockback_force = 10.0
 	attack.attack_cooldown = 0.2
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(int(str(name)))
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#Only let the correct user control the character
+	if !is_multiplayer_authority():
+		return
+	
 	# Get direction of movement
 	var input = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),

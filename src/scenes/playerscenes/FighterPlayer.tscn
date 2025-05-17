@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d2g2sm3bnk4tj"]
+[gd_scene load_steps=9 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
@@ -10,6 +10,14 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ng22"]
 radius = 16.0312
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fi1s2"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="FighterPlayer" type="CharacterBody2D"]
 script = ExtResource("1_rwx8l")
@@ -41,5 +49,8 @@ position = Vector2(16, 0)
 
 [node name="ShotCooldownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_fi1s2")
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]
