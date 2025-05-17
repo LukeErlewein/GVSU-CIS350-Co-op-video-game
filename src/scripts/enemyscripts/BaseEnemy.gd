@@ -1,6 +1,8 @@
 class_name BaseEnemy extends CharacterBody2D
 
-func attack():
+var attack: Attack
+
+func action(hitbox: HitboxComponent):
 	pass
 
 # Get Node from scene tree, whether that is core or players

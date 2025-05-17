@@ -1,4 +1,4 @@
-extends Area2D
+class_name Core extends Area2D
 
 func _ready():
 	pass

@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name RangerPlayer extends CharacterBody2D
 
 @export var SPEED: float = 55
 @export var ACCELERATION: float = 5
