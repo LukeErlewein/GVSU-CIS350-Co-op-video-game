@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7wa2n7d0dfkp"]
+[gd_scene load_steps=16 format=3 uid="uid://b7wa2n7d0dfkp"]
 
 [ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/playerscripts/RangerPlayer.gd" id="1_rkl73"]
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="2_d7q17"]
@@ -18,6 +18,60 @@ bg_color = Color(0.411765, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdut3"]
 bg_color = Color(1, 0.105882, 0, 1)
+
+[sub_resource type="Animation" id="Animation_kedvh"]
+resource_name = "FadeIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gdut3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l6el3"]
+resource_name = "FadeOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhfby"]
+_data = {
+&"FadeIn": SubResource("Animation_kedvh"),
+&"FadeOut": SubResource("Animation_l6el3"),
+&"RESET": SubResource("Animation_gdut3")
+}
 
 [node name="RangerPlayer" type="CharacterBody2D"]
 script = ExtResource("1_rkl73")
@@ -77,5 +131,10 @@ offset_top = -15.0
 offset_right = 40.0
 theme_override_fonts/font = ExtResource("7_kedvh")
 theme_override_font_sizes/font_size = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerUI/PlayerHealthUI"]
+libraries = {
+&"": SubResource("AnimationLibrary_uhfby")
+}
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]
