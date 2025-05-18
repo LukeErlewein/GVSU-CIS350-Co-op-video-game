@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://do5d4h3xsmbgt"]
 
-[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/Wasteland.gd" id="1_axinn"]
+[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_axinn"]
 [ext_resource type="Texture2D" uid="uid://b2n20t2muj7g3" path="res://src/assets/TempGround.png" id="2_v48x7"]
 [ext_resource type="PackedScene" uid="uid://k8rs6ix3ky54" path="res://src/scenes/Menu.tscn" id="4_afads"]
 [ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="5_v48x7"]

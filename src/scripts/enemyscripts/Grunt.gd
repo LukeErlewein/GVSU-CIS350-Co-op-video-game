@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * STATS.speed
 	move_and_slide()
-	sprite_2d.look_at(target.global_position)
+	sprite_2d.look_at(nav_agent.get_next_path_position())
 	sprite_2d.rotate(-PI * 0.5)
 
 func make_path() -> void:
