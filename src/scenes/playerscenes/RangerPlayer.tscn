@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7wa2n7d0dfkp"]
+[gd_scene load_steps=9 format=3 uid="uid://b7wa2n7d0dfkp"]
 
 [ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/playerscripts/RangerPlayer.gd" id="1_rkl73"]
+[ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_7q8dk"]
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="2_d7q17"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="3_gfmhh"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]
@@ -10,8 +11,17 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_fcnqf"]
 radius = 15.0333
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q8dk"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="RangerPlayer" type="CharacterBody2D"]
 script = ExtResource("1_rkl73")
+bullet = ExtResource("2_7q8dk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -39,5 +49,8 @@ shape = SubResource("CircleShape2D_fcnqf")
 position = Vector2(15, 0)
 
 [node name="ShotCooldownTimer" type="Timer" parent="."]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_7q8dk")
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]

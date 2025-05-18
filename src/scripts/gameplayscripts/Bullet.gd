@@ -1,19 +1,11 @@
 extends Node2D
 
 var attack: Attack
-var direction:= Vector2.ZERO
 var hitbox: HitboxComponent = null
 
 func _process(delta: float) -> void:
-	if direction != Vector2.ZERO:
-		var velocity = direction * attack.bullet_speed
-		
-		global_position += velocity
+		global_position += transform.x * attack.bullet_speed * delta
 
-
-
-func set_direction(direction: Vector2):
-	self.direction = direction
 
 func find_hitbox(children: Array[Node]):
 	for child in children:

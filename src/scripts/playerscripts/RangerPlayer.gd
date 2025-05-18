@@ -19,14 +19,16 @@ func _ready() -> void:
 	attack.knockback_force = 15.0
 	attack.attack_cooldown = 0.6
 
-func _unhandled_input(event: InputEvent) -> void:
-	# Player shoots on "shoot" action if cooldown bool is true
-	if event.is_action_pressed("shoot") and can_shoot:
-		shoot()
-
+func _enter_tree() -> void:
+	set_multiplayer_authority(int(str(name)))
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#Only let the correct user control the character
+	if !is_multiplayer_authority():
+		return
+	
 	# Get direction of movement
 	var input = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -40,16 +42,18 @@ func _process(delta: float) -> void:
 	move_and_slide()
 	# Rotate player towards mouse
 	look_at(get_global_mouse_position())
+	
+	# Handle Shooting
+	if Input.is_action_pressed("shoot") and can_shoot:
+		shoot.rpc()
 
+@rpc("call_local")
 func shoot():
 	can_shoot = false
 	var bullet_instance = bullet.instantiate()
 	bullet_instance.transform = muzzle.global_transform
-	var mouse_direction = bullet_instance.global_position.direction_to(get_global_mouse_position()).normalized()
-	attack.attack_position = mouse_direction
 	bullet_instance.attack = self.attack
-	bullet_instance.set_direction(mouse_direction)
-	owner.add_child(bullet_instance)
+	get_parent().add_child(bullet_instance)
 	shot_cooldown_timer.start(attack.attack_cooldown)
 	
 

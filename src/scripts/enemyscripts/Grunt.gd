@@ -16,18 +16,19 @@ func _ready() -> void:
 	attack = Attack.new()
 	health_component.MAX_HEALTH = STATS.health
 	sprite_2d.texture = STATS.texture
-	#set_target(STATS.target)
 	attack.attack_damage = STATS.damage
+	target = set_target(STATS)
 	
 
 func _process(delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
 	velocity = dir * STATS.speed
 	move_and_slide()
-	sprite_2d.look_at(target.global_position)
+	sprite_2d.look_at(nav_agent.get_next_path_position())
 	sprite_2d.rotate(-PI * 0.5)
 
 func make_path() -> void:
+	target = set_target(STATS)
 	nav_agent.target_position = target.global_position
 
 func action(hitbox: HitboxComponent):
@@ -39,6 +40,7 @@ func action(hitbox: HitboxComponent):
 
 func _on_debug_path_timeout() -> void:
 	make_path()
+	
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
