@@ -1,5 +1,4 @@
 [gd_scene load_steps=9 format=3 uid="uid://d2g2sm3bnk4tj"]
-[gd_scene load_steps=9 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
@@ -57,5 +56,8 @@ script = ExtResource("6_m1mhg")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_fi1s2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("6_m1mhg")
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]
