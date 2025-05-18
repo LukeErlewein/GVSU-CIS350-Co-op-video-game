@@ -12,15 +12,8 @@ size = Vector2(103, 133)
 script = ExtResource("1_w8q82")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(558.75, 335.4)
 scale = Vector2(0.186508, 0.195082)
 texture = ExtResource("2_gjfl5")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(558.75, 334.4)
-shape = SubResource("RectangleShape2D_xxp6h")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 script = ExtResource("2_xxp6h")
@@ -28,7 +21,6 @@ health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(558.75, 334.4)
 shape = SubResource("RectangleShape2D_xxp6h")
 
 [node name="HealthComponent" type="Node2D" parent="."]
@@ -36,8 +28,7 @@ script = ExtResource("1_rkllt")
 MAX_HEALTH = 100.0
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(558.75, 334.4)
+[node name="PhysicsBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xxp6h")
 
 [node name="Button" type="Button" parent="."]

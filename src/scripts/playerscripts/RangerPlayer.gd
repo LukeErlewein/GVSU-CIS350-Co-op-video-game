@@ -45,16 +45,14 @@ func _process(delta: float) -> void:
 	
 	# Handle Shooting
 	if Input.is_action_pressed("shoot") and can_shoot:
-		shoot()
+		shoot.rpc()
 
+@rpc("call_local")
 func shoot():
 	can_shoot = false
 	var bullet_instance = bullet.instantiate()
 	bullet_instance.transform = muzzle.global_transform
-	var mouse_direction = bullet_instance.global_position.direction_to(get_global_mouse_position()).normalized()
-	attack.attack_position = mouse_direction
 	bullet_instance.attack = self.attack
-	bullet_instance.set_direction(mouse_direction)
 	get_parent().add_child(bullet_instance)
 	shot_cooldown_timer.start(attack.attack_cooldown)
 	
