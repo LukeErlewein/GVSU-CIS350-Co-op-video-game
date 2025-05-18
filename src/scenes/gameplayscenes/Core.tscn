@@ -41,7 +41,6 @@ position = Vector2(558.75, 334.4)
 shape = SubResource("RectangleShape2D_xxp6h")
 
 [node name="Button" type="Button" parent="."]
-visible = false
 offset_left = 526.0
 offset_top = 180.0
 offset_right = 593.0

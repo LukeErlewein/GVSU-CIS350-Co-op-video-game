@@ -1,19 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwprs02tko2ya"]
+[gd_scene load_steps=8 format=3 uid="uid://dwprs02tko2ya"]
 
 [ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="1_5gpsj"]
 [ext_resource type="Script" uid="uid://ibrqkm70t7u6" path="res://src/scripts/PlayerHUD.gd" id="1_45cf6"]
+[ext_resource type="Texture2D" uid="uid://ch3f5v1cq3p3n" path="res://src/assets/RedArrow.png" id="3_xjgnu"]
 
-[node name="PlayerUi" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45cf6"]
+bg_color = Color(0.515196, 0.199209, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjgnu"]
+bg_color = Color(0.948458, 0.420392, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0x4wh"]
+bg_color = Color(0.0406481, 0.386522, 0.554865, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vof5"]
+bg_color = Color(0.0627451, 0.941176, 0.933333, 1)
+
+[node name="PlayerUi" type="CanvasLayer"]
 script = ExtResource("1_45cf6")
 
 [node name="StopwatchLabel" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -25,3 +31,45 @@ grow_horizontal = 0
 theme_override_fonts/font = ExtResource("1_5gpsj")
 theme_override_font_sizes/font_size = 50
 text = "00:00"
+
+[node name="CoreStatusBox" type="VBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -183.0
+offset_right = 183.0
+offset_bottom = 53.0
+grow_horizontal = 2
+theme_override_constants/separation = 10
+
+[node name="CoreHealthBar" type="ProgressBar" parent="CoreStatusBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5gpsj")
+theme_override_styles/background = SubResource("StyleBoxFlat_45cf6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xjgnu")
+
+[node name="CoreChargeBar" type="ProgressBar" parent="CoreStatusBox"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_5gpsj")
+theme_override_styles/background = SubResource("StyleBoxFlat_0x4wh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5vof5")
+
+[node name="CoreArrow" type="TextureRect" parent="."]
+offset_left = -246.0
+offset_top = -263.0
+offset_right = 469.0
+offset_bottom = 452.0
+scale = Vector2(0.104979, 0.101521)
+pivot_offset = Vector2(357, 357)
+texture = ExtResource("3_xjgnu")
+
+[node name="CoreLocator" type="Label" parent="."]
+offset_left = 69.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("1_5gpsj")
+text = "Core
+Direction"
+horizontal_alignment = 1
+vertical_alignment = 1
