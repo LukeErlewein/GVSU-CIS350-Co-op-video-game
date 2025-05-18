@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwprs02tko2ya"]
+
+[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="1_5gpsj"]
+[ext_resource type="Script" uid="uid://ibrqkm70t7u6" path="res://src/scripts/PlayerHUD.gd" id="1_45cf6"]
+
+[node name="PlayerUi" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_45cf6")
+
+[node name="StopwatchLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -167.0
+offset_top = 11.0
+offset_right = -19.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("1_5gpsj")
+theme_override_font_sizes/font_size = 50
+text = "00:00"
