@@ -18,7 +18,7 @@ func _ready():
 
 
 func player_disconnected(id):
-	print("Player Disconnected: "+id)
+	print("Player Disconnected: ", id)
 
 func cant_connect(id):
 	print("Couldnt connect")

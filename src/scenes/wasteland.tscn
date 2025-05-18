@@ -46,3 +46,5 @@ spawn_path = NodePath("..")
 visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
