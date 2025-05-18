@@ -23,4 +23,4 @@ func _process(_delta):
 
 	var current: float = health_component.health
 	health_bar.value = current
-	$HealthLabel.text = str(round(current)) + " / " + str(round(health_component.MAX_HEALTH))
+	$HealthLabel.text = str(round(current)) + "/" + str(round(health_component.MAX_HEALTH))

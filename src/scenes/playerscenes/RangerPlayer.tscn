@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7wa2n7d0dfkp"]
+[gd_scene load_steps=12 format=3 uid="uid://b7wa2n7d0dfkp"]
 
 [ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/playerscripts/RangerPlayer.gd" id="1_rkl73"]
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_7q8dk"]
@@ -7,11 +7,18 @@
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]
 [ext_resource type="Script" uid="uid://bev0dwxmfmofp" path="res://src/scripts/playerscripts/RangerCamera.gd" id="5_7q8dk"]
 [ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/RangerHeath.gd" id="6_6f2tg"]
+[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="7_kedvh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fcnqf"]
 radius = 15.0333
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kedvh"]
+bg_color = Color(0.411765, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdut3"]
+bg_color = Color(1, 0.105882, 0, 1)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q8dk"]
 properties/0/path = NodePath(".:position")
@@ -65,18 +72,21 @@ offset_bottom = 40.0
 script = ExtResource("6_6f2tg")
 player_node_path = NodePath("../..")
 
+[node name="HealthBar" type="ProgressBar" parent="PlayerUI/PlayerHealthUI"]
+layout_mode = 1
+offset_right = 77.0
+offset_bottom = 11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kedvh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gdut3")
+show_percentage = false
+
 [node name="HealthLabel" type="Label" parent="PlayerUI/PlayerHealthUI"]
 layout_mode = 1
+offset_left = -3.0
+offset_top = -15.0
 offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="HealthBar" type="ProgressBar" parent="PlayerUI/PlayerHealthUI"]
-layout_mode = 0
-offset_left = -34.0
-offset_top = 2.0
-offset_right = 108.0
-offset_bottom = 21.0
-show_percentage = false
+theme_override_fonts/font = ExtResource("7_kedvh")
+theme_override_font_sizes/font_size = 15
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7q8dk")
