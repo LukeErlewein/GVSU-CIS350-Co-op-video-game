@@ -2,13 +2,7 @@ extends Control
 
 func _ready():
 	$VBoxContainer/JoinButton.grab_focus()
-	
 
-func player_connected(id):
-	print("Player Connected: ", id)
-	var ranger_player = join_player.instantiate()
-	ranger_player.name = str(id)
-	get_parent().add_child(ranger_player)
 
 func player_disconnected(id):
 	print("Player Disconnected: "+id)
