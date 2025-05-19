@@ -11,6 +11,9 @@ ruthless enemies by using special abilities to their advantage.
 # Anticipated Technologies
 
 We will be using the Godot game engine to be able to code our game.
+Using Trello for issue tracking.
+Using Github for code storage.
+Using Pixelorama for art assets.
 
 # Method/Approach
 
