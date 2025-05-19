@@ -22,7 +22,6 @@ func _ready() -> void:
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(str(name)))
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	#Only let the correct user control the character
@@ -56,7 +55,6 @@ func shoot():
 	get_parent().add_child(bullet_instance)
 	shot_cooldown_timer.start(attack.attack_cooldown)
 	
-
 
 func _on_shot_cooldown_timer_timeout() -> void:
 	can_shoot = true
