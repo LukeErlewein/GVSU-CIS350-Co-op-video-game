@@ -16,7 +16,7 @@ bg_color = Color(0.0406481, 0.386522, 0.554865, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5vof5"]
 bg_color = Color(0.0627451, 0.941176, 0.933333, 1)
 
-[node name="PlayerUi" type="CanvasLayer"]
+[node name="CoreHUD" type="CanvasLayer"]
 script = ExtResource("1_45cf6")
 
 [node name="StopwatchLabel" type="Label" parent="."]

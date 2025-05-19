@@ -1,0 +1,94 @@
+[gd_scene load_steps=9 format=3 uid="uid://dge4gtm50pdju"]
+
+[ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/HeathTracking.gd" id="1_q6fw4"]
+[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="2_qqy4o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kedvh"]
+bg_color = Color(0.411765, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gdut3"]
+bg_color = Color(1, 0.105882, 0, 1)
+
+[sub_resource type="Animation" id="Animation_kedvh"]
+resource_name = "FadeIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l6el3"]
+resource_name = "FadeOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gdut3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhfby"]
+_data = {
+&"FadeIn": SubResource("Animation_kedvh"),
+&"FadeOut": SubResource("Animation_l6el3"),
+&"RESET": SubResource("Animation_gdut3")
+}
+
+[node name="PlayerUI" type="CanvasLayer"]
+
+[node name="PlayerHealthUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_q6fw4")
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerHealthUI"]
+layout_mode = 1
+offset_right = 77.0
+offset_bottom = 11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kedvh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gdut3")
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="PlayerHealthUI"]
+layout_mode = 1
+offset_left = -3.0
+offset_top = -15.0
+offset_right = 40.0
+theme_override_fonts/font = ExtResource("2_qqy4o")
+theme_override_font_sizes/font_size = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerHealthUI"]
+libraries = {
+&"": SubResource("AnimationLibrary_uhfby")
+}

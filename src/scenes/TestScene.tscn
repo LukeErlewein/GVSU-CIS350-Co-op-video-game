@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://bd2xqhpdcvncq"]
 
-[ext_resource type="PackedScene" uid="uid://dwprs02tko2ya" path="res://src/scenes/PlayerHUD.tscn" id="1_ubpg4"]
+[ext_resource type="PackedScene" uid="uid://dwprs02tko2ya" path="res://src/scenes/CoreHUD.tscn" id="1_ubpg4"]
 [ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="2_ti78g"]
 [ext_resource type="PackedScene" uid="uid://dx8f1tjne3q63" path="res://src/scenes/enemyscenes/MouseEnemy.tscn" id="3_ti78g"]
 [ext_resource type="PackedScene" uid="uid://b7wa2n7d0dfkp" path="res://src/scenes/playerscenes/RangerPlayer.tscn" id="4_c76nn"]
+
 
 [node name="TestScene" type="Node2D"]
 position = Vector2(366, 116)

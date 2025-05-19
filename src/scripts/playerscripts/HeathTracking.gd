@@ -1,6 +1,5 @@
 extends Control
 
-@export var player_node_path: NodePath
 var player: Node2D
 var health_component
 
@@ -11,7 +10,7 @@ var health_component
 var is_visible := true
 
 func _ready():
-	player = get_node(player_node_path)
+	player = get_parent().get_parent()
 	health_component = player.get_node("HealthComponent")
 	health_bar.max_value = health_component.MAX_HEALTH
 	modulate.a = 0.0  # Start hidden
