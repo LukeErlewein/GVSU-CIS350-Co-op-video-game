@@ -1,7 +1,6 @@
-class_name Grunt extends BaseEnemy
+class_name CellCarrier extends BaseEnemy
 
 @export var STATS : EnemyStats
-@export var target : Node2D
 @export var COOLDOWN: float = 2.0
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -10,6 +9,9 @@ class_name Grunt extends BaseEnemy
 @onready var attack_cooldown: Timer = $AttackCooldown
 
 var can_attack: bool = true
+var target : Node2D
+
+signal carrier_death
 
 func _ready() -> void:
 	attack = Attack.new()
@@ -17,7 +19,7 @@ func _ready() -> void:
 	sprite_2d.texture = STATS.texture
 	attack.attack_damage = STATS.damage
 	target = set_target(STATS)
-	
+
 
 func _process(delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
@@ -36,19 +38,21 @@ func action(hitbox: HitboxComponent):
 		can_attack = false
 		hitbox.damage(attack)
 
+func _exit_tree() -> void:
+	carrier_death.emit(global_position)
 
 func _on_debug_path_timeout() -> void:
 	make_path()
-	
+
 
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
+
 
 func _on_hitbox_component_body_entered(body: Node2D) -> void:
 	print("Body entered: ", body.name, " - class: ", body.get_class())
 	var hitbox = body.get_node_or_null("HitboxComponent")
 	print("Hitbox: ", hitbox)
-
 	if body is FighterPlayer or body is RangerPlayer or body is Core:
 		if hitbox:
 			print("Calling action() on ", body.name)

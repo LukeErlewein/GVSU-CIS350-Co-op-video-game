@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://b5em70wpw8nce"]
+
+[ext_resource type="Script" uid="uid://csmsjn5wqit5i" path="res://src/scripts/enemyscripts/EnemyStats.gd" id="1_w03jh"]
+[ext_resource type="Texture2D" uid="uid://5ywh5cv3k1dc" path="res://src/assets/Enemies/CellCarrier.png" id="2_5t22r"]
+
+[resource]
+script = ExtResource("1_w03jh")
+health = 20.0
+damage = 4.0
+speed = 50.0
+texture = ExtResource("2_5t22r")
+target = "PLAYERS"
+enemyType = "CELL_CARRIER"
+metadata/_custom_type_script = "uid://csmsjn5wqit5i"

@@ -1,9 +1,9 @@
-extends Area2D
+class_name EnergyCell extends Area2D
 
-signal cellCharge
-
+@export var CHARGE_AMOUNT: int = 5
+signal cell_pickup
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is FighterPlayer:
-		cellCharge.emit() # this is to no one just yet
+		cell_pickup.emit(CHARGE_AMOUNT)
 		queue_free()

@@ -30,12 +30,3 @@ metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_xxp6h")
-
-[node name="Button" type="Button" parent="."]
-offset_left = 526.0
-offset_top = 180.0
-offset_right = 593.0
-offset_bottom = 211.0
-text = "Charge "
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

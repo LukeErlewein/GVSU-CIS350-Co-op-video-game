@@ -9,7 +9,11 @@ func _ready() -> void:
 
 
 func damage(attack: Attack) -> void:
-	health -= attack.attack_damage
+	if get_parent() is not CellCarrier:
+		health -= attack.attack_damage
+	
+	if get_parent() is CellCarrier and attack.hurt_cell_holders:
+		health -= attack.attack_damage
 	
 	if health <= 0:
 		get_parent().queue_free()
