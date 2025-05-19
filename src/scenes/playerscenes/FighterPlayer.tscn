@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2g2sm3bnk4tj"]
+[gd_scene load_steps=20 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
@@ -6,7 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="3_bv166"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_p35ce"]
 [ext_resource type="Script" uid="uid://b1lk7n5io5uc0" path="res://src/scripts/playerscripts/FighterCamera.gd" id="6_m1mhg"]
-[ext_resource type="PackedScene" uid="uid://dge4gtm50pdju" path="res://src/scenes/playerscenes/PlayerUI.tscn" id="7_2pd3n"]
+[ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/HealthTracking.gd" id="7_lxwnt"]
+[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="8_0ohk6"]
+[ext_resource type="Texture2D" uid="uid://ch3f5v1cq3p3n" path="res://src/assets/RedArrow.png" id="9_nv4wy"]
+[ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_u66ln"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
 
@@ -20,6 +23,66 @@ properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cw1yv"]
+bg_color = Color(0.411765, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ro8l"]
+bg_color = Color(1, 0.105882, 0, 1)
+
+[sub_resource type="Animation" id="Animation_kedvh"]
+resource_name = "FadeIn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l6el3"]
+resource_name = "FadeOut"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gdut3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uhfby"]
+_data = {
+&"FadeIn": SubResource("Animation_kedvh"),
+&"FadeOut": SubResource("Animation_l6el3"),
+&"RESET": SubResource("Animation_gdut3")
+}
 
 [node name="FighterPlayer" type="CharacterBody2D"]
 script = ExtResource("1_rwx8l")
@@ -59,6 +122,55 @@ script = ExtResource("6_m1mhg")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_fi1s2")
 
-[node name="PlayerUI" parent="." instance=ExtResource("7_2pd3n")]
+[node name="FighterUI" type="CanvasLayer" parent="."]
+
+[node name="PlayerHealthUI" type="Control" parent="FighterUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("7_lxwnt")
+
+[node name="HealthBar" type="ProgressBar" parent="FighterUI/PlayerHealthUI"]
+layout_mode = 1
+offset_right = 77.0
+offset_bottom = 11.0
+theme_override_styles/background = SubResource("StyleBoxFlat_cw1yv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_6ro8l")
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="FighterUI/PlayerHealthUI"]
+layout_mode = 1
+offset_left = -3.0
+offset_top = -15.0
+offset_right = 40.0
+theme_override_fonts/font = ExtResource("8_0ohk6")
+theme_override_font_sizes/font_size = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FighterUI/PlayerHealthUI"]
+libraries = {
+&"": SubResource("AnimationLibrary_uhfby")
+}
+
+[node name="CoreArrow" type="TextureRect" parent="FighterUI"]
+offset_left = -246.0
+offset_top = -263.0
+offset_right = 469.0
+offset_bottom = 452.0
+scale = Vector2(0.104979, 0.101521)
+pivot_offset = Vector2(357, 357)
+texture = ExtResource("9_nv4wy")
+script = ExtResource("10_u66ln")
+
+[node name="CoreLocator" type="Label" parent="FighterUI"]
+offset_left = 69.0
+offset_top = 10.0
+offset_right = 154.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("8_0ohk6")
+text = "Core
+Direction"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]

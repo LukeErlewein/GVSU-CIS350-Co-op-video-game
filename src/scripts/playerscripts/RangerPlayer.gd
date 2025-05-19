@@ -7,11 +7,14 @@ class_name RangerPlayer extends CharacterBody2D
 @export var bullet : PackedScene
 @onready var muzzle: Marker2D = $Muzzle
 @onready var shot_cooldown_timer: Timer = $ShotCooldownTimer
+@onready var camera: Camera2D = $Camera2D
+
 var attack: Attack
 var can_shoot: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if is_multiplayer_authority(): camera.make_current()
 	attack = Attack.new()
 	attack.attack_damage = 3.0
 	attack.hurt_cell_holders = true

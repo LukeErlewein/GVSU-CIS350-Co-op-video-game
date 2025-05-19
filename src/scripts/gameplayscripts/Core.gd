@@ -7,6 +7,7 @@ var currentPower := 0
 @export var MAXPOWER := 100
 
 # Signal connection
+@rpc("call_local")
 func add_power(amount: int) -> void:
 	currentPower += amount
 	currentPower = clamp(currentPower, 0, MAXPOWER)
@@ -14,4 +15,4 @@ func add_power(amount: int) -> void:
 
 
 func _on_button_pressed() -> void:
-	add_power(1)	 # Replace with function body.
+	add_power.rpc(1)

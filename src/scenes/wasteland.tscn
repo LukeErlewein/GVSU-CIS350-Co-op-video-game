@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_axinn"]
 [ext_resource type="Texture2D" uid="uid://b2n20t2muj7g3" path="res://src/assets/TempGround.png" id="2_v48x7"]
 [ext_resource type="PackedScene" uid="uid://k8rs6ix3ky54" path="res://src/scenes/Menu.tscn" id="4_afads"]
-[ext_resource type="PackedScene" uid="uid://dwprs02tko2ya" path="res://src/scenes/CoreHUD.tscn" id="5_khrfv"]
+[ext_resource type="PackedScene" uid="uid://dwprs02tko2ya" path="res://src/scenes/gameplayscenes/CoreHUD.tscn" id="5_khrfv"]
 [ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="5_v48x7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v48x7"]
@@ -48,7 +48,6 @@ visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="CoreHUD" parent="." node_paths=PackedStringArray("core_node") instance=ExtResource("5_khrfv")]
-core_node = NodePath("../Core")
+[node name="CoreHUD" parent="." instance=ExtResource("5_khrfv")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
