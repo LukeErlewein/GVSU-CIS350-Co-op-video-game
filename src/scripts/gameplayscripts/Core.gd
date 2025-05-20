@@ -15,4 +15,4 @@ func add_power(amount: int) -> void:
 
 
 func _on_button_pressed() -> void:
-	add_power.rpc(1)
+	add_power.rpc(5)

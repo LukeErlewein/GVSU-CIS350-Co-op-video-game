@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://d0e2jikstcvkb" path="res://src/scripts/gameplayscripts/EnergyCell.gd" id="1_8j3so"]
 [ext_resource type="Texture2D" uid="uid://cvi7l8slxrnea" path="res://src/assets/EnergyCell.png" id="2_6buni"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkkl4"]
 size = Vector2(8, 16)
 
@@ -14,6 +13,7 @@ script = ExtResource("1_8j3so")
 shape = SubResource("RectangleShape2D_wkkl4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
 texture = ExtResource("2_6buni")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
