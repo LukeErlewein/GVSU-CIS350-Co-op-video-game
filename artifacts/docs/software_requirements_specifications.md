@@ -20,7 +20,7 @@ This document is the software requirements document for the co-op video game.
 ### 3. Gameplay Mechanics
 - **FR12**: Players shall be able to move in 4 or 8 directions using keyboard keys.
 - **FR13**: Players shall be able to interact with dropped power cells.
-- **FR14**: When a player picks up a dropped power cell, the power core shall charge up by 1%.
+- **FR14**: When a player with the Fighter class picks up a dropped power cell, the power core shall charge up by 1%.
 - **FR15**: Combat mechanics shall include attacking, taking damage, and dying.
 - **FR16**: When a player's health is reduced to zero, the player character shall die.
 - **FR17**: Players shall respawn by waiting 10 seconds after dying.

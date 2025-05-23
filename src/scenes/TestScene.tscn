@@ -3,16 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://dwprs02tko2ya" path="res://src/scenes/gameplayscenes/CoreHUD.tscn" id="1_ubpg4"]
 [ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="2_ti78g"]
 [ext_resource type="PackedScene" uid="uid://dx8f1tjne3q63" path="res://src/scenes/enemyscenes/MouseEnemy.tscn" id="3_ti78g"]
-[ext_resource type="PackedScene" uid="uid://b7wa2n7d0dfkp" path="res://src/scenes/playerscenes/RangerPlayer.tscn" id="4_c76nn"]
-
-
+[ext_resource type="PackedScene" uid="uid://d2g2sm3bnk4tj" path="res://src/scenes/playerscenes/FighterPlayer.tscn" id="4_c76nn"]
 
 [node name="TestScene" type="Node2D"]
 position = Vector2(366, 116)
 
-[node name="PlayerUi" parent="." node_paths=PackedStringArray("core_node", "player_node") instance=ExtResource("1_ubpg4")]
-core_node = NodePath("../Core")
-player_node = NodePath("../RangerPlayer")
+[node name="PlayerUi" parent="." instance=ExtResource("1_ubpg4")]
 metadata/_edit_use_anchors_ = true
 
 [node name="Core" parent="." instance=ExtResource("2_ti78g")]
@@ -21,7 +17,4 @@ position = Vector2(-364, -118)
 [node name="Area2D" parent="." instance=ExtResource("3_ti78g")]
 visible = false
 
-[node name="RangerPlayer" parent="." instance=ExtResource("4_c76nn")]
-position = Vector2(209, 213)
-rotation = 0.00127744
-SPEED = 155.0
+[node name="FighterPlayer" parent="." instance=ExtResource("4_c76nn")]

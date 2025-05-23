@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var core: Core = $Core
 
-var grunt: PackedScene = preload("res://src/scenes/enemyscenes/CellCarrier.tscn")
+var grunt: PackedScene = preload("res://src/scenes/enemyscenes/Grunt.tscn")
 var energy_cell: PackedScene = preload("res://src/scenes/gameplayscenes/EnergyCell.tscn")
 
 signal game_start

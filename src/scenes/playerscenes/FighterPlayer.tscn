@@ -1,15 +1,18 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2g2sm3bnk4tj"]
+[gd_scene load_steps=23 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_p35ce"]
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="3_bv166"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_p35ce"]
+[ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/projectile.tscn" id="3_u66ln"]
 [ext_resource type="Script" uid="uid://b1lk7n5io5uc0" path="res://src/scripts/playerscripts/FighterCamera.gd" id="6_m1mhg"]
 [ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/HealthTracking.gd" id="7_lxwnt"]
 [ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="8_0ohk6"]
 [ext_resource type="Texture2D" uid="uid://ch3f5v1cq3p3n" path="res://src/assets/RedArrow.png" id="9_nv4wy"]
 [ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_u66ln"]
+[ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/gameplayscenes/spell_button.tscn" id="11_0ohk6"]
+[ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/skill_bar.gd" id="11_nv4wy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
 
@@ -87,6 +90,7 @@ _data = {
 [node name="FighterPlayer" type="CharacterBody2D"]
 script = ExtResource("1_rwx8l")
 bullet = ExtResource("2_p35ce")
+projectile_node = ExtResource("3_u66ln")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5708
@@ -172,5 +176,44 @@ text = "Core
 Direction"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SkillBar" type="HBoxContainer" parent="FighterUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -172.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("11_nv4wy")
+
+[node name="SpellButton" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="SpellButton2" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="SpellButton3" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="SpellButton4" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShotgunAbility" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]

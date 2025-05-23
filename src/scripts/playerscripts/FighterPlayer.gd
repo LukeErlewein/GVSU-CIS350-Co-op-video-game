@@ -5,16 +5,24 @@ class_name FighterPlayer extends CharacterBody2D
 @export var FRICTION: float = 8
 
 @export var bullet : PackedScene
+@export var projectile_node : PackedScene
 @onready var muzzle: Marker2D = $Muzzle
 @onready var shot_cooldown_timer: Timer = $ShotCooldownTimer
 @onready var camera: Camera2D = $Camera2D
+@onready var shotgun_ability = $Abilities/ShotgunAbility
+@onready var grenade_ability = $Abilities/GrenadeAbility
+@onready var freeze_grenade_ability = $Abilities/FreezeGrenadeAbility
+@onready var orbital_strike_ability = $Abilities/OrbitalStrikeAbility
+@onready var core: Node = get_tree().get_current_scene().get_node("Core")
 
 var attack: Attack
 var can_shoot: bool = true
+var facing_direction := Vector2.RIGHT
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if is_multiplayer_authority(): camera.make_current()
+	if is_multiplayer_authority():
+		core.power_updated.connect(_on_power_updated)
+		camera.make_current()
 	attack = Attack.new()
 	attack.attack_damage = 1.0
 	attack.bullet_speed = 40.0
@@ -24,39 +32,101 @@ func _ready() -> void:
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(str(name)))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#Only let the correct user control the character
 	if !is_multiplayer_authority():
 		return
-	
-	# Get direction of movement
+
 	var input = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	).normalized()
-	# get ACCELERATION or FRICTION depending on input
 	var lerp_weight = delta * (ACCELERATION if input else FRICTION)
-	# apply to character velocity
 	velocity = lerp(velocity, input * SPEED, lerp_weight)
-	# apply movement
 	move_and_slide()
-	# Rotate player towards mouse
+
 	look_at(get_global_mouse_position())
-	
-	# Player shoots on "shoot" action if cooldown bool is true
+
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot.rpc()
 
-@rpc("call_local")
+	facing_direction = (get_global_mouse_position() - global_position).normalized()
+
+	if Input.is_action_just_pressed("ability_1") and is_multiplayer_authority():
+		var proj_transform = Transform2D(facing_direction.angle(), global_position)
+		single_shot.rpc(proj_transform, "Shotgun", 1)
+	if Input.is_action_just_pressed("ability_2") and is_multiplayer_authority():
+		grenade_ability.try_activate(self)
+	if Input.is_action_just_pressed("ability_3") and is_multiplayer_authority():
+		freeze_grenade_ability.try_activate(self)
+	if Input.is_action_just_pressed("ability_4") and is_multiplayer_authority():
+		orbital_strike_ability.try_activate(self)
+
+@rpc("any_peer", "call_local")
 func shoot():
 	can_shoot = false
 	var bullet_instance = bullet.instantiate()
 	bullet_instance.transform = muzzle.global_transform
 	bullet_instance.attack = self.attack
-	get_parent().add_child(bullet_instance)
+	get_tree().current_scene.add_child(bullet_instance)
 	shot_cooldown_timer.start(attack.attack_cooldown)
-	
 
 func _on_shot_cooldown_timer_timeout() -> void:
 	can_shoot = true
+
+func _on_power_updated():
+	var pct = float(core.currentPower) / float(core.MAXPOWER)
+	if pct >= 0: shotgun_ability.unlock()
+	if pct >= 0.25: grenade_ability.unlock()
+	if pct >= 0.50: freeze_grenade_ability.unlock()
+	if pct >= 0.75: orbital_strike_ability.unlock()
+
+@rpc("any_peer", "call_local")
+func single_shot(transform: Transform2D, animation_name = "Shotgun", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
+	var projectile = projectile_node.instantiate()
+	projectile.transform = transform
+	projectile.play(animation_name)
+
+	var new_attack = self.attack.duplicate()
+	new_attack.attack_damage = damage
+	projectile.attack = new_attack
+
+	projectile.speed = speed
+	projectile.lifetime = lifetime
+
+	get_tree().current_scene.add_child(projectile)
+
+
+@rpc("any_peer", "call_local")
+func multi_shot(base_transform: Transform2D, count: int = 3, delay: float = 0.3, animation_name = "Shotgun", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
+	for i in range(count):
+		var spread_angle = deg_to_rad(randf_range(-3, 3))
+		var transform = base_transform.rotated(spread_angle)
+		single_shot(transform, animation_name, damage, speed, lifetime)
+		await get_tree().create_timer(delay).timeout
+
+@rpc("any_peer", "call_local")
+func grenade_shot(transform: Transform2D, animation_name = "Grenade", damage: float = 100, speed: float = 100.0, lifetime: float = 0.5):
+	var grenade = projectile_node.instantiate()
+	grenade.transform = transform
+	grenade.play(animation_name)
+
+	var grenade_attack = self.attack.duplicate()
+	grenade_attack.attack_damage = damage  # Set to full damage for explosion
+	grenade.attack = grenade_attack
+
+	grenade.speed = speed
+	grenade.lifetime = lifetime
+
+	# Explosion logic triggered when grenade expires or hits something
+	grenade.exploded.connect(func(pos):
+		explode_grenade(pos, damage)
+	)
+
+	get_tree().current_scene.add_child(grenade)
+
+func explode_grenade(position: Vector2, damage: float):
+	var radius = 200.0
+	print("Grenade exploded at position: ", position)
+	for body in get_tree().get_nodes_in_group("enemies"):
+		if body.global_position.distance_to(position) <= radius:
+			body.take_damage(damage)

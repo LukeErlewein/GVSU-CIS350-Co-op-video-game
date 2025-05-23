@@ -1,0 +1,106 @@
+[gd_scene load_steps=18 format=3 uid="uid://b25sec0k0iu7a"]
+
+[ext_resource type="Script" uid="uid://b77n4q62kp72d" path="res://projectile.gd" id="1_oj430"]
+[ext_resource type="Texture2D" uid="uid://dco0mteuktmw2" path="res://src/assets/Abilities/Explosion/Explosion_1.png" id="2_1i0pn"]
+[ext_resource type="Texture2D" uid="uid://c4xr5qgh5cyie" path="res://src/assets/Abilities/FreezeProjectile.png" id="2_h3l8s"]
+[ext_resource type="Texture2D" uid="uid://cnilu53kkbebu" path="res://src/assets/Abilities/SprayBullets.png" id="2_yy7jp"]
+[ext_resource type="Texture2D" uid="uid://blutrnmkp8cvf" path="res://src/assets/Abilities/Explosion/Explosion_2.png" id="3_4eh2j"]
+[ext_resource type="Texture2D" uid="uid://bbpopb0gtbkpr" path="res://src/assets/Abilities/GrenadeProjectile.png" id="3_pdtl0"]
+[ext_resource type="Texture2D" uid="uid://dgfxbhfyvgqhk" path="res://src/assets/Abilities/Explosion/Explosion_3.png" id="4_3ols7"]
+[ext_resource type="Texture2D" uid="uid://c2402f5s6nk6r" path="res://src/assets/Abilities/Orbitalpoint.png" id="4_cglhm"]
+[ext_resource type="Texture2D" uid="uid://3p80abr3wd3p" path="res://src/assets/Abilities/Explosion/Explosion_4.png" id="5_ia467"]
+[ext_resource type="Texture2D" uid="uid://c36qc5oqtqt5u" path="res://src/assets/Abilities/Explosion/Explosion_5.png" id="6_ct4n7"]
+[ext_resource type="Texture2D" uid="uid://c7ifvmtuswk17" path="res://src/assets/Abilities/Explosion/Explosion_6.png" id="7_m2644"]
+[ext_resource type="Texture2D" uid="uid://bdw78j464k031" path="res://src/assets/Abilities/Explosion/Explosion_7.png" id="8_ueexk"]
+[ext_resource type="Texture2D" uid="uid://ce58jpq2lvv26" path="res://src/assets/Abilities/Explosion/Explosion_8.png" id="9_2k713"]
+[ext_resource type="Texture2D" uid="uid://d237jeq2bwy0o" path="res://src/assets/Abilities/Explosion/Explosion_9.png" id="10_hg1o3"]
+[ext_resource type="Texture2D" uid="uid://c6n4dupd5qng0" path="res://src/assets/Abilities/Explosion/Explosion_10.png" id="11_j6tag"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ykpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1i0pn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4eh2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3ols7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ia467")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ct4n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m2644")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ueexk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2k713")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hg1o3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j6tag")
+}],
+"loop": false,
+"name": &"Explosion",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h3l8s")
+}],
+"loop": true,
+"name": &"Freeze",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pdtl0")
+}],
+"loop": true,
+"name": &"Grenade",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cglhm")
+}],
+"loop": true,
+"name": &"Orbital",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yy7jp")
+}],
+"loop": true,
+"name": &"Shotgun",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h3l8s"]
+
+[node name="Projectile" type="Area2D"]
+script = ExtResource("1_oj430")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4.76837e-07, -4.76837e-07)
+scale = Vector2(0.385455, 0.385455)
+sprite_frames = SubResource("SpriteFrames_3ykpj")
+animation = &"Explosion"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_h3l8s")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
