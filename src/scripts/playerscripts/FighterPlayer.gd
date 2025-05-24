@@ -92,6 +92,7 @@ func single_shot(transform: Transform2D, animation_name = "Shotgun", damage: flo
 
 	projectile.speed = speed
 	projectile.lifetime = lifetime
+	projectile.explosion_animation = ""
 
 	get_tree().current_scene.add_child(projectile)
 
@@ -106,6 +107,7 @@ func multi_shot(base_transform: Transform2D, count: int = 3, delay: float = 0.3,
 
 @rpc("any_peer", "call_local")
 func grenade_shot(transform: Transform2D, animation_name = "Grenade", damage: float = 100, speed: float = 100.0, lifetime: float = 0.5):
+	
 	var grenade = projectile_node.instantiate()
 	grenade.transform = transform
 	grenade.play(animation_name)
@@ -119,6 +121,7 @@ func grenade_shot(transform: Transform2D, animation_name = "Grenade", damage: fl
 
 	# Explosion logic triggered when grenade expires or hits something
 	grenade.exploded.connect(func(pos):
+		print("Grenade exploded signal received at ", pos)
 		explode_grenade(pos, damage)
 	)
 
@@ -127,6 +130,92 @@ func grenade_shot(transform: Transform2D, animation_name = "Grenade", damage: fl
 func explode_grenade(position: Vector2, damage: float):
 	var radius = 200.0
 	print("Grenade exploded at position: ", position)
-	for body in get_tree().get_nodes_in_group("enemies"):
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		if enemy.global_position.distance_to(position) <= radius:
+			var hc = enemy.get_node_or_null("HealthComponent")
+			if hc != null:
+				var temp_attack = Attack.new()
+				temp_attack.attack_damage = damage
+				hc.damage(temp_attack)
+
+@rpc("any_peer", "call_local")
+func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeGrenade", damage: float = 0, speed: float = 100.0, lifetime: float = 0.5):
+	var grenade = projectile_node.instantiate()
+	grenade.transform = transform
+	grenade.play(animation_name)
+
+	var grenade_attack = self.attack.duplicate()
+	grenade_attack.attack_damage = damage
+	grenade.attack = grenade_attack
+
+	grenade.speed = speed
+	grenade.lifetime = lifetime
+	
+	grenade.explosion_animation = "FreezeExplosion"
+	
+	grenade.exploded.connect(func(pos):
+		print("Freeze grenade exploded signal received at ", pos)
+		explode_freeze_grenade(pos)
+	)
+
+	get_tree().current_scene.add_child(grenade)
+
+func explode_freeze_grenade(position: Vector2):
+	var radius = 200.0
+	print("Freeze Grenade exploded at position: ", position)
+	for body in get_tree().get_nodes_in_group("Enemies"):
+		print("Checking enemy: ", body.name, " distance: ", body.global_position.distance_to(position))
 		if body.global_position.distance_to(position) <= radius:
-			body.take_damage(damage)
+			if body.has_method("freeze"):
+				print("Freezing enemy: ", body.name)
+				body.freeze(5.0)
+
+
+@rpc("any_peer", "call_local")
+func orbital_strike_shot(transform: Transform2D, animation_name = "Orbital", damage: float = 100.0, speed: float = 100.0, lifetime: float = 0.5):
+	var grenade = projectile_node.instantiate()
+	grenade.transform = transform
+	grenade.play(animation_name)
+
+	var grenade_attack = self.attack.duplicate()
+	grenade_attack.attack_damage = damage
+	grenade.attack = grenade_attack
+
+	grenade.speed = speed
+	grenade.lifetime = lifetime
+	grenade.explosion_animation = "Explosion"
+
+	# Connect the multi-blast orbital sequence when grenade explodes
+	grenade.exploded.connect(func(pos):
+		orbital_explode_sequence(pos, damage)
+	)
+
+	get_tree().current_scene.add_child(grenade)
+
+func orbital_explode_sequence(position: Vector2, damage: float):
+	var radius = 200.0
+	var explosion_count = 5
+	var delay_between = 2.0
+
+	var explosion_effect_scene := preload("res://src/scenes/gameplayscenes/explosion_effect.tscn")
+
+	print("Orbital Strike incoming at: ", position)
+
+	for i in range(explosion_count):
+		# 1. Visual Effect
+		var effect = explosion_effect_scene.instantiate()
+		effect.global_position = position
+		get_tree().current_scene.add_child(effect)
+
+		# 2. Apply Damage
+		print("Orbital explosion ", i + 1, " at ", position)
+		for enemy in get_tree().get_nodes_in_group("Enemies"):
+			if enemy.global_position.distance_to(position) <= radius:
+				var hc = enemy.get_node_or_null("HealthComponent")
+				if hc != null:
+					var temp_attack = Attack.new()
+					temp_attack.attack_damage = damage
+					hc.damage(temp_attack)
+
+		# 3. Wait before next explosion
+		await get_tree().create_timer(delay_between).timeout

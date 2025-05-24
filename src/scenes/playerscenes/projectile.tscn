@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b25sec0k0iu7a"]
+[gd_scene load_steps=28 format=3 uid="uid://b25sec0k0iu7a"]
 
 [ext_resource type="Script" uid="uid://b77n4q62kp72d" path="res://projectile.gd" id="1_oj430"]
 [ext_resource type="Texture2D" uid="uid://dco0mteuktmw2" path="res://src/assets/Abilities/Explosion/Explosion_1.png" id="2_1i0pn"]
@@ -15,6 +15,16 @@
 [ext_resource type="Texture2D" uid="uid://ce58jpq2lvv26" path="res://src/assets/Abilities/Explosion/Explosion_8.png" id="9_2k713"]
 [ext_resource type="Texture2D" uid="uid://d237jeq2bwy0o" path="res://src/assets/Abilities/Explosion/Explosion_9.png" id="10_hg1o3"]
 [ext_resource type="Texture2D" uid="uid://c6n4dupd5qng0" path="res://src/assets/Abilities/Explosion/Explosion_10.png" id="11_j6tag"]
+[ext_resource type="Texture2D" uid="uid://cg5ls67qeytyv" path="res://src/assets/Abilities/FreezeExplosion/Explosion_1.png" id="13_bka0j"]
+[ext_resource type="Texture2D" uid="uid://cjmso5p0dv7us" path="res://src/assets/Abilities/FreezeExplosion/Explosion_2.png" id="14_sm44v"]
+[ext_resource type="Texture2D" uid="uid://d2fkbddplqkeo" path="res://src/assets/Abilities/FreezeExplosion/Explosion_3.png" id="15_nqq6n"]
+[ext_resource type="Texture2D" uid="uid://ygtuyhyhcf2f" path="res://src/assets/Abilities/FreezeExplosion/Explosion_4.png" id="16_3v1cd"]
+[ext_resource type="Texture2D" uid="uid://b4xtg7jouwtb3" path="res://src/assets/Abilities/FreezeExplosion/Explosion_5.png" id="17_kgeqx"]
+[ext_resource type="Texture2D" uid="uid://0ytq6c4ja146" path="res://src/assets/Abilities/FreezeExplosion/Explosion_6.png" id="18_au4r2"]
+[ext_resource type="Texture2D" uid="uid://dxp48xgbvbcj4" path="res://src/assets/Abilities/FreezeExplosion/Explosion_7.png" id="19_4f8hy"]
+[ext_resource type="Texture2D" uid="uid://dm37nep6t1cat" path="res://src/assets/Abilities/FreezeExplosion/Explosion_8.png" id="20_e0bxy"]
+[ext_resource type="Texture2D" uid="uid://8vjdnihg0yat" path="res://src/assets/Abilities/FreezeExplosion/Explosion_9.png" id="21_c46fp"]
+[ext_resource type="Texture2D" uid="uid://dhfjr30te10ic" path="res://src/assets/Abilities/FreezeExplosion/Explosion_10.png" id="22_x1a2f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ykpj"]
 animations = [{
@@ -63,6 +73,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("13_bka0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sm44v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nqq6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3v1cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_kgeqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_au4r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_4f8hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_e0bxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_c46fp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_x1a2f")
+}],
+"loop": false,
+"name": &"FreezeExplosion",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_pdtl0")
 }],
 "loop": true,
@@ -95,7 +140,7 @@ script = ExtResource("1_oj430")
 position = Vector2(-4.76837e-07, -4.76837e-07)
 scale = Vector2(0.385455, 0.385455)
 sprite_frames = SubResource("SpriteFrames_3ykpj")
-animation = &"Explosion"
+animation = &"FreezeExplosion"
 
 [node name="Area2D" type="Area2D" parent="."]
 

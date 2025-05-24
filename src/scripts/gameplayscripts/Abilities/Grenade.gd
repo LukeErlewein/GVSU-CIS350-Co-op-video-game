@@ -2,7 +2,7 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Grenade
 
 func _init(target):
-	cooldown = 7.0
+	cooldown = 1.0
 	animation_name = "Grenade"
 	texture = preload("res://src/assets/Abilities/GrenadeIcon.png")
 	super._init(target)

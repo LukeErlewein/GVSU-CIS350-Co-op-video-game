@@ -1,6 +1,5 @@
 class_name CellCarrier extends BaseEnemy
 
-@export var STATS : EnemyStats
 @export var COOLDOWN: float = 2.0
 
 @onready var nav_agent := $NavigationAgent2D as NavigationAgent2D
@@ -59,3 +58,8 @@ func _on_hitbox_component_body_entered(body: Node2D) -> void:
 			action(hitbox)
 		else:
 			print("No HitboxComponent found on ", body.name)
+
+
+func _on_timer_timeout() -> void:
+	print("Timer finished, unfreezing.")
+	unfreeze()

@@ -4,6 +4,7 @@ signal exploded(position: Vector2)
 
 @export var speed: float = 100
 @export var lifetime: float = 1.5
+@export var explosion_animation: String = "Explosion"
 
 var attack: Attack
 var hitbox: HitboxComponent = null
@@ -45,15 +46,21 @@ func _explode():
 		return
 	has_exploded = true
 
+	print("Projectile exploded at ", global_position)
+
 	body_entered.disconnect(_on_area_2d_body_entered)
 	body_exited.disconnect(_on_area_2d_body_exited)
 
 	emit_signal("exploded", global_position)
-	
-	$AnimatedSprite2D.play("Explosion")
+
 	speed = 0
-	# Wait for animation to finish, then free
-	$AnimatedSprite2D.animation_finished.connect(Callable(self, "_on_explosion_animation_finished"))
+	
+	if explosion_animation != "":
+		$AnimatedSprite2D.play(explosion_animation)
+		$AnimatedSprite2D.animation_finished.connect(Callable(self, "_on_explosion_animation_finished"))
+	else:
+		queue_free()
+
 
 func _on_explosion_animation_finished():
 	queue_free()

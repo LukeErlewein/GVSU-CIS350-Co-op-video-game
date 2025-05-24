@@ -1,6 +1,5 @@
 class_name Grunt extends BaseEnemy
 
-@export var STATS : EnemyStats
 @export var target : Node2D
 @export var COOLDOWN: float = 2.0
 
@@ -55,3 +54,12 @@ func _on_hitbox_component_body_entered(body: Node2D) -> void:
 			action(hitbox)
 		else:
 			print("No HitboxComponent found on ", body.name)
+
+func take_damage(amount: float):
+	if health_component:
+		health_component.take_damage(amount)
+
+
+func _on_timer_timeout() -> void:
+	print("Timer finished, unfreezing.")
+	unfreeze()
