@@ -2,12 +2,16 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Orbital
 
 func _init(target):
-	cooldown = 1
+	cooldown = 25
 	animation_name = "Orbital"
 	texture = preload("res://src/assets/Abilities/OrbitalpointIcon.png")
 	super._init(target)
 
 func cast_spell(target):
+	var pct = float(target.core.currentPower) / float(target.core.MAXPOWER)
+	if pct < 0.75:
+		print("Not enough charge")
+		return
 	super.cast_spell(target)
 
 	if target.is_multiplayer_authority():

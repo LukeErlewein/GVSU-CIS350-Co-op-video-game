@@ -2,12 +2,17 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Grenade
 
 func _init(target):
-	cooldown = 1.0
+	cooldown = 10.0
 	animation_name = "Grenade"
 	texture = preload("res://src/assets/Abilities/GrenadeIcon.png")
 	super._init(target)
 
 func cast_spell(target):
+	var pct = float(target.core.currentPower) / float(target.core.MAXPOWER)
+	if pct < 0.25:
+		print("Not enough charge")
+		return
+
 	super.cast_spell(target)
 
 	if target.is_multiplayer_authority():

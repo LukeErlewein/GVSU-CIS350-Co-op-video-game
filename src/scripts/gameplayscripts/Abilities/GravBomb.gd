@@ -2,12 +2,16 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name GravBomb
 
 func _init(target):
-	cooldown = 1.0
+	cooldown = 7.0
 	animation_name = "GravGren"
 	texture = preload("res://src/assets/Abilities/GravGrenIcon.png")
 	super._init(target)
 
 func cast_spell(target):
+	var pct = float(target.core.currentPower) / float(target.core.MAXPOWER)
+	if pct < 0.50:
+		print("Not enough charge")
+		return
 	super.cast_spell(target)
 
 	if target.is_multiplayer_authority():

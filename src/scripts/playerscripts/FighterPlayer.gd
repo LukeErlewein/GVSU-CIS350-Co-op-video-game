@@ -17,12 +17,17 @@ class_name FighterPlayer extends CharacterBody2D
 
 var attack: Attack
 var can_shoot: bool = true
-var facing_direction := Vector2.RIGHT
 
 func _ready() -> void:
+	print("core assigned: ", core)
 	if is_multiplayer_authority():
-		core.power_updated.connect(_on_power_updated)
 		camera.make_current()
+		if has_node("FighterUI"):
+			$FighterUI.show()
+	else:
+		if has_node("FighterUI"):
+			$FighterUI.hide()
+
 	attack = Attack.new()
 	attack.attack_damage = 1.0
 	attack.bullet_speed = 40.0
@@ -47,19 +52,8 @@ func _process(delta: float) -> void:
 	look_at(get_global_mouse_position())
 
 	if Input.is_action_pressed("shoot") and can_shoot:
-		shoot.rpc()
+		rpc("shoot")
 
-	facing_direction = (get_global_mouse_position() - global_position).normalized()
-
-	if Input.is_action_just_pressed("ability_1") and is_multiplayer_authority():
-		var proj_transform = Transform2D(facing_direction.angle(), global_position)
-		single_shot.rpc(proj_transform, "Shotgun", 1)
-	if Input.is_action_just_pressed("ability_2") and is_multiplayer_authority():
-		grenade_ability.try_activate(self)
-	if Input.is_action_just_pressed("ability_3") and is_multiplayer_authority():
-		freeze_grenade_ability.try_activate(self)
-	if Input.is_action_just_pressed("ability_4") and is_multiplayer_authority():
-		orbital_strike_ability.try_activate(self)
 
 @rpc("any_peer", "call_local")
 func shoot():
@@ -73,23 +67,15 @@ func shoot():
 func _on_shot_cooldown_timer_timeout() -> void:
 	can_shoot = true
 
-func _on_power_updated():
-	var pct = float(core.currentPower) / float(core.MAXPOWER)
-	if pct >= 0: shotgun_ability.unlock()
-	if pct >= 0.25: grenade_ability.unlock()
-	if pct >= 0.50: freeze_grenade_ability.unlock()
-	if pct >= 0.75: orbital_strike_ability.unlock()
-
 @rpc("any_peer", "call_local")
 func single_shot(transform: Transform2D, animation_name = "Shotgun", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
 	var projectile = projectile_node.instantiate()
 	projectile.transform = transform
 	projectile.play(animation_name)
-
+	
 	var new_attack = self.attack.duplicate()
 	new_attack.attack_damage = damage
 	projectile.attack = new_attack
-
 	projectile.speed = speed
 	projectile.lifetime = lifetime
 	projectile.explosion_animation = ""
@@ -113,15 +99,13 @@ func grenade_shot(transform: Transform2D, animation_name = "Grenade", damage: fl
 	grenade.play(animation_name)
 
 	var grenade_attack = self.attack.duplicate()
-	grenade_attack.attack_damage = damage  # Set to full damage for explosion
+	grenade_attack.attack_damage = damage
 	grenade.attack = grenade_attack
 
 	grenade.speed = speed
 	grenade.lifetime = lifetime
 
-	# Explosion logic triggered when grenade expires or hits something
 	grenade.exploded.connect(func(pos):
-		print("Grenade exploded signal received at ", pos)
 		explode_grenade(pos, damage)
 	)
 
@@ -143,18 +127,11 @@ func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeGrenade
 	var grenade = projectile_node.instantiate()
 	grenade.transform = transform
 	grenade.play(animation_name)
-
-	var grenade_attack = self.attack.duplicate()
-	grenade_attack.attack_damage = damage
-	grenade.attack = grenade_attack
-
 	grenade.speed = speed
 	grenade.lifetime = lifetime
-	
 	grenade.explosion_animation = "FreezeExplosion"
 	
 	grenade.exploded.connect(func(pos):
-		print("Freeze grenade exploded signal received at ", pos)
 		explode_freeze_grenade(pos)
 	)
 
@@ -185,7 +162,6 @@ func orbital_strike_shot(transform: Transform2D, animation_name = "Orbital", dam
 	grenade.lifetime = lifetime
 	grenade.explosion_animation = "Explosion"
 
-	# Connect the multi-blast orbital sequence when grenade explodes
 	grenade.exploded.connect(func(pos):
 		orbital_explode_sequence(pos, damage)
 	)
@@ -202,13 +178,10 @@ func orbital_explode_sequence(position: Vector2, damage: float):
 	print("Orbital Strike incoming at: ", position)
 
 	for i in range(explosion_count):
-		# 1. Visual Effect
 		var effect = explosion_effect_scene.instantiate()
 		effect.global_position = position
 		get_tree().current_scene.add_child(effect)
 
-		# 2. Apply Damage
-		print("Orbital explosion ", i + 1, " at ", position)
 		for enemy in get_tree().get_nodes_in_group("Enemies"):
 			if enemy.global_position.distance_to(position) <= radius:
 				var hc = enemy.get_node_or_null("HealthComponent")
@@ -217,5 +190,4 @@ func orbital_explode_sequence(position: Vector2, damage: float):
 					temp_attack.attack_damage = damage
 					hc.damage(temp_attack)
 
-		# 3. Wait before next explosion
 		await get_tree().create_timer(delay_between).timeout

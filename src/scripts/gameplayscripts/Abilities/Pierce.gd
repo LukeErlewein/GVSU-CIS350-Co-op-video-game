@@ -2,7 +2,7 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Pierce
 
 func _init(target):
-	cooldown = 1.0
+	cooldown = 3.0
 	animation_name = "Pierce"
 	texture = preload("res://src/assets/Abilities/PierceIcon.png")
 	super._init(target)

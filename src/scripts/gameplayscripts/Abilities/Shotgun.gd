@@ -3,7 +3,7 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Shotgun
 
 func _init(target):
-	cooldown = 2.0
+	cooldown = 3.0
 	animation_name = "Shotgun"
 	texture = preload("res://src/assets/Abilities/SprayBulletsIcon.png")
 	super._init(target)

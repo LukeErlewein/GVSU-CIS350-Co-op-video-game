@@ -22,8 +22,11 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
-	velocity = dir * STATS.speed
+	var movement_velocity = dir * STATS.speed
+	movement_velocity += external_force
+	velocity = movement_velocity
 	move_and_slide()
+	external_force = external_force.lerp(Vector2.ZERO, delta * 4.0)
 	sprite_2d.look_at(nav_agent.get_next_path_position())
 	sprite_2d.rotate(-PI * 0.5)
 

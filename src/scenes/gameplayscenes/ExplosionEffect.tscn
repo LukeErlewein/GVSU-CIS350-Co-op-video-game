@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://b1bbquba35os7"]
 
-[ext_resource type="Script" uid="uid://bgd6ixvfrd51j" path="res://src/scenes/gameplayscenes/explosion_effect.gd" id="1_byehy"]
+[ext_resource type="Script" uid="uid://bgd6ixvfrd51j" path="res://src/scripts/gameplayscripts/Abilities/ExplosionEffect.gd" id="1_byehy"]
 [ext_resource type="Texture2D" uid="uid://dco0mteuktmw2" path="res://src/assets/Abilities/Explosion/Explosion_1.png" id="2_3js8n"]
 [ext_resource type="Texture2D" uid="uid://blutrnmkp8cvf" path="res://src/assets/Abilities/Explosion/Explosion_2.png" id="3_7pfoh"]
 [ext_resource type="Texture2D" uid="uid://dgfxbhfyvgqhk" path="res://src/assets/Abilities/Explosion/Explosion_3.png" id="4_4cj2y"]

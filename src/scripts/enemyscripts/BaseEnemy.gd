@@ -2,6 +2,8 @@ class_name BaseEnemy extends CharacterBody2D
 
 var attack: Attack
 @export var STATS : EnemyStats
+var external_force := Vector2.ZERO
+
 
 func action(hitbox: HitboxComponent):
 	pass
@@ -52,5 +54,5 @@ func unfreeze():
 	is_frozen = false
 	STATS.speed = original_speed
 	
-func apply_pull_force(direction: Vector2, force_amount: float):
-	velocity += direction * force_amount
+func apply_pull_force(direction: Vector2, strength: float):
+	external_force += direction * strength

@@ -203,7 +203,7 @@ script = ExtResource("1_oj430")
 position = Vector2(1.19209e-07, -4.54747e-13)
 scale = Vector2(0.385455, 0.385455)
 sprite_frames = SubResource("SpriteFrames_3ykpj")
-animation = &"GravExplosion"
+animation = &"Pierce"
 
 [node name="Area2D" type="Area2D" parent="."]
 

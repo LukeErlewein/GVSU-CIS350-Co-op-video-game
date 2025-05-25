@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_7q8dk"]
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="2_d7q17"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="3_gfmhh"]
-[ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/projectile.tscn" id="3_lrjuq"]
+[ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/Projectile.tscn" id="3_lrjuq"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]
 [ext_resource type="Script" uid="uid://bev0dwxmfmofp" path="res://src/scripts/playerscripts/RangerCamera.gd" id="5_7q8dk"]
 [ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/HealthTracking.gd" id="7_uhfby"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ch3f5v1cq3p3n" path="res://src/assets/RedArrow.png" id="9_4pbfw"]
 [ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_lrjuq"]
 [ext_resource type="Script" uid="uid://dnfqlhh3q4bao" path="res://src/scripts/playerscripts/RangerSkillBar.gd" id="11_4pbfw"]
-[ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/gameplayscenes/spell_button.tscn" id="12_lrjuq"]
+[ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/playerscenes/SpellButton.tscn" id="12_lrjuq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
 
