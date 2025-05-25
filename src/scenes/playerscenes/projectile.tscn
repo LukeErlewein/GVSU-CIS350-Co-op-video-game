@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b25sec0k0iu7a"]
+[gd_scene load_steps=40 format=3 uid="uid://b25sec0k0iu7a"]
 
 [ext_resource type="Script" uid="uid://b77n4q62kp72d" path="res://projectile.gd" id="1_oj430"]
 [ext_resource type="Texture2D" uid="uid://dco0mteuktmw2" path="res://src/assets/Abilities/Explosion/Explosion_1.png" id="2_1i0pn"]
@@ -25,6 +25,18 @@
 [ext_resource type="Texture2D" uid="uid://dm37nep6t1cat" path="res://src/assets/Abilities/FreezeExplosion/Explosion_8.png" id="20_e0bxy"]
 [ext_resource type="Texture2D" uid="uid://8vjdnihg0yat" path="res://src/assets/Abilities/FreezeExplosion/Explosion_9.png" id="21_c46fp"]
 [ext_resource type="Texture2D" uid="uid://dhfjr30te10ic" path="res://src/assets/Abilities/FreezeExplosion/Explosion_10.png" id="22_x1a2f"]
+[ext_resource type="Texture2D" uid="uid://1jccw2lxsoba" path="res://src/assets/Abilities/Grav Explosion/Explosion_10.png" id="23_80n70"]
+[ext_resource type="Texture2D" uid="uid://bd1mydb6ultbe" path="res://src/assets/Abilities/Grav Explosion/Explosion_9.png" id="24_dg8xi"]
+[ext_resource type="Texture2D" uid="uid://ddf4ymf3kj0nx" path="res://src/assets/Abilities/Grav Explosion/Explosion_8.png" id="25_431vr"]
+[ext_resource type="Texture2D" uid="uid://cojjot14mwv12" path="res://src/assets/Abilities/Pierce.png" id="25_sm44v"]
+[ext_resource type="Texture2D" uid="uid://bu8mvntwsxjs8" path="res://src/assets/Abilities/Grav Explosion/Explosion_7.png" id="26_qo1r5"]
+[ext_resource type="Texture2D" uid="uid://c83gi3edv764v" path="res://src/assets/Abilities/Grav Explosion/Explosion_6.png" id="27_4f650"]
+[ext_resource type="Texture2D" uid="uid://dot8daumofcco" path="res://src/assets/Abilities/Grav Explosion/Explosion_5.png" id="28_ig7fx"]
+[ext_resource type="Texture2D" uid="uid://cde3vqm4ipii" path="res://src/assets/Abilities/Grav Explosion/Explosion_4.png" id="29_il8bs"]
+[ext_resource type="Texture2D" uid="uid://cswkjrusiv8kl" path="res://src/assets/Abilities/Grav Explosion/Explosion_3.png" id="30_k4pic"]
+[ext_resource type="Texture2D" uid="uid://chn0os2kfwskw" path="res://src/assets/Abilities/Grav Explosion/Explosion_2.png" id="31_nojh4"]
+[ext_resource type="Texture2D" uid="uid://cs038o1xewlhp" path="res://src/assets/Abilities/Grav Explosion/Explosion_1.png" id="32_ad2no"]
+[ext_resource type="Texture2D" uid="uid://bgw1010qkdjal" path="res://src/assets/Abilities/GravGren.png" id="33_g53pb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ykpj"]
 animations = [{
@@ -108,6 +120,49 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("23_80n70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_dg8xi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_431vr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_qo1r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_4f650")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_ig7fx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_il8bs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_k4pic")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_nojh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_ad2no")
+}],
+"loop": false,
+"name": &"GravExplosion",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_g53pb")
+}],
+"loop": true,
+"name": &"GravGren",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_pdtl0")
 }],
 "loop": true,
@@ -120,6 +175,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"Orbital",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_sm44v")
+}],
+"loop": true,
+"name": &"Pierce",
 "speed": 5.0
 }, {
 "frames": [{
@@ -137,10 +200,10 @@ animations = [{
 script = ExtResource("1_oj430")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-4.76837e-07, -4.76837e-07)
+position = Vector2(1.19209e-07, -4.54747e-13)
 scale = Vector2(0.385455, 0.385455)
 sprite_frames = SubResource("SpriteFrames_3ykpj")
-animation = &"FreezeExplosion"
+animation = &"GravExplosion"
 
 [node name="Area2D" type="Area2D" parent="."]
 

@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ch3f5v1cq3p3n" path="res://src/assets/RedArrow.png" id="9_nv4wy"]
 [ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_u66ln"]
 [ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/gameplayscenes/spell_button.tscn" id="11_0ohk6"]
-[ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/skill_bar.gd" id="11_nv4wy"]
+[ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/FighterSkillBar.gd" id="11_nv4wy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
 
@@ -204,16 +204,5 @@ layout_mode = 2
 [node name="SpellButton4" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="ShotgunAbility" type="Control" parent="Control"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]

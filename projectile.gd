@@ -5,11 +5,13 @@ signal exploded(position: Vector2)
 @export var speed: float = 100
 @export var lifetime: float = 1.5
 @export var explosion_animation: String = "Explosion"
+@export var is_piercing: bool = false
 
 var attack: Attack
 var hitbox: HitboxComponent = null
 var animation_name: String = "Grenade"
 var has_exploded := false
+
 
 
 func _ready():
@@ -25,9 +27,10 @@ func _physics_process(delta):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	find_hitbox(body.get_children())
-	if hitbox != null and (body.is_in_group("Enemies")):
+	if hitbox != null and body.is_in_group("Enemies"):
 		hitbox.damage(attack)
-		_explode()
+		if not is_piercing:
+			_explode()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	hitbox = null
@@ -45,8 +48,6 @@ func _explode():
 	if has_exploded:
 		return
 	has_exploded = true
-
-	print("Projectile exploded at ", global_position)
 
 	body_entered.disconnect(_on_area_2d_body_entered)
 	body_exited.disconnect(_on_area_2d_body_exited)

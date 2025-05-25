@@ -51,3 +51,6 @@ func freeze(duration: float = 5.0):
 func unfreeze():
 	is_frozen = false
 	STATS.speed = original_speed
+	
+func apply_pull_force(direction: Vector2, force_amount: float):
+	velocity += direction * force_amount
