@@ -15,10 +15,6 @@ extends CharacterBody2D
 @onready var shot_cooldown_timer: Timer = $ShotCooldownTimer
 @onready var camera: Camera2D = $Camera2D
 @onready var ranger_ui: CanvasLayer = $RangerUI
-@onready var pierce_ability = $Abilities/PierceAbility
-@onready var dash_ability = $Abilities/DashAbility
-@onready var grav_grenade_ability = $Abilities/GravGrenadeAbility
-@onready var teleport_ability = $Abilities/TeleportAbility
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
 
 # State
@@ -81,7 +77,7 @@ func _on_shot_cooldown_timer_timeout() -> void:
 	can_shoot = true
 
 @rpc("any_peer", "call_local")
-func single_shot(transform: Transform2D, animation_name := "Shotgun", damage := 1.0, speed := 40.0, lifetime := 1.5):
+func single_shot(transform: Transform2D, animation_name := "SprayBullets", damage := 1.0, speed := 40.0, lifetime := 1.5):
 	var projectile = projectile_node.instantiate()
 	projectile.transform = transform
 	projectile.play(animation_name)
@@ -92,7 +88,7 @@ func single_shot(transform: Transform2D, animation_name := "Shotgun", damage := 
 	projectile.speed = speed
 	projectile.lifetime = lifetime
 
-	if animation_name == "Pierce":
+	if animation_name == "PierceProjectile":
 		projectile.is_piercing = true
 
 	get_tree().current_scene.add_child(projectile)
@@ -125,12 +121,14 @@ func angled_shot(angle: float, _unused = 0):
 	projectile.rotation = angle
 
 	var radial_attack = attack.duplicate()
-	radial_attack.attack_damage = 3.0
+	radial_attack.attack_damage = 5.0
 	projectile.attack = radial_attack
 
 	projectile.speed = 200
-	projectile.lifetime = 2
+	projectile.lifetime = 1
 	projectile.explosion_animation = ""
+
+	projectile.play("PierceProjectile")
 
 	get_tree().current_scene.call_deferred("add_child", projectile)
 
@@ -141,10 +139,10 @@ func radial_burst(count: int = 12):
 
 func teleport_and_burst():
 	global_position = get_global_mouse_position()
-	radial_burst(12)
+	radial_burst(18)
 
 @rpc("any_peer", "call_local")
-func gravity_grenade_shot(transform: Transform2D, animation_name := "GravGrenade", speed := 100.0, lifetime := 0.5):
+func gravity_grenade_shot(transform: Transform2D, animation_name := "GravGrenProjectile", speed := 100.0, lifetime := 0.5):
 	var grenade = projectile_node.instantiate()
 	grenade.transform = transform
 	grenade.play(animation_name)
@@ -155,13 +153,14 @@ func gravity_grenade_shot(transform: Transform2D, animation_name := "GravGrenade
 
 	grenade.speed = speed
 	grenade.lifetime = lifetime
-	grenade.explosion_animation = "GravExplosion"
+	grenade.explosion_animation = "GravGrenExplosion"
 
 	grenade.exploded.connect(func(pos: Vector2) -> void:
 		pull_enemies_to_point(pos, 200.0)
 	)
 
-	get_tree().current_scene.call_deferred("add_child", grenade)
+	get_tree().current_scene.add_child(grenade)
+
 
 func pull_enemies_to_point(center: Vector2, radius: float):
 	for enemy in get_tree().get_nodes_in_group("Enemies"):

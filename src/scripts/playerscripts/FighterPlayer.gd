@@ -68,7 +68,7 @@ func _on_shot_cooldown_timer_timeout() -> void:
 	can_shoot = true
 
 @rpc("any_peer", "call_local")
-func single_shot(transform: Transform2D, animation_name = "Shotgun", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
+func single_shot(transform: Transform2D, animation_name = "SprayBullets", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
 	var projectile = projectile_node.instantiate()
 	projectile.transform = transform
 	projectile.play(animation_name)
@@ -84,7 +84,7 @@ func single_shot(transform: Transform2D, animation_name = "Shotgun", damage: flo
 
 
 @rpc("any_peer", "call_local")
-func multi_shot(base_transform: Transform2D, count: int = 3, delay: float = 0.3, animation_name = "Shotgun", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
+func multi_shot(base_transform: Transform2D, count: int = 3, delay: float = 0.3, animation_name = "SprayBullets", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
 	for i in range(count):
 		var spread_angle = deg_to_rad(randf_range(-3, 3))
 		var transform = base_transform.rotated(spread_angle)
@@ -92,8 +92,7 @@ func multi_shot(base_transform: Transform2D, count: int = 3, delay: float = 0.3,
 		await get_tree().create_timer(delay).timeout
 
 @rpc("any_peer", "call_local")
-func grenade_shot(transform: Transform2D, animation_name = "Grenade", damage: float = 100, speed: float = 100.0, lifetime: float = 0.5):
-	
+func grenade_shot(transform: Transform2D, animation_name = "GrenadeProjectile", damage: float = 100, speed: float = 100.0, lifetime: float = 0.5):
 	var grenade = projectile_node.instantiate()
 	grenade.transform = transform
 	grenade.play(animation_name)
@@ -123,7 +122,7 @@ func explode_grenade(position: Vector2, damage: float):
 				hc.damage(temp_attack)
 
 @rpc("any_peer", "call_local")
-func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeGrenade", damage: float = 0, speed: float = 100.0, lifetime: float = 0.5):
+func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeProjectile", damage: float = 0, speed: float = 100.0, lifetime: float = 0.5):
 	var grenade = projectile_node.instantiate()
 	grenade.transform = transform
 	grenade.play(animation_name)
@@ -160,7 +159,7 @@ func orbital_strike_shot(transform: Transform2D, animation_name = "Orbital", dam
 
 	grenade.speed = speed
 	grenade.lifetime = lifetime
-	grenade.explosion_animation = "Explosion"
+	grenade.explosion_animation = "GrenadeExplosion"
 
 	grenade.exploded.connect(func(pos):
 		orbital_explode_sequence(pos, damage)
@@ -173,7 +172,7 @@ func orbital_explode_sequence(position: Vector2, damage: float):
 	var explosion_count = 5
 	var delay_between = 2.0
 
-	var explosion_effect_scene := preload("res://src/scenes/gameplayscenes/explosion_effect.tscn")
+	var explosion_effect_scene := preload("res://src/scenes/gameplayscenes/ExplosionEffect.tscn")
 
 	print("Orbital Strike incoming at: ", position)
 

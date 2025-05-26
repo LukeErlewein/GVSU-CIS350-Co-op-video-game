@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b25sec0k0iu7a"]
+[gd_scene load_steps=76 format=3 uid="uid://b25sec0k0iu7a"]
 
 [ext_resource type="Script" uid="uid://b77n4q62kp72d" path="res://projectile.gd" id="1_oj430"]
 [ext_resource type="Texture2D" uid="uid://dco0mteuktmw2" path="res://src/assets/Abilities/Explosion/Explosion_1.png" id="2_1i0pn"]
@@ -36,7 +36,82 @@
 [ext_resource type="Texture2D" uid="uid://cswkjrusiv8kl" path="res://src/assets/Abilities/Grav Explosion/Explosion_3.png" id="30_k4pic"]
 [ext_resource type="Texture2D" uid="uid://chn0os2kfwskw" path="res://src/assets/Abilities/Grav Explosion/Explosion_2.png" id="31_nojh4"]
 [ext_resource type="Texture2D" uid="uid://cs038o1xewlhp" path="res://src/assets/Abilities/Grav Explosion/Explosion_1.png" id="32_ad2no"]
+[ext_resource type="Texture2D" uid="uid://cnlp5f8xrbvii" path="res://src/assets/Abilities/GravExplosion2/explosion (5).png" id="33_ai13q"]
 [ext_resource type="Texture2D" uid="uid://bgw1010qkdjal" path="res://src/assets/Abilities/GravGren.png" id="33_g53pb"]
+[ext_resource type="Texture2D" uid="uid://cbewtolwrrptf" path="res://src/assets/Abilities/GravExplosion2/Explosion_10.png" id="39_p0724"]
+[ext_resource type="Texture2D" uid="uid://dmq6kiw74blgh" path="res://src/assets/Abilities/GravExplosion2/Explosion_9.png" id="40_fjxxy"]
+[ext_resource type="Texture2D" uid="uid://d118djp072q73" path="res://src/assets/Abilities/GravExplosion2/Explosion_8.png" id="41_k24si"]
+[ext_resource type="Texture2D" uid="uid://jjfc3skqa3jb" path="res://src/assets/Abilities/GravExplosion2/Explosion_7.png" id="42_rfid0"]
+[ext_resource type="Texture2D" uid="uid://cio2t2qjyrjkx" path="res://src/assets/Abilities/GravExplosion2/Explosion_6.png" id="43_gi7w6"]
+[ext_resource type="Texture2D" uid="uid://cxxyomh77anb5" path="res://src/assets/Abilities/GravExplosion2/Explosion_5.png" id="44_rflfu"]
+[ext_resource type="Texture2D" uid="uid://oo1sta7tjo3h" path="res://src/assets/Abilities/GravExplosion2/Explosion_4.png" id="45_rtgmp"]
+[ext_resource type="Texture2D" uid="uid://blkllbpba2e22" path="res://src/assets/Abilities/GravExplosion2/Explosion_3.png" id="46_8il70"]
+[ext_resource type="Texture2D" uid="uid://hi2fk0108smv" path="res://src/assets/Abilities/GravExplosion2/Explosion_2.png" id="47_xuc7k"]
+[ext_resource type="Texture2D" uid="uid://dimu2iu8akjmv" path="res://src/assets/Abilities/GravExplosion2/Explosion_1.png" id="48_42j2q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibg3b"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aag4v"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2cay"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4lx7"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qck2o"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crik7"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hajtv"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fik7"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7hwx"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0724"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjxxy"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k24si"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfid0"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gi7w6"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rflfu"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rtgmp"]
+atlas = ExtResource("33_ai13q")
+region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3ykpj"]
 animations = [{
@@ -155,6 +230,59 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ibg3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aag4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2cay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4lx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qck2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crik7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hajtv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fik7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7hwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0724")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjxxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k24si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfid0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gi7w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rflfu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rtgmp")
+}],
+"loop": false,
+"name": &"GravExplosion2",
+"speed": 45.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("33_g53pb")
 }],
 "loop": true,
@@ -195,20 +323,249 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h3l8s"]
+radius = 15.0333
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ai13q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pdtl0")
+}],
+"loop": true,
+"name": &"GrenadeProjectile",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibg3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1i0pn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4eh2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3ols7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ia467")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ct4n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_m2644")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ueexk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2k713")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hg1o3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_j6tag")
+}],
+"loop": false,
+"name": &"GrenadeExplosion",
+"speed": 30.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aag4v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_g53pb")
+}],
+"loop": true,
+"name": &"GravGrenProjectile",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ksvt1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("39_p0724")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_fjxxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_k24si")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_rfid0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_gi7w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_rflfu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_rtgmp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_8il70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_xuc7k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_42j2q")
+}],
+"loop": false,
+"name": &"GravGrenExplosion",
+"speed": 30.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y7tr4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h3l8s")
+}],
+"loop": true,
+"name": &"FreezeProjectile",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ukmmd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_bka0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_sm44v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nqq6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_3v1cd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_kgeqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_au4r2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_4f8hy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_e0bxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_c46fp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_x1a2f")
+}],
+"loop": false,
+"name": &"FreezeExplosion",
+"speed": 30.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cpaf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_cglhm")
+}],
+"loop": true,
+"name": &"OrbitalProjectile",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2cay"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yy7jp")
+}],
+"loop": true,
+"name": &"SprayBullets",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y4lrh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_sm44v")
+}],
+"loop": true,
+"name": &"Pierce",
+"speed": 5.0
+}]
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource("1_oj430")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.19209e-07, -4.54747e-13)
-scale = Vector2(0.385455, 0.385455)
+visible = false
+position = Vector2(-4.76837e-07, -4.76837e-07)
 sprite_frames = SubResource("SpriteFrames_3ykpj")
-animation = &"Pierce"
+animation = &"GravExplosion2"
+frame = 15
+frame_progress = 1.0
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_h3l8s")
+
+[node name="GrenadeProjectile" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.32813, 2.32813)
+sprite_frames = SubResource("SpriteFrames_ai13q")
+animation = &"GrenadeProjectile"
+
+[node name="GrenadeExplosion" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.96046e-08, -4.76837e-07)
+scale = Vector2(0.42, 0.42)
+sprite_frames = SubResource("SpriteFrames_ibg3b")
+animation = &"GrenadeExplosion"
+
+[node name="GravGrenProjectile" type="AnimatedSprite2D" parent="."]
+position = Vector2(-9.53674e-07, -9.53674e-07)
+scale = Vector2(2.63281, 2.63281)
+sprite_frames = SubResource("SpriteFrames_aag4v")
+animation = &"GravGrenProjectile"
+
+[node name="GravGrenExplosion" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.256084, 0.256084)
+sprite_frames = SubResource("SpriteFrames_ksvt1")
+animation = &"GravGrenExplosion"
+
+[node name="FreezeProjectile" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.15625, 2.15625)
+sprite_frames = SubResource("SpriteFrames_y7tr4")
+animation = &"FreezeProjectile"
+
+[node name="FreezeExplosion" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.380469, 0.380469)
+sprite_frames = SubResource("SpriteFrames_ukmmd")
+animation = &"FreezeExplosion"
+
+[node name="OrbitalProjectile" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0cpaf")
+animation = &"OrbitalProjectile"
+
+[node name="SprayBullets" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.84375, 1.84375)
+sprite_frames = SubResource("SpriteFrames_n2cay")
+animation = &"SprayBullets"
+
+[node name="PierceProjectile" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.125, 2.125)
+sprite_frames = SubResource("SpriteFrames_y4lrh")
+animation = &"Pierce"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

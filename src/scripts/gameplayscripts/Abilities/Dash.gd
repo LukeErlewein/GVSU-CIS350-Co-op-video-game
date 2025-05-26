@@ -2,7 +2,7 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Dash
 
 func _init(target):
-	cooldown = 7.0
+	cooldown = 1
 	animation_name = "Dash"
 	texture = preload("res://src/assets/Abilities/DashIcon.png")
 	super._init(target)
