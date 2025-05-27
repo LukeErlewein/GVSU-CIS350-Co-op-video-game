@@ -53,6 +53,8 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_pressed("shoot") and can_shoot:
 		rpc("shoot")
+		
+	update_ability_ui_visibility()
 
 
 @rpc("any_peer", "call_local")
@@ -122,7 +124,7 @@ func explode_grenade(position: Vector2, damage: float):
 				hc.damage(temp_attack)
 
 @rpc("any_peer", "call_local")
-func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeProjectile", damage: float = 0, speed: float = 100.0, lifetime: float = 0.5):
+func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeProjectile", damage: float = 0, speed: float = 200.0, lifetime: float = 1):
 	var grenade = projectile_node.instantiate()
 	grenade.transform = transform
 	grenade.play(animation_name)
@@ -138,36 +140,44 @@ func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeProject
 
 func explode_freeze_grenade(position: Vector2):
 	var radius = 200.0
+	var freeze_duration = 5.0
+
 	print("Freeze Grenade exploded at position: ", position)
+
+	var freeze_effect_scene := preload("res://src/scenes/gameplayscenes/FreezeMarker.tscn")
+	var freeze_effect = freeze_effect_scene.instantiate()
+	freeze_effect.global_position = position
+	freeze_effect.modulate.a = 0.3
+	get_tree().current_scene.add_child(freeze_effect)
+
 	for body in get_tree().get_nodes_in_group("Enemies"):
-		print("Checking enemy: ", body.name, " distance: ", body.global_position.distance_to(position))
-		if body.global_position.distance_to(position) <= radius:
+		var distance = body.global_position.distance_to(position)
+		print("Checking enemy: ", body.name, " distance: ", distance)
+		if distance <= radius:
 			if body.has_method("freeze"):
 				print("Freezing enemy: ", body.name)
-				body.freeze(5.0)
+				body.freeze(freeze_duration)
+
+	await get_tree().create_timer(freeze_duration).timeout
+	freeze_effect.queue_free()
+
 
 
 @rpc("any_peer", "call_local")
-func orbital_strike_shot(transform: Transform2D, animation_name = "Orbital", damage: float = 100.0, speed: float = 100.0, lifetime: float = 0.5):
-	var grenade = projectile_node.instantiate()
-	grenade.transform = transform
-	grenade.play(animation_name)
+func orbital_strike_shot(position: Vector2, damage: float = 100.0):
+	print("Orbital Strike called at position: ", position)
 
-	var grenade_attack = self.attack.duplicate()
-	grenade_attack.attack_damage = damage
-	grenade.attack = grenade_attack
+	var orbital_sprite_scene = preload("res://src/scenes/gameplayscenes/ExplosionMarker.tscn")
+	var orbital_sprite = orbital_sprite_scene.instantiate()
+	orbital_sprite.global_position = position
+	get_tree().current_scene.add_child(orbital_sprite)
 
-	grenade.speed = speed
-	grenade.lifetime = lifetime
-	grenade.explosion_animation = "GrenadeExplosion"
+	await orbital_explode_sequence(position, damage)
 
-	grenade.exploded.connect(func(pos):
-		orbital_explode_sequence(pos, damage)
-	)
+	orbital_sprite.queue_free()
 
-	get_tree().current_scene.add_child(grenade)
 
-func orbital_explode_sequence(position: Vector2, damage: float):
+func orbital_explode_sequence(position: Vector2, damage: float) -> void:
 	var radius = 200.0
 	var explosion_count = 5
 	var delay_between = 2.0
@@ -190,3 +200,13 @@ func orbital_explode_sequence(position: Vector2, damage: float):
 					hc.damage(temp_attack)
 
 		await get_tree().create_timer(delay_between).timeout
+
+func update_ability_ui_visibility():
+	if !core: return
+	
+	var pct = float(core.currentPower) / float(core.MAXPOWER)
+
+	$FighterUI/SkillBar/SpellButton.visible = pct >= 0.0
+	$FighterUI/SkillBar/SpellButton2.visible = pct >= 0.25
+	$FighterUI/SkillBar/SpellButton3.visible = pct >= 0.5
+	$FighterUI/SkillBar/SpellButton4.visible = pct >= 0.75

@@ -63,6 +63,8 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot.rpc()
+	
+	update_ability_ui_visibility()
 
 @rpc("call_local")
 func shoot():
@@ -168,3 +170,13 @@ func pull_enemies_to_point(center: Vector2, radius: float):
 			if enemy.has_method("apply_pull_force"):
 				var direction = (center - enemy.global_position).normalized()
 				enemy.apply_pull_force(direction, 300)
+
+func update_ability_ui_visibility():
+	if !core: return
+	
+	var pct = float(core.currentPower) / float(core.MAXPOWER)
+
+	$RangerUI/SkillBar/SpellButton.visible = pct >= 0.0
+	$RangerUI/SkillBar/SpellButton2.visible = pct >= 0.25
+	$RangerUI/SkillBar/SpellButton3.visible = pct >= 0.5
+	$RangerUI/SkillBar/SpellButton4.visible = pct >= 0.75
