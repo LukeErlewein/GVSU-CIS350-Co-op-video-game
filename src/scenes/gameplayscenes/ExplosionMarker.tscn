@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqfm2p2k5byml"]
+
+[ext_resource type="Texture2D" uid="uid://c2402f5s6nk6r" path="res://src/assets/Abilities/Orbitalpoint.png" id="1_imd82"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1joxa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_imd82")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(8.1875, 8.1875)
+sprite_frames = SubResource("SpriteFrames_1joxa")

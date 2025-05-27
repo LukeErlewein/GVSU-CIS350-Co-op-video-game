@@ -1,6 +1,9 @@
 class_name BaseEnemy extends CharacterBody2D
 
 var attack: Attack
+@export var STATS : EnemyStats
+var external_force := Vector2.ZERO
+
 
 func action(hitbox: HitboxComponent):
 	pass
@@ -35,3 +38,21 @@ func _shortest_target(FRC: Array):
 			shortest = global_position.distance_to(node.global_position)
 			shortest_target = node
 	return shortest_target
+
+var original_speed = 50.0
+var is_frozen = false
+
+func freeze(duration: float = 5.0):
+	if is_frozen:
+		return
+	is_frozen = true
+	original_speed = STATS.speed
+	STATS.speed = 0.0
+	$Timer.start(duration)
+
+func unfreeze():
+	is_frozen = false
+	STATS.speed = original_speed
+	
+func apply_pull_force(direction: Vector2, strength: float):
+	external_force += direction * strength

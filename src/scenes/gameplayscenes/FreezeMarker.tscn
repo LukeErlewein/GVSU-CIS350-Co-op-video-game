@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj0o16l5kw5pm"]
+
+[ext_resource type="Texture2D" uid="uid://3bq04c3jqkek" path="res://src/assets/Abilities/LightBlueCircle.png" id="1_uqfqw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ba1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uqfqw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+show_behind_parent = true
+scale = Vector2(0.182781, 0.182781)
+sprite_frames = SubResource("SpriteFrames_7ba1e")

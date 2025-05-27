@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://xrqcub83ayf0"]
+
+[ext_resource type="Script" uid="uid://bwqd8oevh0036" path="res://src/scripts/gameplayscripts/Abilities/spell_button.gd" id="2_1i25o"]
+[ext_resource type="Texture2D" uid="uid://dxl4samp40lpk" path="res://src/assets/WhiteSquare.png" id="3_da5ff"]
+[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="4_lr7x3"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_c5snt"]
+
+[sub_resource type="Shortcut" id="Shortcut_he803"]
+events = [SubResource("InputEventKey_c5snt")]
+
+[node name="SpellButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+shortcut = SubResource("Shortcut_he803")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_1i25o")
+
+[node name="Cooldown" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 800.0
+scale = Vector2(0.0509092, 0.0507973)
+step = 0.1
+fill_mode = 5
+texture_progress = ExtResource("3_da5ff")
+tint_progress = Color(0.051971, 0.051971, 0.051971, 0.792157)
+
+[node name="Key" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lr7x3")
+theme_override_font_sizes/font_size = 23
+text = "1"
+vertical_alignment = 2
+
+[node name="Time" type="Label" parent="."]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_lr7x3")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

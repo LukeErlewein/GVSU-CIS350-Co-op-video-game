@@ -33,3 +33,4 @@ func _process(delta):
 func start_game() -> void:
 	show()
 	game_running = true
+	

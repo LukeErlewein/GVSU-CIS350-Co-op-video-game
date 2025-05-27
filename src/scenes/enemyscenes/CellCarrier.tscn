@@ -36,6 +36,10 @@ one_shot = true
 [node name="DebugPath" type="Timer" parent="."]
 autostart = true
 
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="DebugPath" to="." method="_on_debug_path_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

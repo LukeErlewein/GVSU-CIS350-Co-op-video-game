@@ -1,6 +1,5 @@
 class_name Grunt extends BaseEnemy
 
-@export var STATS : EnemyStats
 @export var target : Node2D
 @export var COOLDOWN: float = 2.0
 
@@ -21,8 +20,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var dir = to_local(nav_agent.get_next_path_position()).normalized()
-	velocity = dir * STATS.speed
+	var movement_velocity = dir * STATS.speed
+	movement_velocity += external_force
+	velocity = movement_velocity
 	move_and_slide()
+	external_force = external_force.lerp(Vector2.ZERO, delta * 4.0)
+
 	sprite_2d.look_at(nav_agent.get_next_path_position())
 	sprite_2d.rotate(-PI * 0.5)
 
@@ -55,3 +58,12 @@ func _on_hitbox_component_body_entered(body: Node2D) -> void:
 			action(hitbox)
 		else:
 			print("No HitboxComponent found on ", body.name)
+
+func take_damage(amount: float):
+	if health_component:
+		health_component.take_damage(amount)
+
+
+func _on_timer_timeout() -> void:
+	print("Timer finished, unfreezing.")
+	unfreeze()
