@@ -19,6 +19,10 @@ config/features=PackedStringArray("4.4")
 
 Global="*res://src/scripts/Global.gd"
 
+[display]
+
+mouse_cursor/custom_image="uid://duwjw3po4a08m"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

@@ -5,7 +5,17 @@ func _ready():
 
 var currentPower := 0
 @export var MAXPOWER := 100
+@onready var health_component: HealthComponent = $HealthComponent
+
 signal power_updated(new_power: int)
+signal game_won
+signal game_lost
+
+func _physics_process(delta: float) -> void:
+	if health_component.health <= 0:
+		game_lost.emit()
+	if currentPower >= 100.0:
+		game_won.emit()
 
 # Signal connection
 @rpc("call_local")

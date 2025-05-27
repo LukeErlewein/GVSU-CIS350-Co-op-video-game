@@ -31,6 +31,8 @@ func set_target(stats: EnemyStats):
 		return _shortest_target(FRC)
 
 func _shortest_target(FRC: Array):
+	if FRC.is_empty():
+		return null
 	var shortest_target = FRC[0]
 	var shortest: float = global_position.distance_to(FRC[0].global_position)
 	for node in FRC:

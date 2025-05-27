@@ -32,6 +32,8 @@ func _process(delta: float) -> void:
 
 func make_path() -> void:
 	target = set_target(STATS)
+	if target == null:
+		return
 	nav_agent.target_position = target.global_position
 
 func action(hitbox: HitboxComponent):
