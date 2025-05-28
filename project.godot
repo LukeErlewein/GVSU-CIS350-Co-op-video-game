@@ -19,10 +19,6 @@ config/features=PackedStringArray("4.4")
 
 Global="*res://src/scripts/Global.gd"
 
-[display]
-
-mouse_cursor/custom_image="uid://duwjw3po4a08m"
-
 [editor]
 
 version_control/plugin_name="GitPlugin"
@@ -59,6 +55,13 @@ shoot={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
+2d_physics/layer_3="Core"
+2d_physics/layer_4="World Bu"
 
 [rendering]
 

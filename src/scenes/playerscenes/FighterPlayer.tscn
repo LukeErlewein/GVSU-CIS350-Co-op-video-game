@@ -15,9 +15,10 @@
 [ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/FighterSkillBar.gd" id="11_nv4wy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
+radius = 10.0499
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ng22"]
-radius = 16.0312
+radius = 12.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fi1s2"]
 properties/0/path = NodePath(".:position")
@@ -88,6 +89,8 @@ _data = {
 }
 
 [node name="FighterPlayer" type="CharacterBody2D"]
+collision_mask = 15
+collision_priority = 10.0
 script = ExtResource("1_rwx8l")
 bullet = ExtResource("2_p35ce")
 projectile_node = ExtResource("3_u66ln")
@@ -106,12 +109,13 @@ script = ExtResource("2_5qbrv")
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_mask = 15
 script = ExtResource("3_p35ce")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 
 [node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
-visible = false
+visibility_layer = 0
 shape = SubResource("CircleShape2D_1ng22")
 
 [node name="Muzzle" type="Marker2D" parent="."]
@@ -121,6 +125,11 @@ position = Vector2(16, 0)
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.25, 1.25)
+limit_left = -400
+limit_top = -287
+limit_right = 1568
+limit_bottom = 1152
 script = ExtResource("6_m1mhg")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

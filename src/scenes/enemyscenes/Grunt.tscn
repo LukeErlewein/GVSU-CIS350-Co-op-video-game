@@ -30,6 +30,8 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="Grunt" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_hwoom")
 STATS = SubResource("Resource_70ydb")
 
@@ -38,6 +40,8 @@ script = ExtResource("2_fafvl")
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("3_givgt")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
@@ -60,7 +64,6 @@ autostart = true
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

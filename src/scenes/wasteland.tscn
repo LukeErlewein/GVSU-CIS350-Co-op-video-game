@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://do5d4h3xsmbgt"]
+[gd_scene load_steps=15 format=4 uid="uid://do5d4h3xsmbgt"]
 
 [ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/Wasteland.gd" id="1_v48x7"]
 [ext_resource type="Texture2D" uid="uid://b2n20t2muj7g3" path="res://src/assets/TempGround.png" id="2_v48x7"]
@@ -28,6 +28,24 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v48x7"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_khrfv"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nonnb"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5r2sw"]
+
+[sub_resource type="Environment" id="Environment_v48x7"]
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 1.71
+fog_sun_scatter = 0.21
+fog_density = 1.0
+fog_depth_curve = 1.46409
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.2118
+
 [node name="Wasteland" type="Node2D"]
 script = ExtResource("1_v48x7")
 
@@ -38,6 +56,7 @@ tile_set = SubResource("TileSet_axinn")
 
 [node name="FighterSpawn" type="Marker2D" parent="TileMapLayer"]
 position = Vector2(490, 300)
+scale = Vector2(252.111, -294.198)
 
 [node name="RangerSpawn" type="Marker2D" parent="TileMapLayer"]
 position = Vector2(640, 300)
@@ -62,9 +81,53 @@ curve = SubResource("Curve2D_v48x7")
 [node name="MobSpawnLocation" type="PathFollow2D" parent="Path2D"]
 position = Vector2(-402, -287)
 
+[node name="Player Boundaries" type="Node2D" parent="."]
+
+[node name="LeftBoundary" type="Area2D" parent="Player Boundaries"]
+position = Vector2(-400, 343)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Boundaries/LeftBoundary"]
+rotation = 1.5708
+scale = Vector2(1.55, 1.55)
+shape = SubResource("WorldBoundaryShape2D_v48x7")
+
+[node name="RightBoundary" type="Area2D" parent="Player Boundaries"]
+position = Vector2(1568, 300)
+rotation = -1.5708
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Boundaries/RightBoundary"]
+shape = SubResource("WorldBoundaryShape2D_khrfv")
+
+[node name="TopBoundary" type="Area2D" parent="Player Boundaries"]
+position = Vector2(503, -287)
+rotation = -3.14159
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Boundaries/TopBoundary"]
+shape = SubResource("WorldBoundaryShape2D_nonnb")
+
+[node name="BottomBoundary" type="Area2D" parent="Player Boundaries"]
+position = Vector2(595, 1152)
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player Boundaries/BottomBoundary"]
+shape = SubResource("WorldBoundaryShape2D_5r2sw")
+
 [node name="GruntTimer" type="Timer" parent="."]
 
 [node name="CarrierTimer" type="Timer" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v48x7")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.535138, 0.329259, 0, 1)
+energy = 0.1
+blend_mode = 2
+height = 0.61
+max_distance = 11800.0
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="timeout" from="GruntTimer" to="." method="_on_grunt_timer_timeout"]

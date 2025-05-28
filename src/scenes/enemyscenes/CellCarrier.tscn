@@ -18,6 +18,8 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="CellCarrier" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_qq1er")
 STATS = ExtResource("2_ptbow")
 
@@ -28,6 +30,8 @@ shape = SubResource("CircleShape2D_ptbow")
 MAX_HEALTH = 10.0
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_qq1er")]
+collision_layer = 2
+collision_mask = 7
 health_component = NodePath("../HealthComponent")
 
 [node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
