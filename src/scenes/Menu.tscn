@@ -140,7 +140,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_dmamv")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_b0okb")
-text = "The Eart is Attacked by Aliens!
+text = "The Earth is Attacked by Aliens!
 Protect the Core and feed it energy cells to beat the Game!
 As the host you spawn as a Fighter specializing in AoE.
 Joining him spawns you as a Ranger, specializing in

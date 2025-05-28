@@ -5,7 +5,7 @@ const join_player: PackedScene = preload("res://src/scenes/playerscenes/RangerPl
 @export var address: String = "192.168.125.102"
 @onready var ranger_spawn: Marker2D = $"../TileMapLayer/RangerSpawn"
 @onready var fighter_spawn: Marker2D = $"../TileMapLayer/FighterSpawn"
-@onready var multiplayer_spawner: MultiplayerSpawner = $"../MultiplayerSpawner"
+@onready var multiplayer_spawner: MultiplayerSpawner = $"../PlayerSpawner"
 @onready var guide: Label = $Guide
 
 var peer = ENetMultiplayerPeer.new()

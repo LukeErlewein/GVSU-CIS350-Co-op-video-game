@@ -64,8 +64,8 @@ position = Vector2(640, 300)
 [node name="Core" parent="." instance=ExtResource("5_v48x7")]
 position = Vector2(567, 306)
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://d2g2sm3bnk4tj", "uid://b7wa2n7d0dfkp")
+[node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://d2g2sm3bnk4tj", "uid://b7wa2n7d0dfkp", "uid://m151ri7kcj54", "uid://40ioefgfpaqq", "uid://cqn7qhoyuvt75")
 spawn_path = NodePath("..")
 
 [node name="Menu" parent="." instance=ExtResource("4_afads")]
@@ -115,9 +115,17 @@ collision_layer = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player Boundaries/BottomBoundary"]
 shape = SubResource("WorldBoundaryShape2D_5r2sw")
 
-[node name="GruntTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
 
-[node name="CarrierTimer" type="Timer" parent="."]
+[node name="GruntTimer" type="Timer" parent="Timers"]
+
+[node name="CarrierTimer" type="Timer" parent="Timers"]
+
+[node name="FighterRespawn" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="RangerRespawn" type="Timer" parent="Timers"]
+one_shot = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_v48x7")
@@ -130,5 +138,5 @@ height = 0.61
 max_distance = 11800.0
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="timeout" from="GruntTimer" to="." method="_on_grunt_timer_timeout"]
-[connection signal="timeout" from="CarrierTimer" to="." method="_on_carrier_timer_timeout"]
+[connection signal="timeout" from="Timers/GruntTimer" to="." method="_on_grunt_timer_timeout"]
+[connection signal="timeout" from="Timers/CarrierTimer" to="." method="_on_carrier_timer_timeout"]

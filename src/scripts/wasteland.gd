@@ -4,8 +4,8 @@ extends Node2D
 @export var CARRIER_DELAY: float = 15.0
 
 @onready var core: Core = $Core
-@onready var grunt_timer: Timer = $GruntTimer
-@onready var carrier_timer: Timer = $CarrierTimer
+@onready var grunt_timer: Timer = $Timers/GruntTimer
+@onready var carrier_timer: Timer = $Timers/CarrierTimer
 @onready var mob_spawn_location: PathFollow2D = $Path2D/MobSpawnLocation
 
 var grunt: PackedScene = preload("res://src/scenes/enemyscenes/Grunt.tscn")
@@ -18,16 +18,16 @@ func _ready() -> void:
 	core.game_lost.connect(game_over)
 	core.game_won.connect(game_beat)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func start_game():
 	game_start.emit()
-	
 	grunt_timer.start(GRUNT_DELAY)
 	carrier_timer.start(CARRIER_DELAY)
+
+func spawn_mob(enemy):
+	mob_spawn_location.progress_ratio = randf()
+	enemy.global_position = mob_spawn_location.global_position
+	enemy.name = str(global_position.x)
+	add_child.call_deferred(enemy)
 
 func add_cell(cell_position: Vector2) -> void:
 	print(cell_position)
@@ -52,14 +52,8 @@ func _on_child_entered_tree(node: Node) -> void:
 
 
 func _on_grunt_timer_timeout() -> void:
-	var enemy = grunt.instantiate()
-	mob_spawn_location.progress_ratio = randf()
-	enemy.global_position = mob_spawn_location.global_position
-	add_child.call_deferred(enemy)
+	spawn_mob(grunt.instantiate())
 
 
 func _on_carrier_timer_timeout() -> void:
-	var enemy = cell_carrier.instantiate()
-	mob_spawn_location.progress_ratio = randf()
-	enemy.global_position = mob_spawn_location.global_position
-	add_child.call_deferred(enemy)
+	spawn_mob(cell_carrier.instantiate())
