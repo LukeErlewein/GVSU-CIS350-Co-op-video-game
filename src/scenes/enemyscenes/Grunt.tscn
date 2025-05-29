@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://m151ri7kcj54"]
+[gd_scene load_steps=10 format=3 uid="uid://m151ri7kcj54"]
 
 [ext_resource type="Script" uid="uid://do140pc8maduf" path="res://src/scripts/enemyscripts/Grunt.gd" id="1_hwoom"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_fafvl"]
@@ -21,7 +21,17 @@ metadata/_custom_type_script = "uid://csmsjn5wqit5i"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fafvl"]
 size = Vector2(13, 16)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_givgt"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Grunt" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_hwoom")
 STATS = SubResource("Resource_70ydb")
 
@@ -30,6 +40,8 @@ script = ExtResource("2_fafvl")
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("3_givgt")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
@@ -52,10 +64,12 @@ autostart = true
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_givgt")
 
 [connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
 [connection signal="timeout" from="DebugPath" to="." method="_on_debug_path_timeout"]

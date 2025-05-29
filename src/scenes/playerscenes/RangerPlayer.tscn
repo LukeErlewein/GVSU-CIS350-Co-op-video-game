@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_7q8dk"]
 [ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="2_d7q17"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="3_gfmhh"]
-[ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/Projectile.tscn" id="3_lrjuq"]
+[ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/projectile.tscn" id="3_lrjuq"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]
 [ext_resource type="Script" uid="uid://bev0dwxmfmofp" path="res://src/scripts/playerscripts/RangerCamera.gd" id="5_7q8dk"]
 [ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/HealthTracking.gd" id="7_uhfby"]
@@ -17,7 +17,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fcnqf"]
-radius = 15.0333
+radius = 11.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q8dk"]
 properties/0/path = NodePath(".:position")
@@ -88,6 +88,7 @@ _data = {
 }
 
 [node name="RangerPlayer" type="CharacterBody2D"]
+collision_mask = 15
 script = ExtResource("1_rkl73")
 bullet = ExtResource("2_7q8dk")
 projectile_node = ExtResource("3_lrjuq")
@@ -98,6 +99,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("2_d7q17")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_rkl73")
 debug_color = Color(0.724014, 0.477071, 0.0157364, 0.42)
 
@@ -106,12 +108,13 @@ script = ExtResource("3_gfmhh")
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_mask = 15
 script = ExtResource("4_ci0ff")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 
 [node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
-visible = false
+visibility_layer = 0
 shape = SubResource("CircleShape2D_fcnqf")
 
 [node name="Muzzle" type="Marker2D" parent="."]
@@ -120,6 +123,11 @@ position = Vector2(15, 0)
 [node name="ShotCooldownTimer" type="Timer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.25, 1.25)
+limit_left = -400
+limit_top = -287
+limit_right = 1568
+limit_bottom = 1152
 script = ExtResource("5_7q8dk")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

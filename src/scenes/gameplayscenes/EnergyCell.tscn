@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://cqn7qhoyuvt75"]
+[gd_scene load_steps=5 format=3 uid="uid://cqn7qhoyuvt75"]
 
 [ext_resource type="Script" uid="uid://d0e2jikstcvkb" path="res://src/scripts/gameplayscripts/EnergyCell.gd" id="1_8j3so"]
 [ext_resource type="Texture2D" uid="uid://cvi7l8slxrnea" path="res://src/assets/EnergyCell.png" id="2_6buni"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkkl4"]
 size = Vector2(8, 16)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_b3jnf"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
 
 [node name="EnergyCell" type="Area2D"]
 script = ExtResource("1_8j3so")
@@ -15,5 +20,8 @@ shape = SubResource("RectangleShape2D_wkkl4")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = 1
 texture = ExtResource("2_6buni")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_b3jnf")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

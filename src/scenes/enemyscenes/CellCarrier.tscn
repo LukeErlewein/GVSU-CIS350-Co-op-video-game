@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://40ioefgfpaqq"]
+[gd_scene load_steps=8 format=3 uid="uid://40ioefgfpaqq"]
 
 [ext_resource type="PackedScene" uid="uid://bbl433kompyk6" path="res://src/scenes/HealthComponent.tscn" id="1_03q6f"]
 [ext_resource type="Script" uid="uid://dgwfp0kv2f1iu" path="res://src/scripts/enemyscripts/CellCarrier.gd" id="1_qq1er"]
@@ -9,7 +9,17 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wgvr"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ptbow"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="CellCarrier" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_qq1er")
 STATS = ExtResource("2_ptbow")
 
@@ -20,6 +30,8 @@ shape = SubResource("CircleShape2D_ptbow")
 MAX_HEALTH = 10.0
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("2_qq1er")]
+collision_layer = 2
+collision_mask = 7
 health_component = NodePath("../HealthComponent")
 
 [node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
@@ -38,6 +50,9 @@ autostart = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_ptbow")
 
 [connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_attack_cooldown_timeout"]

@@ -5,11 +5,13 @@ const join_player: PackedScene = preload("res://src/scenes/playerscenes/RangerPl
 @export var address: String = "192.168.125.102"
 @onready var ranger_spawn: Marker2D = $"../TileMapLayer/RangerSpawn"
 @onready var fighter_spawn: Marker2D = $"../TileMapLayer/FighterSpawn"
-@onready var multiplayer_spawner: MultiplayerSpawner = $"../MultiplayerSpawner"
+@onready var multiplayer_spawner: MultiplayerSpawner = $"../PlayerSpawner"
+@onready var guide: Label = $Guide
 
 var peer = ENetMultiplayerPeer.new()
 
 func _ready():
+	guide.hide()
 	show()
 	multiplayer_spawner.spawn_function = spawn
 	multiplayer.peer_disconnected.connect(player_disconnected)
@@ -55,3 +57,9 @@ func _on_host_button_pressed() -> void:
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()
+
+func _on_guide_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		guide.show()
+	else:
+		guide.hide()
