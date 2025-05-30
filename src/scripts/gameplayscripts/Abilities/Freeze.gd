@@ -6,7 +6,7 @@ class_name Freeze
 @export var damage: int = 0
 
 func _init(target):
-	cooldown = 1
+	cooldown = 10
 	animation_name = "FreezeProjectile"
 	texture = preload("res://src/assets/Abilities/FreezeProjectileIcon.png")
 	super._init(target)

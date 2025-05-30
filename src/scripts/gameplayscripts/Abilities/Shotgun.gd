@@ -5,7 +5,7 @@ class_name Shotgun
 @export var lifetime: float = 0.2
 @export var num_of_shots: int = 7
 @export var delay: float = 0.0005
-@export var damage: float = 1.0
+@export var damage: float = 15.0
 
 func _init(target):
 	cooldown = 1

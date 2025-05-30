@@ -2,7 +2,7 @@ class_name RangerPlayer
 extends CharacterBody2D
 
 # Movement stats
-@export var SPEED: float = 55
+@export var SPEED: float = 65
 @export var ACCELERATION: float = 5
 @export var FRICTION: float = 8
 
@@ -39,11 +39,11 @@ func _ready() -> void:
 
 func setup_attack() -> void:
 	attack = Attack.new()
-	attack.attack_damage = 3.0
+	attack.attack_damage = 90
 	attack.hurt_cell_holders = true
-	attack.bullet_speed = 50.0
+	attack.bullet_speed = 200.0
 	attack.knockback_force = 15.0
-	attack.attack_cooldown = 0.6
+	attack.attack_cooldown = 0.4
 
 func _process(delta: float) -> void:
 	if not is_multiplayer_authority():
@@ -102,10 +102,10 @@ func start_dash():
 
 	is_dashing = true
 	original_speed = SPEED
-	SPEED *= 3.0
+	SPEED *= 6.0
 
 	dash_timer = Timer.new()
-	dash_timer.wait_time = 5.0
+	dash_timer.wait_time = 1.0
 	dash_timer.one_shot = true
 	dash_timer.timeout.connect(_end_dash)
 	add_child(dash_timer)
@@ -123,7 +123,7 @@ func angled_shot(angle: float, _unused = 0):
 	projectile.rotation = angle
 
 	var radial_attack = attack.duplicate()
-	radial_attack.attack_damage = 5.0
+	radial_attack.attack_damage = 75.0
 	projectile.attack = radial_attack
 
 	projectile.speed = 200
@@ -169,7 +169,7 @@ func pull_enemies_to_point(center: Vector2, radius: float):
 		if enemy.global_position.distance_to(center) <= radius:
 			if enemy.has_method("apply_pull_force"):
 				var direction = (center - enemy.global_position).normalized()
-				enemy.apply_pull_force(direction, 300)
+				enemy.apply_pull_force(direction, 600)
 
 func update_ability_ui_visibility():
 	if !core: return

@@ -38,7 +38,7 @@ func action(hitbox: HitboxComponent):
 		attack_cooldown.start(COOLDOWN)
 		can_attack = false
 		hitbox.damage(attack)
-
+		queue_free()
 
 func _on_debug_path_timeout() -> void:
 	make_path()

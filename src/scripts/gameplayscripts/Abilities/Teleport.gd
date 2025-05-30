@@ -2,7 +2,7 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Teleport
 
 func _init(target):
-	cooldown = 1
+	cooldown = 10
 	animation_name = "PierceProjectile"
 	texture = preload("res://src/assets/Abilities/BlinkIcon.png")
 	super._init(target)

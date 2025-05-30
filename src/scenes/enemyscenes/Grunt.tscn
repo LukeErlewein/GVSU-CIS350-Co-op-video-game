@@ -8,9 +8,9 @@
 
 [sub_resource type="Resource" id="Resource_70ydb"]
 script = ExtResource("2_givgt")
-health = 10.0
+health = 100.0
 damage = 5.0
-speed = 40.0
+speed = 50.0
 texture = ExtResource("3_vqydx")
 target = "CORE"
 enemyType = "GRUNT"

@@ -3,7 +3,7 @@ class_name Pierce
 
 @export var speed: float = 500.0
 @export var lifetime: float = 10.0
-@export var damage: int = 10.0
+@export var damage: int = 100.0
 
 func _init(target):
 	cooldown = 1

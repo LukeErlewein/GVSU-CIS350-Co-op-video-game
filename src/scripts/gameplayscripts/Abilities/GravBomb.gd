@@ -2,11 +2,11 @@ extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name GravBomb
 
 @export var speed: float = 100.0
-@export var lifetime: float = 0.5
+@export var lifetime: float = 1
 @export var damage: int = 0
 
 func _init(target):
-	cooldown = 1
+	cooldown = 7
 	animation_name = "GravGrenProjectile"
 	texture = preload("res://src/assets/Abilities/GravGrenIcon.png")
 	super._init(target)

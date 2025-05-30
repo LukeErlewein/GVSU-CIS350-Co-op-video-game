@@ -1,12 +1,10 @@
 extends "res://src/scripts/gameplayscripts/Abilities/Skill.gd"
 class_name Orbital
 
-@export var speed: float = 200.0
-@export var lifetime: float = 0.5
-@export var damage: int = 100
+@export var damage: int = 150
 
 func _init(target):
-	cooldown = 1
+	cooldown = 25
 	animation_name = "OrbitalProjectile"
 	texture = preload("res://src/assets/Abilities/OrbitalpointIcon.png")
 	super._init(target)
