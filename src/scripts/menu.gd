@@ -1,9 +1,6 @@
 extends Control
 
-<<<<<<< Updated upstream
-func _ready():
-	$VBoxContainer/JoinButton.grab_focus()
-=======
+
 const host_player: PackedScene = preload("res://src/scenes/playerscenes/FighterPlayer.tscn")
 const join_player: PackedScene = preload("res://src/scenes/playerscenes/RangerPlayer.tscn")
 @export var address: String = "192.168.125.102"
@@ -27,14 +24,6 @@ func _ready():
 	
 	await Multiplayer.noray_connected
 	oid_label.text = Noray.oid
->>>>>>> Stashed changes
-
-
-func player_disconnected(id):
-	print("Player Disconnected: ", id)
-
-func cant_connect(id):
-	print("Couldnt connect")
 
 
 func player_disconnected(id):
@@ -62,9 +51,6 @@ func _on_join_button_pressed() -> void:
 	
 
 func _on_host_button_pressed() -> void:
-<<<<<<< Updated upstream
-	pass # Replace with function body.
-=======
 	Multiplayer.host()
 	hide()
 	multiplayer.peer_connected.connect(
@@ -72,7 +58,6 @@ func _on_host_button_pressed() -> void:
 			multiplayer_spawner.spawn(id)
 	)
 	multiplayer_spawner.spawn(multiplayer.get_unique_id())
->>>>>>> Stashed changes
 
 
 func _on_quit_button_pressed() -> void:
