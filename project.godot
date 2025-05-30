@@ -18,11 +18,18 @@ config/features=PackedStringArray("4.4")
 [autoload]
 
 Global="*res://src/scripts/Global.gd"
+Multiplayer="*res://src/scripts/Multiplayer.gd"
+Noray="*res://addons/netfox.noray/noray.gd"
+PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
 [global_group]
 

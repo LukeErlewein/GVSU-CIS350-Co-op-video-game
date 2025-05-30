@@ -1,7 +1,33 @@
 extends Control
 
+<<<<<<< Updated upstream
 func _ready():
 	$VBoxContainer/JoinButton.grab_focus()
+=======
+const host_player: PackedScene = preload("res://src/scenes/playerscenes/FighterPlayer.tscn")
+const join_player: PackedScene = preload("res://src/scenes/playerscenes/RangerPlayer.tscn")
+@export var address: String = "192.168.125.102"
+@onready var ranger_spawn: Marker2D = $"../TileMapLayer/RangerSpawn"
+@onready var fighter_spawn: Marker2D = $"../TileMapLayer/FighterSpawn"
+@onready var multiplayer_spawner: MultiplayerSpawner = $"../PlayerSpawner"
+
+@onready var guide: Label = $Guide
+@onready var oid_label: Label = $VBoxContainer/OID
+@onready var oid_input: LineEdit = $VBoxContainer/OIDInput
+
+var peer = ENetMultiplayerPeer.new()
+
+func _ready():
+	guide.hide()
+	show()
+	
+	multiplayer_spawner.spawn_function = spawn
+	multiplayer.peer_disconnected.connect(player_disconnected)
+	multiplayer.connection_failed.connect(cant_connect)
+	
+	await Multiplayer.noray_connected
+	oid_label.text = Noray.oid
+>>>>>>> Stashed changes
 
 
 func player_disconnected(id):
@@ -31,13 +57,22 @@ func spawn(id):
 		return ranger_player
 
 func _on_join_button_pressed() -> void:
-	peer.create_client("localhost", 21832)
-	multiplayer.multiplayer_peer = peer
+	Multiplayer.join(oid_input.text)
 	hide()
 	
 
 func _on_host_button_pressed() -> void:
+<<<<<<< Updated upstream
 	pass # Replace with function body.
+=======
+	Multiplayer.host()
+	hide()
+	multiplayer.peer_connected.connect(
+		func(id):
+			multiplayer_spawner.spawn(id)
+	)
+	multiplayer_spawner.spawn(multiplayer.get_unique_id())
+>>>>>>> Stashed changes
 
 
 func _on_quit_button_pressed() -> void:
@@ -48,3 +83,7 @@ func _on_guide_button_toggled(toggled_on: bool) -> void:
 		guide.show()
 	else:
 		guide.hide()
+
+
+func _on_copy_oid_pressed() -> void:
+	DisplayServer.clipboard_set(Noray.oid)
