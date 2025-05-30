@@ -1,22 +1,29 @@
 extends Control
 
+
 const host_player: PackedScene = preload("res://src/scenes/playerscenes/FighterPlayer.tscn")
 const join_player: PackedScene = preload("res://src/scenes/playerscenes/RangerPlayer.tscn")
 @export var address: String = "192.168.125.102"
 @onready var ranger_spawn: Marker2D = $"../TileMapLayer/RangerSpawn"
 @onready var fighter_spawn: Marker2D = $"../TileMapLayer/FighterSpawn"
 @onready var multiplayer_spawner: MultiplayerSpawner = $"../PlayerSpawner"
+
 @onready var guide: Label = $Guide
+@onready var oid_label: Label = $VBoxContainer/OID
+@onready var oid_input: LineEdit = $VBoxContainer/OIDInput
 
 var peer = ENetMultiplayerPeer.new()
 
 func _ready():
 	guide.hide()
 	show()
+	
 	multiplayer_spawner.spawn_function = spawn
 	multiplayer.peer_disconnected.connect(player_disconnected)
 	multiplayer.connection_failed.connect(cant_connect)
-	$VBoxContainer/JoinButton.grab_focus()
+	
+	await Multiplayer.noray_connected
+	oid_label.text = Noray.oid
 
 
 func player_disconnected(id):
@@ -39,14 +46,12 @@ func spawn(id):
 		return ranger_player
 
 func _on_join_button_pressed() -> void:
-	peer.create_client("localhost", 21832)
-	multiplayer.multiplayer_peer = peer
+	Multiplayer.join(oid_input.text)
 	hide()
 	
 
 func _on_host_button_pressed() -> void:
-	peer.create_server(21832, 2)
-	multiplayer.multiplayer_peer = peer
+	Multiplayer.host()
 	hide()
 	multiplayer.peer_connected.connect(
 		func(id):
@@ -63,3 +68,7 @@ func _on_guide_button_toggled(toggled_on: bool) -> void:
 		guide.show()
 	else:
 		guide.hide()
+
+
+func _on_copy_oid_pressed() -> void:
+	DisplayServer.clipboard_set(Noray.oid)
