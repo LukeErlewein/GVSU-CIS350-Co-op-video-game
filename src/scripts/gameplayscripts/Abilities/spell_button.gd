@@ -22,7 +22,7 @@ func _ready():
 	change_key = "1"
 	cooldown.max_value = timer.wait_time
 	set_process(false)
-	# Disable this ability button if not authority11
+	# Disable this ability button if not authority
 	if owner and not owner.is_multiplayer_authority():
 		disabled = true
  

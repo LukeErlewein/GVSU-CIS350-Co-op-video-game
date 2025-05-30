@@ -29,10 +29,10 @@ func _ready() -> void:
 			$FighterUI.hide()
 
 	attack = Attack.new()
-	attack.attack_damage = 1.0
-	attack.bullet_speed = 40.0
+	attack.attack_damage = 50
+	attack.bullet_speed = 130.0
 	attack.knockback_force = 10.0
-	attack.attack_cooldown = 0.2
+	attack.attack_cooldown = 0.15
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(str(name)))

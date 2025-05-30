@@ -3,10 +3,10 @@ class_name Grenade
 
 @export var speed: float = 100.0
 @export var lifetime: float = 0.5
-@export var damage: int = 100
+@export var damage: int = 150
 
 func _init(target):
-	cooldown = 1
+	cooldown = 10
 	animation_name = "GrenadeProjectile"
 	texture = preload("res://src/assets/Abilities/GrenadeIcon.png")
 	super._init(target)
