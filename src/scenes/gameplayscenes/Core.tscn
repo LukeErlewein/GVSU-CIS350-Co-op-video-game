@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="1_rkllt"]
 [ext_resource type="Script" uid="uid://d0hxxyghh1k8m" path="res://src/scripts/gameplayscripts/Core.gd" id="1_w8q82"]
-[ext_resource type="Texture2D" uid="uid://b551hsp4glne4" path="res://src/assets/power core/Powercore.png" id="2_gjfl5"]
+[ext_resource type="Texture2D" uid="uid://4ngoyx82ic85" path="res://src/assets/power core/Core.png" id="2_4ua73"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="2_xxp6h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xxp6h"]
-size = Vector2(103, 133)
+size = Vector2(138, 144)
 
 [node name="Core" type="Area2D"]
 collision_layer = 2
@@ -18,8 +18,9 @@ shape = SubResource("RectangleShape2D_xxp6h")
 debug_color = Color(0.656117, 0.514276, 0.135857, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.186508, 0.195082)
-texture = ExtResource("2_gjfl5")
+position = Vector2(-0.499999, -0.522985)
+scale = Vector2(2.14063, 2.23903)
+texture = ExtResource("2_4ua73")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 4
@@ -29,11 +30,11 @@ health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_xxp6h")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("1_rkllt")
-MAX_HEALTH = 100.0
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
 [node name="Button" type="Button" parent="."]
