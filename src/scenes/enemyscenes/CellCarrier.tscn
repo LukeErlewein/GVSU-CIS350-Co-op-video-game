@@ -1,13 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://40ioefgfpaqq"]
+[gd_scene load_steps=9 format=3 uid="uid://40ioefgfpaqq"]
 
 [ext_resource type="PackedScene" uid="uid://bbl433kompyk6" path="res://src/scenes/HealthComponent.tscn" id="1_03q6f"]
 [ext_resource type="Script" uid="uid://dgwfp0kv2f1iu" path="res://src/scripts/enemyscripts/CellCarrier.gd" id="1_qq1er"]
 [ext_resource type="Resource" uid="uid://b5em70wpw8nce" path="res://src/resources/EnemyResources/CellCarrierStats.tres" id="2_ptbow"]
 [ext_resource type="PackedScene" uid="uid://c18fg3wrr8u2c" path="res://src/scenes/HitboxComponent.tscn" id="2_qq1er"]
+[ext_resource type="Texture2D" uid="uid://bfs23rvfbskuy" path="res://src/assets/Enemies/CellCarrier.png" id="5_8wgvr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ptbow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wgvr"]
+size = Vector2(50, 48)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ptbow"]
 properties/0/path = NodePath(".:position")
@@ -35,10 +37,12 @@ collision_mask = 7
 health_component = NodePath("../HealthComponent")
 
 [node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_8wgvr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
+scale = Vector2(1.66667, 1.66667)
+texture = ExtResource("5_8wgvr")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 

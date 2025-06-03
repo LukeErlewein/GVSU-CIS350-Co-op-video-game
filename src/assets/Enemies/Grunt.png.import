@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bfs23rvfbskuy"
-path="res://.godot/imported/CellCarrier.png-09b40e4936cd371f365251eb32293c13.ctex"
+uid="uid://bmst3r361aiu4"
+path="res://.godot/imported/Grunt.png-70494bd3da77a6cf7997714580970985.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/Enemies/CellCarrier.png"
-dest_files=["res://.godot/imported/CellCarrier.png-09b40e4936cd371f365251eb32293c13.ctex"]
+source_file="res://src/assets/Enemies/Grunt.png"
+dest_files=["res://.godot/imported/Grunt.png-70494bd3da77a6cf7997714580970985.ctex"]
 
 [params]
 
