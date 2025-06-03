@@ -15,6 +15,7 @@ class_name FighterPlayer extends CharacterBody2D
 @onready var orbital_strike_ability = $Abilities/OrbitalStrikeAbility
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
 @onready var wait_screen: Control = $FighterUI/WaitScreen
+@onready var gunshot: AudioStreamPlayer2D = $Gunshot
 
 var attack: Attack
 var can_shoot: bool = true
@@ -72,6 +73,7 @@ func shoot():
 	bullet_instance.transform = muzzle.global_transform
 	bullet_instance.attack = self.attack
 	get_tree().current_scene.add_child(bullet_instance)
+	gunshot.play()
 	shot_cooldown_timer.start(attack.attack_cooldown)
 
 func _on_shot_cooldown_timer_timeout() -> void:

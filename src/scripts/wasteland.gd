@@ -8,6 +8,7 @@ extends Node2D
 @onready var carrier_timer: Timer = $Timers/CarrierTimer
 @onready var mob_spawn_location: PathFollow2D = $Path2D/MobSpawnLocation
 @onready var wait_screen: Control = $WaitScreen
+@onready var gameplay_music: AudioStreamPlayer = $GameplayMusic
 
 var grunt: PackedScene = preload("res://src/scenes/enemyscenes/Grunt.tscn")
 var cell_carrier: PackedScene = preload("res://src/scenes/enemyscenes/CellCarrier.tscn")
@@ -23,6 +24,7 @@ func _ready() -> void:
 func start_game():
 	game_start.emit()
 	wait_screen.hide()
+	gameplay_music.play()
 	grunt_timer.start(GRUNT_DELAY)
 	carrier_timer.start(CARRIER_DELAY)
 
@@ -55,8 +57,13 @@ func _on_child_entered_tree(node: Node) -> void:
 
 
 func _on_grunt_timer_timeout() -> void:
-	spawn_mob(grunt.instantiate())
+	for i in range(0, 5):
+		spawn_mob(grunt.instantiate())
 
 
 func _on_carrier_timer_timeout() -> void:
 	spawn_mob(cell_carrier.instantiate())
+
+
+func _on_gameplay_music_finished() -> void:
+	gameplay_music.play()
