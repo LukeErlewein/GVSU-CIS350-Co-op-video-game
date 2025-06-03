@@ -9,10 +9,6 @@ class_name FighterPlayer extends CharacterBody2D
 @onready var muzzle: Marker2D = $Muzzle
 @onready var shot_cooldown_timer: Timer = $ShotCooldownTimer
 @onready var camera: Camera2D = $Camera2D
-@onready var shotgun_ability = $Abilities/ShotgunAbility
-@onready var grenade_ability = $Abilities/GrenadeAbility
-@onready var freeze_grenade_ability = $Abilities/FreezeGrenadeAbility
-@onready var orbital_strike_ability = $Abilities/OrbitalStrikeAbility
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
 @onready var wait_screen: Control = $FighterUI/WaitScreen
 @onready var gunshot: AudioStreamPlayer2D = $Gunshot
