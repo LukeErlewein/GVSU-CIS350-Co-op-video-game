@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_p35ce"]
-[ext_resource type="Texture2D" uid="uid://k38ru1yn5as5" path="res://src/assets/FighterCharacter.png" id="3_bv166"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_p35ce"]
 [ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/projectile.tscn" id="3_u66ln"]
+[ext_resource type="Texture2D" uid="uid://bev3iesc6dulj" path="res://src/assets/Fighter.png" id="4_6ro8l"]
 [ext_resource type="Script" uid="uid://b1lk7n5io5uc0" path="res://src/scripts/playerscripts/FighterCamera.gd" id="6_m1mhg"]
 [ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/HealthTracking.gd" id="7_lxwnt"]
 [ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="8_0ohk6"]
@@ -98,9 +98,10 @@ bullet = ExtResource("2_p35ce")
 projectile_node = ExtResource("3_u66ln")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = 1.5708
-scale = Vector2(3, 3)
-texture = ExtResource("3_bv166")
+position = Vector2(-4.62015, -4.62016)
+rotation = -1.5708
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("4_6ro8l")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_bv166")
@@ -121,7 +122,7 @@ visibility_layer = 0
 shape = SubResource("CircleShape2D_1ng22")
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(16, 0)
+position = Vector2(30, 8)
 
 [node name="ShotCooldownTimer" type="Timer" parent="."]
 one_shot = true
@@ -138,6 +139,7 @@ script = ExtResource("6_m1mhg")
 replication_config = SubResource("SceneReplicationConfig_fi1s2")
 
 [node name="FighterUI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PlayerHealthUI" type="Control" parent="FighterUI"]
 layout_mode = 3

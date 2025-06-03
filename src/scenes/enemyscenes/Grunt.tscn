@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_fafvl"]
 [ext_resource type="Script" uid="uid://csmsjn5wqit5i" path="res://src/scripts/enemyscripts/EnemyStats.gd" id="2_givgt"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_givgt"]
-[ext_resource type="Texture2D" uid="uid://binvi6mn0qcvp" path="res://src/assets/Enemies/GruntEnemy.png" id="3_vqydx"]
+[ext_resource type="Texture2D" uid="uid://bmst3r361aiu4" path="res://src/assets/Enemies/Grunt.png" id="3_vqydx"]
 
 [sub_resource type="Resource" id="Resource_70ydb"]
 script = ExtResource("2_givgt")
@@ -17,9 +17,10 @@ enemyType = "GRUNT"
 metadata/_custom_type_script = "uid://csmsjn5wqit5i"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gyinp"]
+radius = 15.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fafvl"]
-size = Vector2(13, 16)
+size = Vector2(17.5, 20)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_givgt"]
 properties/0/path = NodePath(".:position")
@@ -50,11 +51,11 @@ metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 shape = SubResource("CircleShape2D_gyinp")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_fafvl")
 debug_color = Color(0.695721, 0.492956, 0.109621, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_vqydx")
 
 [node name="DebugPath" type="Timer" parent="."]
 wait_time = 0.4

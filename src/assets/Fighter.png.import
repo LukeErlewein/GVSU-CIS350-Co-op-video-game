@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b551hsp4glne4"
-path="res://.godot/imported/Powercore.png-76def53b3b039ab0709e6d7c47f94cdd.ctex"
+uid="uid://bev3iesc6dulj"
+path="res://.godot/imported/Fighter.png-42a5a5510b99da4b35a1b35be2c89d75.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/power core/Powercore.png"
-dest_files=["res://.godot/imported/Powercore.png-76def53b3b039ab0709e6d7c47f94cdd.ctex"]
+source_file="res://src/assets/Fighter.png"
+dest_files=["res://.godot/imported/Fighter.png-42a5a5510b99da4b35a1b35be2c89d75.ctex"]
 
 [params]
 
