@@ -34,7 +34,6 @@ func _ready() -> void:
 		ranger_ui.show()
 	else:
 		ranger_ui.hide()
-
 	setup_attack()
 
 func setup_attack() -> void:
@@ -65,6 +64,7 @@ func _process(delta: float) -> void:
 		shoot.rpc()
 	
 	update_ability_ui_visibility()
+
 
 @rpc("call_local")
 func shoot():

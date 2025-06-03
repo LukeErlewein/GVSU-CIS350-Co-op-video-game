@@ -14,11 +14,15 @@ class_name FighterPlayer extends CharacterBody2D
 @onready var freeze_grenade_ability = $Abilities/FreezeGrenadeAbility
 @onready var orbital_strike_ability = $Abilities/OrbitalStrikeAbility
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
+@onready var wait_screen: Control = $FighterUI/WaitScreen
 
 var attack: Attack
 var can_shoot: bool = true
+var can_control: bool = false
 
 func _ready() -> void:
+	get_tree().get_current_scene().game_start.connect(hide_UI)
+	wait_screen.show()
 	print("core assigned: ", core)
 	if is_multiplayer_authority():
 		camera.make_current()
@@ -38,7 +42,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(int(str(name)))
 
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() and can_control:
 		return
 
 	var input = Vector2(
@@ -55,6 +59,10 @@ func _process(delta: float) -> void:
 		rpc("shoot")
 		
 	update_ability_ui_visibility()
+
+func hide_UI():
+	wait_screen.hide()
+	can_control = true
 
 
 @rpc("any_peer", "call_local")

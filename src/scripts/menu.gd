@@ -7,6 +7,7 @@ const join_player: PackedScene = preload("res://src/scenes/playerscenes/RangerPl
 @onready var ranger_spawn: Marker2D = $"../TileMapLayer/RangerSpawn"
 @onready var fighter_spawn: Marker2D = $"../TileMapLayer/FighterSpawn"
 @onready var multiplayer_spawner: MultiplayerSpawner = $"../PlayerSpawner"
+@onready var wait_screen: Control = $"../WaitScreen"
 
 @onready var guide: Label = $Guide
 @onready var oid_label: Label = $VBoxContainer/OID
@@ -16,6 +17,7 @@ var peer = ENetMultiplayerPeer.new()
 
 func _ready():
 	guide.hide()
+	wait_screen.hide()
 	show()
 	
 	multiplayer_spawner.spawn_function = spawn
@@ -47,11 +49,14 @@ func spawn(id):
 
 func _on_join_button_pressed() -> void:
 	Multiplayer.join(oid_input.text)
+	wait_screen.show()
+	guide.hide()
 	hide()
 	
 
 func _on_host_button_pressed() -> void:
 	Multiplayer.host()
+	guide.hide()
 	hide()
 	multiplayer.peer_connected.connect(
 		func(id):

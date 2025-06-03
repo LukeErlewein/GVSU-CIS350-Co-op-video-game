@@ -7,6 +7,7 @@ extends Node2D
 @onready var grunt_timer: Timer = $Timers/GruntTimer
 @onready var carrier_timer: Timer = $Timers/CarrierTimer
 @onready var mob_spawn_location: PathFollow2D = $Path2D/MobSpawnLocation
+@onready var wait_screen: Control = $WaitScreen
 
 var grunt: PackedScene = preload("res://src/scenes/enemyscenes/Grunt.tscn")
 var cell_carrier: PackedScene = preload("res://src/scenes/enemyscenes/CellCarrier.tscn")
@@ -15,11 +16,13 @@ var energy_cell: PackedScene = preload("res://src/scenes/gameplayscenes/EnergyCe
 signal game_start
 
 func _ready() -> void:
+	wait_screen.hide()
 	core.game_lost.connect(game_over)
 	core.game_won.connect(game_beat)
 
 func start_game():
 	game_start.emit()
+	wait_screen.hide()
 	grunt_timer.start(GRUNT_DELAY)
 	carrier_timer.start(CARRIER_DELAY)
 
