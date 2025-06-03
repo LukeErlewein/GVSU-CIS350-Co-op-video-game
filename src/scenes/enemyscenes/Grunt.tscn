@@ -64,7 +64,6 @@ autostart = true
 one_shot = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-debug_enabled = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
