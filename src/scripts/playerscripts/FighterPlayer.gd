@@ -9,16 +9,17 @@ class_name FighterPlayer extends CharacterBody2D
 @onready var muzzle: Marker2D = $Muzzle
 @onready var shot_cooldown_timer: Timer = $ShotCooldownTimer
 @onready var camera: Camera2D = $Camera2D
-@onready var shotgun_ability = $Abilities/ShotgunAbility
-@onready var grenade_ability = $Abilities/GrenadeAbility
-@onready var freeze_grenade_ability = $Abilities/FreezeGrenadeAbility
-@onready var orbital_strike_ability = $Abilities/OrbitalStrikeAbility
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
+@onready var wait_screen: Control = $FighterUI/WaitScreen
+@onready var gunshot: AudioStreamPlayer2D = $Gunshot
 
 var attack: Attack
 var can_shoot: bool = true
+var can_control: bool = false
 
 func _ready() -> void:
+	get_tree().get_current_scene().game_start.connect(hide_UI)
+	wait_screen.show()
 	print("core assigned: ", core)
 	if is_multiplayer_authority():
 		camera.make_current()
@@ -38,7 +39,7 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(int(str(name)))
 
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() and can_control:
 		return
 
 	var input = Vector2(
@@ -56,6 +57,10 @@ func _process(delta: float) -> void:
 		
 	update_ability_ui_visibility()
 
+func hide_UI():
+	wait_screen.hide()
+	can_control = true
+
 
 @rpc("any_peer", "call_local")
 func shoot():
@@ -64,6 +69,7 @@ func shoot():
 	bullet_instance.transform = muzzle.global_transform
 	bullet_instance.attack = self.attack
 	get_tree().current_scene.add_child(bullet_instance)
+	gunshot.play()
 	shot_cooldown_timer.start(attack.attack_cooldown)
 
 func _on_shot_cooldown_timer_timeout() -> void:

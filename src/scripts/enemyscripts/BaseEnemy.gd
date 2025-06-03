@@ -11,7 +11,7 @@ func action(hitbox: HitboxComponent):
 # Get Node from scene tree, whether that is core or players
 func set_target(stats: EnemyStats):
 	# FRC is just short for FighterRangerCore cause im lazy
-	var all_nodes = get_parent().get_children()
+	var all_nodes = get_tree().get_current_scene().get_children()
 	var FRC = []
 	
 	# Check target and do proper search

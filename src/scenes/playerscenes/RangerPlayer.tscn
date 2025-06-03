@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b7wa2n7d0dfkp"]
+[gd_scene load_steps=24 format=3 uid="uid://b7wa2n7d0dfkp"]
 
 [ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/playerscripts/RangerPlayer.gd" id="1_rkl73"]
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_7q8dk"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_lrjuq"]
 [ext_resource type="Script" uid="uid://dnfqlhh3q4bao" path="res://src/scripts/playerscripts/RangerSkillBar.gd" id="11_4pbfw"]
 [ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/playerscenes/SpellButton.tscn" id="12_lrjuq"]
+[ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="14_wyyoh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
 
@@ -86,14 +87,6 @@ _data = {
 &"FadeOut": SubResource("Animation_l6el3"),
 &"RESET": SubResource("Animation_gdut3")
 }
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_7q8dk"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath(".:rotation")
-properties/1/spawn = true
-properties/1/replication_mode = 1
 
 [node name="RangerPlayer" type="CharacterBody2D"]
 collision_mask = 15
@@ -220,5 +213,9 @@ layout_mode = 2
 [node name="SpellButton4" parent="RangerUI/SkillBar" instance=ExtResource("12_lrjuq")]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_wyyoh")
+volume_db = -30.0
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]

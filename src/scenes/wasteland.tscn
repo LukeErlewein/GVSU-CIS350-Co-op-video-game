@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://do5d4h3xsmbgt"]
+[gd_scene load_steps=18 format=4 uid="uid://do5d4h3xsmbgt"]
 
-[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_v48x7"]
+[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/Wasteland.gd" id="1_v48x7"]
 [ext_resource type="Texture2D" uid="uid://b2n20t2muj7g3" path="res://src/assets/TempGround.png" id="2_v48x7"]
+[ext_resource type="Script" uid="uid://d01npd7p4parf" path="res://src/scripts/gameplayscripts/EnemySpawnController.gd" id="3_5r2sw"]
 [ext_resource type="PackedScene" uid="uid://k8rs6ix3ky54" path="res://src/scenes/Menu.tscn" id="4_afads"]
 [ext_resource type="PackedScene" uid="uid://dwprs02tko2ya" path="res://src/scenes/gameplayscenes/CoreHUD.tscn" id="5_khrfv"]
+[ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/WaitScreen.tscn" id="5_nonnb"]
 [ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="5_v48x7"]
+[ext_resource type="AudioStream" uid="uid://c3jj1e26vmul5" path="res://src/assets/audio/gameplay_music.wav" id="7_nonnb"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v48x7"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -61,6 +64,13 @@ scale = Vector2(252.111, -294.198)
 [node name="RangerSpawn" type="Marker2D" parent="TileMapLayer"]
 position = Vector2(640, 300)
 
+[node name="Enemies" type="Node" parent="."]
+script = ExtResource("3_5r2sw")
+
+[node name="EnemySpawner" type="MultiplayerSpawner" parent="Enemies"]
+_spawnable_scenes = PackedStringArray("uid://m151ri7kcj54", "uid://40ioefgfpaqq")
+spawn_path = NodePath("..")
+
 [node name="Core" parent="." instance=ExtResource("5_v48x7")]
 position = Vector2(567, 306)
 
@@ -72,6 +82,8 @@ spawn_path = NodePath("..")
 visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
+
+[node name="WaitScreen" parent="." instance=ExtResource("5_nonnb")]
 
 [node name="CoreHUD" parent="." instance=ExtResource("5_khrfv")]
 
@@ -137,6 +149,12 @@ blend_mode = 2
 height = 0.61
 max_distance = 11800.0
 
+[node name="GameplayMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nonnb")
+volume_db = -21.582
+
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="timeout" from="Timers/GruntTimer" to="." method="_on_grunt_timer_timeout"]
-[connection signal="timeout" from="Timers/CarrierTimer" to="." method="_on_carrier_timer_timeout"]
+[connection signal="child_entered_tree" from="Enemies" to="." method="_on_enemies_child_entered_tree"]
+[connection signal="timeout" from="Timers/GruntTimer" to="Enemies" method="_on_grunt_timer_timeout"]
+[connection signal="timeout" from="Timers/CarrierTimer" to="Enemies" method="_on_carrier_timer_timeout"]
+[connection signal="finished" from="GameplayMusic" to="." method="_on_gameplay_music_finished"]

@@ -16,6 +16,7 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $Camera2D
 @onready var ranger_ui: CanvasLayer = $RangerUI
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
+@onready var gunshot: AudioStreamPlayer2D = $Gunshot
 
 # State
 var attack: Attack
@@ -34,7 +35,6 @@ func _ready() -> void:
 		ranger_ui.show()
 	else:
 		ranger_ui.hide()
-
 	setup_attack()
 
 func setup_attack() -> void:
@@ -66,6 +66,7 @@ func _process(delta: float) -> void:
 	
 	update_ability_ui_visibility()
 
+
 @rpc("call_local")
 func shoot():
 	can_shoot = false
@@ -73,6 +74,7 @@ func shoot():
 	bullet_instance.transform = muzzle.global_transform
 	bullet_instance.attack = attack
 	get_parent().add_child(bullet_instance)
+	gunshot.play()
 	shot_cooldown_timer.start(attack.attack_cooldown)
 
 func _on_shot_cooldown_timer_timeout() -> void:
