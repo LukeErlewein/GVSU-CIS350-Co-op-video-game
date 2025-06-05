@@ -38,6 +38,7 @@ func make_path() -> void:
 
 func action(hitbox: HitboxComponent):
 	if can_attack:
+		print("Attacking! Damage:", attack.attack_damage)
 		attack_cooldown.start(COOLDOWN)
 		can_attack = false
 		hitbox.damage(attack)
@@ -50,23 +51,27 @@ func _on_debug_path_timeout() -> void:
 func _on_attack_cooldown_timeout() -> void:
 	can_attack = true
 
-func _on_hitbox_component_body_entered(body: Node2D) -> void:
-	print("Body entered: ", body.name, " - class: ", body.get_class())
-	var hitbox = body.get_node_or_null("HitboxComponent")
-	print("Hitbox: ", hitbox)
+func take_damage(amount: float):
+	if health_component:
+		health_component.take_damage(amount)
 
-	if body is FighterPlayer or body is RangerPlayer or body is Core:
+func _on_timer_timeout() -> void:
+	print("Timer finished, unfreezing.")
+	unfreeze()
+
+func _on_hitbox_component_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Core") || body is Core:
+		print("Triggered entering core")
+	if body.is_in_group("Core") or body is FighterPlayer or body is RangerPlayer:
+		var hitbox: HitboxComponent = null
+		
+		if body.has_node("HitboxComponent"):
+			hitbox = body.get_node("HitboxComponent") as HitboxComponent
+		elif body.get_parent() and body.get_parent().has_node("HitboxComponent"):
+			hitbox = body.get_parent().get_node("HitboxComponent") as HitboxComponent
+
 		if hitbox:
 			print("Calling action() on ", body.name)
 			action(hitbox)
 		else:
 			print("No HitboxComponent found on ", body.name)
-
-func take_damage(amount: float):
-	if health_component:
-		health_component.take_damage(amount)
-
-
-func _on_timer_timeout() -> void:
-	print("Timer finished, unfreezing.")
-	unfreeze()

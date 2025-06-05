@@ -55,9 +55,7 @@ func _on_attack_cooldown_timeout() -> void:
 
 
 func _on_hitbox_component_body_entered(body: Node2D) -> void:
-	print("Body entered: ", body.name, " - class: ", body.get_class())
 	var hitbox = body.get_node_or_null("HitboxComponent")
-	print("Hitbox: ", hitbox)
 	if body is FighterPlayer or body is RangerPlayer or body is Core:
 		if hitbox:
 			print("Calling action() on ", body.name)

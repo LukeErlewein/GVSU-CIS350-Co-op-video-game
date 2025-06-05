@@ -1,37 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjf3ya17vty25"]
+[gd_scene load_steps=7 format=3 uid="uid://cjf3ya17vty25"]
 
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="1_rkllt"]
 [ext_resource type="Script" uid="uid://d0hxxyghh1k8m" path="res://src/scripts/gameplayscripts/Core.gd" id="1_w8q82"]
 [ext_resource type="Texture2D" uid="uid://4ngoyx82ic85" path="res://src/assets/power core/Core.png" id="2_4ua73"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="2_xxp6h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxp6h"]
-size = Vector2(138, 144)
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ua73"]
+radius = 71.1126
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_srtr7"]
+radius = 71.1126
 
 [node name="Core" type="Area2D"]
-collision_layer = 2
-collision_mask = 3
+collision_layer = 15
+collision_mask = 15
 script = ExtResource("1_w8q82")
-
-[node name="PhysicsBox" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xxp6h")
-debug_color = Color(0.656117, 0.514276, 0.135857, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.499999, -0.522985)
 scale = Vector2(2.14063, 2.23903)
 texture = ExtResource("2_4ua73")
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
-collision_layer = 4
-collision_mask = 3
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component") groups=["Core"]]
+collision_layer = 15
+collision_mask = 15
 script = ExtResource("2_xxp6h")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_xxp6h")
+shape = SubResource("CircleShape2D_4ua73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_srtr7")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("1_rkllt")
@@ -44,4 +46,5 @@ offset_right = 37.0
 offset_bottom = 132.0
 text = "Charge"
 
+[connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
