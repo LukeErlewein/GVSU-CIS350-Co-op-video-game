@@ -60,6 +60,7 @@ func _on_host_button_pressed() -> void:
 	hide()
 	multiplayer.peer_connected.connect(
 		func(id):
+			Global.RANGER_MULTIPLAYER_ID = id
 			multiplayer_spawner.spawn(id)
 	)
 	multiplayer_spawner.spawn(multiplayer.get_unique_id())

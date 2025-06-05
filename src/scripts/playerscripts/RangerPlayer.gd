@@ -46,9 +46,9 @@ func setup_attack() -> void:
 	attack.attack_cooldown = 0.4
 
 func _process(delta: float) -> void:
-	if not is_multiplayer_authority():
+	if !is_multiplayer_authority():
 		return
-
+	
 	var input = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")

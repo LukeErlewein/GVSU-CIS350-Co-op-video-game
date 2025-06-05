@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=4 uid="uid://do5d4h3xsmbgt"]
 
-[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_v48x7"]
+[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/Wasteland.gd" id="1_v48x7"]
 [ext_resource type="Texture2D" uid="uid://cktc8lksky5f0" path="res://src/assets/WastelandTileset.png" id="2_5r2sw"]
 [ext_resource type="Script" uid="uid://d01npd7p4parf" path="res://src/scripts/gameplayscripts/EnemySpawnController.gd" id="3_5r2sw"]
 [ext_resource type="PackedScene" uid="uid://k8rs6ix3ky54" path="res://src/scenes/Menu.tscn" id="4_afads"]
@@ -248,7 +248,10 @@ stream = ExtResource("7_nonnb")
 volume_db = -21.582
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="child_entered_tree" from="Enemies" to="." method="_on_enemies_child_entered_tree"]
 [connection signal="timeout" from="Timers/GruntTimer" to="Enemies" method="_on_grunt_timer_timeout"]
 [connection signal="timeout" from="Timers/CarrierTimer" to="Enemies" method="_on_carrier_timer_timeout"]
+[connection signal="timeout" from="Timers/FighterRespawn" to="." method="_on_fighter_respawn_timeout"]
+[connection signal="timeout" from="Timers/RangerRespawn" to="." method="_on_ranger_respawn_timeout"]
 [connection signal="finished" from="GameplayMusic" to="." method="_on_gameplay_music_finished"]

@@ -1,8 +1,13 @@
 extends Node2D
 
+@export var RESPAWN_TIME: float = 10.0
+
 @onready var core: Core = $Core
 @onready var wait_screen: Control = $WaitScreen
 @onready var gameplay_music: AudioStreamPlayer = $GameplayMusic
+@onready var fighter_respawn: Timer = $Timers/FighterRespawn
+@onready var ranger_respawn: Timer = $Timers/RangerRespawn
+@onready var menu: Control = $Menu
 
 var energy_cell: PackedScene = preload("res://src/scenes/gameplayscenes/EnergyCell.tscn")
 
@@ -15,6 +20,7 @@ func _ready() -> void:
 
 func start_game():
 	game_start.emit()
+	Global.GAME_RUNNING = true
 	wait_screen.hide()
 	gameplay_music.play()
 
@@ -49,3 +55,18 @@ func _on_gameplay_music_finished() -> void:
 func _on_enemies_child_entered_tree(node: Node) -> void:
 	if node is CellCarrier:
 		node.carrier_death.connect(add_cell)
+
+
+func _on_child_exiting_tree(node: Node) -> void:
+	if node is RangerPlayer:
+		ranger_respawn.start(RESPAWN_TIME)
+	if node is FighterPlayer:
+		fighter_respawn.start(RESPAWN_TIME)
+
+
+func _on_fighter_respawn_timeout() -> void:
+	menu.multiplayer_spawner.spawn(multiplayer.get_unique_id())
+
+
+func _on_ranger_respawn_timeout() -> void:
+	menu.multiplayer_spawner.spawn(Global.RANGER_MULTIPLAYER_ID)
