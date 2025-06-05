@@ -17,14 +17,23 @@ func _physics_process(delta: float) -> void:
 	if currentPower >= 100.0:
 		game_won.emit()
 
-# Signal connection
-@rpc("call_local")
+@rpc("authority")
 func add_power(amount: int) -> void:
 	currentPower += amount
 	currentPower = clamp(currentPower, 0, MAXPOWER)
 	print("Power Core charged. Current power:", currentPower, "/", MAXPOWER)
+	rpc("sync_power", currentPower)
+
+@rpc("call_local")
+func sync_power(new_power: int) -> void:
+	currentPower = new_power
 	emit_signal("power_updated", currentPower)
 
 
 func _on_button_pressed() -> void:
+	add_power(5)
 	add_power.rpc(5)
+
+
+func _on_hitbox_component_body_entered(body: Node2D) -> void:
+	print("Something Entered")
