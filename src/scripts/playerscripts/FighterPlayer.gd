@@ -39,9 +39,14 @@ func _enter_tree() -> void:
 	set_multiplayer_authority(int(str(name)))
 
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority() and can_control:
+	if !is_multiplayer_authority():
 		return
-
+	if !can_control:
+		if Global.GAME_RUNNING:
+			hide_UI()
+		else:
+			return
+	
 	var input = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -54,7 +59,7 @@ func _process(delta: float) -> void:
 
 	if Input.is_action_pressed("shoot") and can_shoot:
 		rpc("shoot")
-		
+	
 	update_ability_ui_visibility()
 
 func hide_UI():
