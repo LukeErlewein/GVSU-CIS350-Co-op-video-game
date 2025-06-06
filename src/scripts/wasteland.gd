@@ -9,8 +9,6 @@ extends Node2D
 @onready var ranger_respawn: Timer = $Timers/RangerRespawn
 @onready var menu: Control = $Menu
 
-var energy_cell: PackedScene = preload("res://src/scenes/gameplayscenes/EnergyCell.tscn")
-
 signal game_start
 
 func _ready() -> void:
@@ -26,10 +24,7 @@ func start_game():
 
 
 func add_cell(cell_position: Vector2) -> void:
-	print(cell_position)
-	var cell = energy_cell.instantiate()
-	cell.global_position = cell_position
-	add_child.call_deferred(cell)
+	menu.multiplayer_spawner.spawn(cell_position)
 
 func game_over() -> void:
 	get_tree().paused = true

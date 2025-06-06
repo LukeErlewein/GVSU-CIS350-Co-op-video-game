@@ -3,6 +3,7 @@ extends Control
 
 const host_player: PackedScene = preload("res://src/scenes/playerscenes/FighterPlayer.tscn")
 const join_player: PackedScene = preload("res://src/scenes/playerscenes/RangerPlayer.tscn")
+var energy_cell: PackedScene = preload("res://src/scenes/gameplayscenes/EnergyCell.tscn")
 @export var address: String = "192.168.125.102"
 @onready var ranger_spawn: Marker2D = $"../TileMapLayer/RangerSpawn"
 @onready var fighter_spawn: Marker2D = $"../TileMapLayer/FighterSpawn"
@@ -36,16 +37,22 @@ func cant_connect(id):
 
 func spawn(id):
 	print("Player Connected: ", id)
-	if id == 1:
-		var fighter_player = host_player.instantiate()
-		fighter_player.name = str(id)
-		fighter_player.global_position = fighter_spawn.global_position
-		return fighter_player
+	if id is Vector2:
+		var cell = energy_cell.instantiate()
+		cell.name = str(id.x)
+		cell.global_position = id
+		return cell
 	else:
-		var ranger_player = join_player.instantiate()
-		ranger_player.name = str(id)
-		ranger_player.global_position = ranger_spawn.global_position
-		return ranger_player
+		if id == 1:
+			var fighter_player = host_player.instantiate()
+			fighter_player.name = str(id)
+			fighter_player.global_position = fighter_spawn.global_position
+			return fighter_player
+		else:
+			var ranger_player = join_player.instantiate()
+			ranger_player.name = str(id)
+			ranger_player.global_position = ranger_spawn.global_position
+			return ranger_player
 
 func _on_join_button_pressed() -> void:
 	Multiplayer.join(oid_input.text)
