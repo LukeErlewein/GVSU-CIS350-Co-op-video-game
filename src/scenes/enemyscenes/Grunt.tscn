@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://m151ri7kcj54"]
+[gd_scene load_steps=11 format=3 uid="uid://m151ri7kcj54"]
 
 [ext_resource type="Script" uid="uid://do140pc8maduf" path="res://src/scripts/enemyscripts/Grunt.gd" id="1_hwoom"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_fafvl"]
@@ -16,17 +16,14 @@ target = "CORE"
 enemyType = "GRUNT"
 metadata/_custom_type_script = "uid://csmsjn5wqit5i"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_givgt"]
-radius = 15.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gyinp"]
-radius = 15.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_givgt"]
+size = Vector2(27, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fafvl"]
 size = Vector2(27, 25)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vqydx"]
-radius = 15.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqydx"]
+size = Vector2(27, 25)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_givgt"]
 properties/0/path = NodePath(".:position")
@@ -37,17 +34,14 @@ properties/1/spawn = true
 properties/1/replication_mode = 1
 
 [node name="Grunt" type="CharacterBody2D" groups=["Enemies"]]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_hwoom")
 STATS = SubResource("Resource_70ydb")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("2_fafvl")
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_givgt")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 2
@@ -57,7 +51,8 @@ health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 
 [node name="BulletBox" type="CollisionShape2D" parent="HitboxComponent"]
-shape = SubResource("CircleShape2D_gyinp")
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_givgt")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0.5)
@@ -70,7 +65,8 @@ texture = ExtResource("3_vqydx")
 [node name="DamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource("CircleShape2D_vqydx")
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_vqydx")
 
 [node name="DebugPath" type="Timer" parent="."]
 wait_time = 0.4

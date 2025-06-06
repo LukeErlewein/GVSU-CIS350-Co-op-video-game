@@ -6,6 +6,7 @@ func _ready():
 var currentPower := 0
 @export var MAXPOWER := 100
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var hitbox_component: HitboxComponent = $HitboxComponent
 
 signal power_updated(new_power: int)
 signal game_won
@@ -36,4 +37,6 @@ func _on_button_pressed() -> void:
 
 
 func _on_hitbox_component_body_entered(body: Node2D) -> void:
-	print("Something Entered")
+	if body is Grunt:
+		hitbox_component.damage(body.attack)
+		body.queue_free()

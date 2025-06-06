@@ -5,16 +5,21 @@
 [ext_resource type="Texture2D" uid="uid://4ngoyx82ic85" path="res://src/assets/power core/Core.png" id="2_4ua73"]
 [ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="2_xxp6h"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4ua73"]
-radius = 71.1126
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_srtr7"]
-radius = 71.1126
+radius = 70.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4ua73"]
+radius = 70.0
 
 [node name="Core" type="Area2D"]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_w8q82")
+
+[node name="PhysicsBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_srtr7")
+debug_color = Color(0.717137, 0.477657, 0.171207, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.499999, -0.522985)
@@ -22,18 +27,14 @@ scale = Vector2(2.14063, 2.23903)
 texture = ExtResource("2_4ua73")
 
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component") groups=["Core"]]
-collision_layer = 15
-collision_mask = 15
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("2_xxp6h")
 health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://bqsw4sdl65ilw"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("CircleShape2D_4ua73")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
-shape = SubResource("CircleShape2D_srtr7")
 
 [node name="HealthComponent" type="Node2D" parent="."]
 script = ExtResource("1_rkllt")
