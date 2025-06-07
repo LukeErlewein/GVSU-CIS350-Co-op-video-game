@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="14_wyyoh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
+radius = 16.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fcnqf"]
 radius = 11.0
@@ -101,7 +102,7 @@ scale = Vector2(1.75, 1.75)
 texture = ExtResource("4_wyyoh")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
-visible = false
+position = Vector2(-2, 1)
 shape = SubResource("CircleShape2D_rkl73")
 debug_color = Color(0.724014, 0.477071, 0.0157364, 0.42)
 

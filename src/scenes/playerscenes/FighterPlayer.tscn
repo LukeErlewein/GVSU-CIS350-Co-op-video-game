@@ -17,10 +17,10 @@
 [ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="15_6ro8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
-radius = 10.0499
+radius = 15.0333
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ng22"]
-radius = 12.0
+radius = 14.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_fi1s2"]
 properties/0/path = NodePath(".:position")
@@ -104,6 +104,7 @@ scale = Vector2(1.75, 1.75)
 texture = ExtResource("4_6ro8l")
 
 [node name="PhysicsBox" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -4)
 shape = SubResource("CircleShape2D_bv166")
 debug_color = Color(0.686305, 0.499551, 0.0552614, 0.42)
 
@@ -122,7 +123,7 @@ visibility_layer = 0
 shape = SubResource("CircleShape2D_1ng22")
 
 [node name="Muzzle" type="Marker2D" parent="."]
-position = Vector2(30, 8)
+position = Vector2(22, 2)
 
 [node name="ShotCooldownTimer" type="Timer" parent="."]
 one_shot = true

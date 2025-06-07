@@ -1,6 +1,6 @@
 class_name FighterPlayer extends CharacterBody2D
 
-@export var SPEED: float = 55
+@export var SPEED: float = 75
 @export var ACCELERATION: float = 5
 @export var FRICTION: float = 8
 

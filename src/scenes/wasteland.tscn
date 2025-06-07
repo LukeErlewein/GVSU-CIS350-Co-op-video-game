@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=4 uid="uid://do5d4h3xsmbgt"]
 
-[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/Wasteland.gd" id="1_v48x7"]
+[ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_v48x7"]
 [ext_resource type="Texture2D" uid="uid://cktc8lksky5f0" path="res://src/assets/WastelandTileset.png" id="2_5r2sw"]
 [ext_resource type="Script" uid="uid://d01npd7p4parf" path="res://src/scripts/gameplayscripts/EnemySpawnController.gd" id="3_5r2sw"]
 [ext_resource type="PackedScene" uid="uid://k8rs6ix3ky54" path="res://src/scenes/Menu.tscn" id="4_afads"]
@@ -157,6 +157,9 @@ scale = Vector2(252.111, -294.198)
 [node name="RangerSpawn" type="Marker2D" parent="TileMapLayer"]
 position = Vector2(640, 300)
 
+[node name="Core" parent="." instance=ExtResource("5_v48x7")]
+position = Vector2(567, 306)
+
 [node name="Enemies" type="Node" parent="."]
 script = ExtResource("3_5r2sw")
 
@@ -164,11 +167,8 @@ script = ExtResource("3_5r2sw")
 _spawnable_scenes = PackedStringArray("uid://m151ri7kcj54", "uid://40ioefgfpaqq")
 spawn_path = NodePath("..")
 
-[node name="Core" parent="." instance=ExtResource("5_v48x7")]
-position = Vector2(567, 306)
-
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("uid://d2g2sm3bnk4tj", "uid://b7wa2n7d0dfkp", "uid://m151ri7kcj54", "uid://40ioefgfpaqq", "uid://cqn7qhoyuvt75")
+_spawnable_scenes = PackedStringArray("uid://d2g2sm3bnk4tj", "uid://b7wa2n7d0dfkp", "uid://cqn7qhoyuvt75")
 spawn_path = NodePath("..")
 
 [node name="Menu" parent="." instance=ExtResource("4_afads")]
