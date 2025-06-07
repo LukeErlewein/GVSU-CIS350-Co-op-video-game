@@ -40,9 +40,6 @@ func _on_child_entered_tree(node: Node) -> void:
 		node.cell_pickup.connect(core.add_power)
 
 
-
-
-
 func _on_gameplay_music_finished() -> void:
 	gameplay_music.play()
 

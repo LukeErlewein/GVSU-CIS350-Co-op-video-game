@@ -1,12 +1,15 @@
 class_name Core extends Area2D
 
 func _ready():
-	pass
+	charge_effect.visible = false
 
 var currentPower := 0
 @export var MAXPOWER := 100
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var hitbox_component: HitboxComponent = $HitboxComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var charge_effect: Sprite2D = $ChargeEffect
+@onready var charge_sound: AudioStreamPlayer2D = $ChargeSound
 
 signal power_updated(new_power: int)
 signal game_won
@@ -29,12 +32,12 @@ func add_power(amount: int) -> void:
 func sync_power(new_power: int) -> void:
 	currentPower = new_power
 	emit_signal("power_updated", currentPower)
-
+	animation_player.play("Charge")
+	charge_sound.play()
 
 func _on_button_pressed() -> void:
 	add_power(5)
 	add_power.rpc(5)
-
 
 func _on_hitbox_component_body_entered(body: Node2D) -> void:
 	if body is Grunt:
