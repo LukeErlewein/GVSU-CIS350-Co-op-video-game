@@ -1,6 +1,6 @@
-# Team Name Co-op Video game (Game name: TBD)
+# Team Name Core Protocol Zero
 
-In this game, there are two players that each need to defend a power core that is providing the last
+In this game, there are two players who each need to defend a power core that is providing the last
 power to their desolate wasteland that they call home. They will need to defend against hordes of
 ruthless enemies by using special abilities to their advantage.
 
