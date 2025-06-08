@@ -1,4 +1,4 @@
-Team name: Co-op Video game
+Team name: Core Protocol Zero
 
 Team members: Quentin Daniere, Luke Erlewein
 

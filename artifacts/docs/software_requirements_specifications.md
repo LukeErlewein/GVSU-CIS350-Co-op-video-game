@@ -1,5 +1,5 @@
 # Overview
-This document is the software requirements document for the co-op video game.
+This document is the software requirements document for Core Protocol Zero.
 # Functional Requirements
 
 ### 1. Main Menu
