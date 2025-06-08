@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Co-op Video Game"
+config/name="Core Protocol Zero"
 config/description="Top Down Wave Defender with a Co-op Feature"
 run/main_scene="uid://do5d4h3xsmbgt"
 config/features=PackedStringArray("4.4")

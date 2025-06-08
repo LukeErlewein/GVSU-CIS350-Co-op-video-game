@@ -112,24 +112,22 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -186.0
-offset_top = 96.0
-offset_right = 186.0
-offset_bottom = 262.0
+offset_left = -305.5
+offset_right = 305.5
+offset_bottom = 219.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("4_dmamv")
 theme_override_font_sizes/font_size = 80
-text = "POWER CORE
-DEFENDERS"
+text = "CORE PROTOCOL"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Guide_button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 909.0
-offset_top = 147.0
+offset_top = 268.0
 offset_right = 1017.0
-offset_bottom = 185.0
+offset_bottom = 306.0
 theme_override_fonts/font = ExtResource("4_dmamv")
 theme_override_font_sizes/font_size = 34
 toggle_mode = true
@@ -158,6 +156,24 @@ Protect the Core and feed it energy cells to beat the Game!
 As the host you spawn as a Fighter specializing in AoE.
 Joining him spawns you as a Ranger, specializing in
 movement and ranged attacks."
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.0
+offset_top = 150.0
+offset_right = 129.0
+offset_bottom = 258.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_fonts/font = ExtResource("4_dmamv")
+theme_override_font_sizes/font_size = 110
+text = "ZERO"
 
 [connection signal="pressed" from="VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/CopyOID" to="." method="_on_copy_oid_pressed"]
