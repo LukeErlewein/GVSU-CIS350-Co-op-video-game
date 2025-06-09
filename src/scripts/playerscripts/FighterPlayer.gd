@@ -22,22 +22,20 @@ var can_shoot: bool = true
 var can_control: bool = false
 
 func _ready() -> void:
-	get_tree().get_current_scene().game_start.connect(hide_UI)
-	wait_screen.show()
-	print("core assigned: ", core)
 	if is_multiplayer_authority():
+		get_tree().get_current_scene().game_start.connect(hide_UI)
 		camera.make_current()
-		if has_node("FighterUI"):
-			$FighterUI.show()
 	else:
 		if has_node("FighterUI"):
 			$FighterUI.hide()
+	print("core assigned: ", core)
 
 	attack = Attack.new()
 	attack.attack_damage = 50
 	attack.bullet_speed = 130.0
 	attack.knockback_force = 10.0
 	attack.attack_cooldown = 0.15
+
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(int(str(name)))
@@ -67,9 +65,11 @@ func _process(delta: float) -> void:
 	update_ability_ui_visibility()
 
 func hide_UI():
-	wait_screen.hide()
+	if !is_multiplayer_authority():
+		return
 	can_control = true
-
+	if has_node("FighterUI"):
+		$FighterUI.show()
 
 @rpc("any_peer", "call_local")
 func shoot():
@@ -101,13 +101,14 @@ func single_shot(transform: Transform2D, animation_name = "SprayBullets", damage
 
 
 @rpc("any_peer", "call_local")
-func multi_shot(base_transform: Transform2D, count: int = 3, delay: float = 0.3, animation_name = "SprayBullets", damage: float = 1, speed: float = 40.0, lifetime: float = 1.5):
-	for i in range(count):
-		var spread_angle = deg_to_rad(randf_range(-3, 3))
-		var transform = base_transform.rotated(spread_angle)
-		single_shot(transform, animation_name, damage, speed, lifetime)
-		await get_tree().create_timer(delay).timeout
-	ability_1.play()
+func shotgun_blast(base_transform: Transform2D, animation_name = "SprayBullets", damage: float = 9, speed: float = 40.0, lifetime: float = 1.5):
+	var angles_deg = [0, -5, 5, -10, 10]
+	var position = base_transform.origin
+	var forward_angle = base_transform.get_rotation()
+	for angle in angles_deg:
+		var total_angle = forward_angle + deg_to_rad(angle)
+		var new_transform = Transform2D(total_angle, position)
+		single_shot(new_transform, animation_name, damage, speed, lifetime)
 
 @rpc("any_peer", "call_local")
 func grenade_shot(transform: Transform2D, animation_name = "GrenadeProjectile", damage: float = 100, speed: float = 100.0, lifetime: float = 0.5):

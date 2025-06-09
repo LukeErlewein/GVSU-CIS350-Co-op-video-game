@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://do5d4h3xsmbgt"]
+[gd_scene load_steps=31 format=4 uid="uid://do5d4h3xsmbgt"]
 
 [ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_v48x7"]
 [ext_resource type="Texture2D" uid="uid://cktc8lksky5f0" path="res://src/assets/WastelandTileset.png" id="2_5r2sw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/Menuscenes/WaitScreen.tscn" id="5_nonnb"]
 [ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="5_v48x7"]
 [ext_resource type="AudioStream" uid="uid://c3jj1e26vmul5" path="res://src/assets/audio/gameplay_music.wav" id="7_nonnb"]
+[ext_resource type="AudioStream" uid="uid://dmoftlewnxj3i" path="res://src/assets/main menu/game-background-sound-342336.mp3" id="7_o4k1h"]
 [ext_resource type="PackedScene" uid="uid://de464hx64qt67" path="res://src/scenes/Menuscenes/VictoryScreen.tscn" id="9_lt5th"]
 [ext_resource type="PackedScene" uid="uid://duslevbnj2r2r" path="res://src/scenes/Menuscenes/LossScreen.tscn" id="10_o4k1h"]
 
@@ -249,18 +250,22 @@ max_distance = 11800.0
 
 [node name="GameplayMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_nonnb")
-volume_db = -21.582
+volume_db = -12.0
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_o4k1h")
+volume_db = -5.0
+
+[node name="Menu" parent="." instance=ExtResource("4_afads")]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
 
 [node name="VictoryScreen" parent="." instance=ExtResource("9_lt5th")]
 
 [node name="LossScreen" parent="." instance=ExtResource("10_o4k1h")]
 
 [node name="WaitScreen" parent="." instance=ExtResource("5_nonnb")]
-
-[node name="Menu" parent="." instance=ExtResource("4_afads")]
-visible = false
-offset_right = 1152.0
-offset_bottom = 648.0
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

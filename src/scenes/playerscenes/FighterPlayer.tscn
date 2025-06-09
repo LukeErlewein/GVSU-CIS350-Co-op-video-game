@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_u66ln"]
 [ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/playerscenes/SpellButton.tscn" id="11_0ohk6"]
 [ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/FighterSkillBar.gd" id="11_nv4wy"]
-[ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/Menuscenes/WaitScreen.tscn" id="14_cw1yv"]
 [ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="15_6ro8l"]
 [ext_resource type="AudioStream" uid="uid://bfe23ayu52mqg" path="res://src/assets/audio/Fighter Audio/FighterAbility1.wav" id="16_mahsp"]
 [ext_resource type="AudioStream" uid="uid://ch1np6eh6o0aa" path="res://src/assets/audio/Fighter Audio/FighterAbility2.wav" id="16_o0ylm"]

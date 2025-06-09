@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://duslevbnj2r2r"]
+[gd_scene load_steps=6 format=3 uid="uid://duslevbnj2r2r"]
 
 [ext_resource type="Texture2D" uid="uid://cqr05qlvlkpcn" path="res://src/assets/main menu/GameLoss.png" id="1_jfvax"]
 [ext_resource type="Script" uid="uid://dk38kex4fl8eo" path="res://src/scripts/Menuscripts/LossScreen.gd" id="1_tsgrm"]
 [ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="1_vgdvv"]
+[ext_resource type="AudioStream" uid="uid://dld1nksd3y5sl" path="res://src/assets/main menu/dark-chords-103048.mp3" id="4_w3673"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tsgrm"]
 texture = ExtResource("1_jfvax")
@@ -64,5 +65,8 @@ power core enough to the point where it is unrecoverable.
 The world will never be the same..."
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LossAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_w3673")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
