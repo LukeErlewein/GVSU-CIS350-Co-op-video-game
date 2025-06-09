@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://4ym32unanfmu"
+path="res://.godot/imported/RangerAbility2.wav-90e36976c632f6a9dd6dcf30c46bd695.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/Ranger Audio/RangerAbility2.wav"
+dest_files=["res://.godot/imported/RangerAbility2.wav-90e36976c632f6a9dd6dcf30c46bd695.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -99,7 +99,7 @@ func single_shot(transform: Transform2D, animation_name := "SprayBullets", damag
 
 	if animation_name == "PierceProjectile":
 		projectile.is_piercing = true
-
+	ability_1.play()
 	get_tree().current_scene.add_child(projectile)
 
 
@@ -116,6 +116,7 @@ func start_dash():
 	dash_timer.one_shot = true
 	dash_timer.timeout.connect(_end_dash)
 	add_child(dash_timer)
+	ability_2.play()
 	dash_timer.start()
 
 func _end_dash():
@@ -148,6 +149,7 @@ func radial_burst(count: int = 12):
 
 func teleport_and_burst():
 	global_position = get_global_mouse_position()
+	ability_4.play()
 	radial_burst(18)
 
 @rpc("any_peer", "call_local")
@@ -165,6 +167,7 @@ func gravity_grenade_shot(transform: Transform2D, animation_name := "GravGrenPro
 	grenade.explosion_animation = "GravGrenExplosion"
 
 	grenade.exploded.connect(func(pos: Vector2) -> void:
+		ability_3.play()
 		pull_enemies_to_point(pos, 200.0)
 	)
 
