@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2g2sm3bnk4tj"]
+[gd_scene load_steps=24 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/playerscripts/HealthComponent.gd" id="2_5qbrv"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_u66ln"]
 [ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/playerscenes/SpellButton.tscn" id="11_0ohk6"]
 [ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/FighterSkillBar.gd" id="11_nv4wy"]
-[ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/Menuscenes/WaitScreen.tscn" id="14_cw1yv"]
 [ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="15_6ro8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
@@ -218,8 +217,6 @@ layout_mode = 2
 [node name="SpellButton4" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-
-[node name="WaitScreen" parent="FighterUI" instance=ExtResource("14_cw1yv")]
 
 [node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_6ro8l")

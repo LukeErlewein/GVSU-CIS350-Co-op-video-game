@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://de464hx64qt67"]
+[gd_scene load_steps=6 format=3 uid="uid://de464hx64qt67"]
 
 [ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="1_3odo3"]
 [ext_resource type="Script" uid="uid://dm1bm06wemu8r" path="res://src/scripts/Menuscripts/VictoryScreen.gd" id="1_hmco7"]
 [ext_resource type="Texture2D" uid="uid://bim53nvfxou4j" path="res://src/assets/main menu/GameVictory.png" id="1_wx27i"]
+[ext_resource type="AudioStream" uid="uid://df5ayxmp31ln2" path="res://src/assets/main menu/orchestral-win-331233.mp3" id="4_evhon"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hmco7"]
 texture = ExtResource("1_wx27i")
@@ -67,5 +68,9 @@ until the core was able to be fully powered.
 The world has been saved by your valiant efforts!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WinAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_evhon")
+volume_db = -10.0
 
 [connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]

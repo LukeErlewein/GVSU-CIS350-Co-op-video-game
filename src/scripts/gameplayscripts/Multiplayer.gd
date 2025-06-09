@@ -1,6 +1,8 @@
 extends Node
 
 signal noray_connected
+signal show_wait_screen
+
 
 const NORAY_ADDRESS = "tomfol.io"
 const NORAY_PORT = 8890
@@ -27,13 +29,15 @@ func on_noray_connected():
 
 func host():
 	print("Hosting")
-	
+	show_wait_screen.emit()
 	var peer = ENetMultiplayerPeer.new()
 	peer.create_server(Noray.local_port)
+	print("Server started on port", Noray.local_port)
 	multiplayer.multiplayer_peer = peer
 	is_host = true
 
 func join(oid):
+	show_wait_screen.emit()
 	Noray.connect_nat(oid)
 	external_oid = oid
 
@@ -59,7 +63,9 @@ func connect_to_server(address, port):
 		udp.bind(Noray.local_port)
 		udp.set_dest_address(address, port)
 		
+		print("Trying handshake to ", address, ":", port)
 		err = await PacketHandshake.over_packet_peer(udp)
+		print("Handshake result: ", err)
 		udp.close()
 		
 		if err != OK:
@@ -82,3 +88,16 @@ func connect_to_server(address, port):
 		err = await PacketHandshake.over_enet(multiplayer.multiplayer_peer.host, address, port)
 	
 	return err
+	
+func reset():
+	is_host = false
+	external_oid = ""
+
+	if multiplayer.multiplayer_peer:
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
+
+	await Noray.register_host()
+	await Noray.on_pid
+	await Noray.register_remote()
+	noray_connected.emit()
