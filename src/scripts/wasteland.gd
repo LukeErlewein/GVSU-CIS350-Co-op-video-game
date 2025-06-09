@@ -3,7 +3,9 @@ extends Node2D
 @export var RESPAWN_TIME: float = 10.0
 
 @onready var core: Core = $Core
-@onready var wait_screen: Control = $WaitScreen
+@onready var wait_screen: CanvasLayer = $WaitScreen
+@onready var victory_screen: CanvasLayer = $VictoryScreen
+@onready var loss_screen: CanvasLayer = $LossScreen
 @onready var gameplay_music: AudioStreamPlayer = $GameplayMusic
 @onready var fighter_respawn: Timer = $Timers/FighterRespawn
 @onready var ranger_respawn: Timer = $Timers/RangerRespawn
@@ -12,7 +14,10 @@ extends Node2D
 signal game_start
 
 func _ready() -> void:
+	await get_tree().process_frame
 	wait_screen.hide()
+	victory_screen.hide()
+	loss_screen.hide()
 	core.game_lost.connect(game_over)
 	core.game_won.connect(game_beat)
 
@@ -28,10 +33,11 @@ func add_cell(cell_position: Vector2) -> void:
 
 func game_over() -> void:
 	get_tree().paused = true
+	loss_screen.show()
 
 func game_beat() -> void:
 	get_tree().paused = true
-
+	victory_screen.show()
 
 func _on_child_entered_tree(node: Node) -> void:
 	if node is RangerPlayer:

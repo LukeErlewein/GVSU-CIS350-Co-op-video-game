@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://40ioefgfpaqq"]
 
-[ext_resource type="PackedScene" uid="uid://bbl433kompyk6" path="res://src/scenes/HealthComponent.tscn" id="1_03q6f"]
+[ext_resource type="PackedScene" uid="uid://bbl433kompyk6" path="res://src/scenes/playerscenes/HealthComponent.tscn" id="1_03q6f"]
 [ext_resource type="Script" uid="uid://dgwfp0kv2f1iu" path="res://src/scripts/enemyscripts/CellCarrier.gd" id="1_qq1er"]
 [ext_resource type="Resource" uid="uid://b5em70wpw8nce" path="res://src/resources/EnemyResources/CellCarrierStats.tres" id="2_ptbow"]
-[ext_resource type="PackedScene" uid="uid://c18fg3wrr8u2c" path="res://src/scenes/HitboxComponent.tscn" id="2_qq1er"]
+[ext_resource type="PackedScene" uid="uid://c18fg3wrr8u2c" path="res://src/scenes/playerscenes/HitboxComponent.tscn" id="2_qq1er"]
 [ext_resource type="Texture2D" uid="uid://bfs23rvfbskuy" path="res://src/assets/Enemies/CellCarrier.png" id="5_8wgvr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ptbow"]

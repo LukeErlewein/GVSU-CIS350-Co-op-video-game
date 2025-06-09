@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://de464hx64qt67"]
+
+[ext_resource type="FontFile" uid="uid://fnqi7h5g1cgb" path="res://src/assets/main menu/TitleFont.ttf" id="1_3odo3"]
+[ext_resource type="Script" uid="uid://dm1bm06wemu8r" path="res://src/scripts/Menuscripts/VictoryScreen.gd" id="1_hmco7"]
+[ext_resource type="Texture2D" uid="uid://bim53nvfxou4j" path="res://src/assets/main menu/GameVictory.png" id="1_wx27i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hmco7"]
+texture = ExtResource("1_wx27i")
+
+[node name="VictoryScreen" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_hmco7")
+
+[node name="BackgroundImage" type="Panel" parent="."]
+process_mode = 3
+offset_left = -1.0
+offset_top = -48.0
+offset_right = 1153.0
+offset_bottom = 1019.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_hmco7")
+
+[node name="BigText" type="Label" parent="."]
+process_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -205.0
+offset_top = 80.0
+offset_right = 205.0
+offset_bottom = 174.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_3odo3")
+theme_override_font_sizes/font_size = 100
+text = "VICTORY"
+
+[node name="MenuButton" type="Button" parent="."]
+process_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -94.0
+offset_top = -198.0
+offset_right = 94.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_3odo3")
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
+
+[node name="InfoText" type="Label" parent="."]
+process_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -329.5
+offset_top = 200.0
+offset_right = 329.5
+offset_bottom = 300.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_3odo3")
+theme_override_font_sizes/font_size = 23
+text = "You were successful in repelling the alien attack
+until the core was able to be fully powered.
+The world has been saved by your valiant efforts!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MenuButton" to="." method="_on_menu_button_pressed"]
