@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b7wa2n7d0dfkp"]
+[gd_scene load_steps=28 format=3 uid="uid://b7wa2n7d0dfkp"]
 
 [ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/playerscripts/RangerPlayer.gd" id="1_rkl73"]
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_7q8dk"]
@@ -14,6 +14,10 @@
 [ext_resource type="Script" uid="uid://dnfqlhh3q4bao" path="res://src/scripts/playerscripts/RangerSkillBar.gd" id="11_4pbfw"]
 [ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/playerscenes/SpellButton.tscn" id="12_lrjuq"]
 [ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="14_wyyoh"]
+[ext_resource type="AudioStream" uid="uid://benfjae8lx0ws" path="res://src/assets/audio/Ranger Audio/RangerAbility1.wav" id="15_5un0j"]
+[ext_resource type="AudioStream" uid="uid://4ym32unanfmu" path="res://src/assets/audio/Ranger Audio/RangerAbility2.wav" id="16_3pijh"]
+[ext_resource type="AudioStream" uid="uid://dcqcjrjyvh087" path="res://src/assets/audio/Ranger Audio/RangerAbility3.wav" id="17_p3stb"]
+[ext_resource type="AudioStream" uid="uid://b3imnsppp34ho" path="res://src/assets/audio/Ranger Audio/RangerAbility4.wav" id="18_lr5x0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkl73"]
 radius = 16.0
@@ -126,7 +130,7 @@ position = Vector2(30, 8)
 [node name="ShotCooldownTimer" type="Timer" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(1.25, 1.25)
+zoom = Vector2(1.75, 1.75)
 limit_left = -400
 limit_top = -287
 limit_right = 1568
@@ -216,8 +220,26 @@ layout_mode = 2
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
+[node name="Audio" type="Node" parent="."]
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("14_wyyoh")
 volume_db = -30.0
+
+[node name="Ability1" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("15_5un0j")
+volume_db = -25.0
+
+[node name="Ability2" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("16_3pijh")
+volume_db = -25.0
+
+[node name="Ability3" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("17_p3stb")
+volume_db = -25.0
+
+[node name="Ability4" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("18_lr5x0")
+volume_db = -25.0
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]
