@@ -11,7 +11,11 @@ class_name FighterPlayer extends CharacterBody2D
 @onready var camera: Camera2D = $Camera2D
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
 @onready var wait_screen: Control = $FighterUI/WaitScreen
-@onready var gunshot: AudioStreamPlayer2D = $Gunshot
+@onready var gunshot: AudioStreamPlayer2D = $Audio/Gunshot
+@onready var ability_1: AudioStreamPlayer2D = $Audio/Ability1
+@onready var ability_2: AudioStreamPlayer2D = $Audio/Ability2
+@onready var ability_3: AudioStreamPlayer2D = $Audio/Ability3
+@onready var ability_4: AudioStreamPlayer2D = $Audio/Ability4
 
 var attack: Attack
 var can_shoot: bool = true
@@ -103,6 +107,7 @@ func multi_shot(base_transform: Transform2D, count: int = 3, delay: float = 0.3,
 		var transform = base_transform.rotated(spread_angle)
 		single_shot(transform, animation_name, damage, speed, lifetime)
 		await get_tree().create_timer(delay).timeout
+	ability_1.play()
 
 @rpc("any_peer", "call_local")
 func grenade_shot(transform: Transform2D, animation_name = "GrenadeProjectile", damage: float = 100, speed: float = 100.0, lifetime: float = 0.5):
@@ -118,6 +123,7 @@ func grenade_shot(transform: Transform2D, animation_name = "GrenadeProjectile", 
 	grenade.lifetime = lifetime
 
 	grenade.exploded.connect(func(pos):
+		ability_2.play()
 		explode_grenade(pos, damage)
 	)
 
@@ -144,6 +150,7 @@ func freeze_grenade_shot(transform: Transform2D, animation_name = "FreezeProject
 	grenade.explosion_animation = "FreezeExplosion"
 	
 	grenade.exploded.connect(func(pos):
+		ability_3.play()
 		explode_freeze_grenade(pos)
 	)
 
@@ -182,7 +189,7 @@ func orbital_strike_shot(position: Vector2, damage: float = 100.0):
 	var orbital_sprite = orbital_sprite_scene.instantiate()
 	orbital_sprite.global_position = position
 	get_tree().current_scene.add_child(orbital_sprite)
-
+	
 	await orbital_explode_sequence(position, damage)
 
 	orbital_sprite.queue_free()
@@ -201,7 +208,7 @@ func orbital_explode_sequence(position: Vector2, damage: float) -> void:
 		var effect = explosion_effect_scene.instantiate()
 		effect.global_position = position
 		get_tree().current_scene.add_child(effect)
-
+		
 		for enemy in get_tree().get_nodes_in_group("Enemies"):
 			if enemy.global_position.distance_to(position) <= radius:
 				var hc = enemy.get_node_or_null("HealthComponent")
@@ -209,7 +216,7 @@ func orbital_explode_sequence(position: Vector2, damage: float) -> void:
 					var temp_attack = Attack.new()
 					temp_attack.attack_damage = damage
 					hc.damage(temp_attack)
-
+		ability_4.play()
 		await get_tree().create_timer(delay_between).timeout
 
 func update_ability_ui_visibility():

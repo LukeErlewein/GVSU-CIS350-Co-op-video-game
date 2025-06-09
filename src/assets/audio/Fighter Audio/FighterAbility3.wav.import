@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c47drg56sej26"
+path="res://.godot/imported/FighterAbility3.wav-b30e11fcbac4cbe4db5d044c1aafb592.sample"
+
+[deps]
+
+source_file="res://src/assets/audio/Fighter Audio/FighterAbility3.wav"
+dest_files=["res://.godot/imported/FighterAbility3.wav-b30e11fcbac4cbe4db5d044c1aafb592.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

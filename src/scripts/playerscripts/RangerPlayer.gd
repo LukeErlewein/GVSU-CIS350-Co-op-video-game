@@ -16,7 +16,12 @@ extends CharacterBody2D
 @onready var camera: Camera2D = $Camera2D
 @onready var ranger_ui: CanvasLayer = $RangerUI
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
-@onready var gunshot: AudioStreamPlayer2D = $Gunshot
+@onready var gunshot: AudioStreamPlayer2D = $Audio/Gunshot
+@onready var ability_1: AudioStreamPlayer2D = $Audio/Ability1
+@onready var ability_2: AudioStreamPlayer2D = $Audio/Ability2
+@onready var ability_3: AudioStreamPlayer2D = $Audio/Ability3
+@onready var ability_4: AudioStreamPlayer2D = $Audio/Ability4
+
 
 # State
 var attack: Attack

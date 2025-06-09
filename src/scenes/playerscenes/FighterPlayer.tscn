@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://d2g2sm3bnk4tj"]
+[gd_scene load_steps=28 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/FighterSkillBar.gd" id="11_nv4wy"]
 [ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/WaitScreen.tscn" id="14_cw1yv"]
 [ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="15_6ro8l"]
+[ext_resource type="AudioStream" uid="uid://bfe23ayu52mqg" path="res://src/assets/audio/Fighter Audio/FighterAbility1.wav" id="16_mahsp"]
+[ext_resource type="AudioStream" uid="uid://ch1np6eh6o0aa" path="res://src/assets/audio/Fighter Audio/FighterAbility2.wav" id="16_o0ylm"]
+[ext_resource type="AudioStream" uid="uid://c47drg56sej26" path="res://src/assets/audio/Fighter Audio/FighterAbility3.wav" id="18_lh4xf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bv166"]
 radius = 15.0333
@@ -221,8 +224,28 @@ layout_mode = 2
 
 [node name="WaitScreen" parent="FighterUI" instance=ExtResource("14_cw1yv")]
 
-[node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
+[node name="Audio" type="Node" parent="."]
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("15_6ro8l")
 volume_db = -30.0
+
+[node name="Ability1" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("16_mahsp")
+volume_db = -25.0
+
+[node name="Ability2" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("16_o0ylm")
+volume_db = -25.0
+pitch_scale = 0.45
+attenuation = 0.138696
+
+[node name="Ability3" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("18_lh4xf")
+volume_db = -25.0
+
+[node name="Ability4" type="AudioStreamPlayer2D" parent="Audio"]
+stream = ExtResource("16_o0ylm")
+volume_db = -25.0
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]

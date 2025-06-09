@@ -216,8 +216,18 @@ layout_mode = 2
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="Gunshot" type="AudioStreamPlayer2D" parent="."]
+[node name="Audio" type="Node" parent="."]
+
+[node name="Gunshot" type="AudioStreamPlayer2D" parent="Audio"]
 stream = ExtResource("14_wyyoh")
 volume_db = -30.0
+
+[node name="Ability1" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="Ability2" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="Ability3" type="AudioStreamPlayer2D" parent="Audio"]
+
+[node name="Ability4" type="AudioStreamPlayer2D" parent="Audio"]
 
 [connection signal="timeout" from="ShotCooldownTimer" to="." method="_on_shot_cooldown_timer_timeout"]
