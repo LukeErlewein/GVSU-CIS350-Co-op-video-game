@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://m151ri7kcj54"]
 
 [ext_resource type="Script" uid="uid://do140pc8maduf" path="res://src/scripts/enemyscripts/Grunt.gd" id="1_hwoom"]
-[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_fafvl"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/playerscripts/HealthComponent.gd" id="2_fafvl"]
 [ext_resource type="Script" uid="uid://csmsjn5wqit5i" path="res://src/scripts/enemyscripts/EnemyStats.gd" id="2_givgt"]
-[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_givgt"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/playerscripts/HitboxComponent.gd" id="3_givgt"]
 [ext_resource type="Texture2D" uid="uid://bmst3r361aiu4" path="res://src/assets/Enemies/Grunt.png" id="3_vqydx"]
 
 [sub_resource type="Resource" id="Resource_70ydb"]

@@ -10,7 +10,7 @@ class_name FighterPlayer extends CharacterBody2D
 @onready var shot_cooldown_timer: Timer = $ShotCooldownTimer
 @onready var camera: Camera2D = $Camera2D
 @onready var core: Node = get_tree().get_current_scene().get_node("Core")
-@onready var wait_screen: Control = $FighterUI/WaitScreen
+@onready var wait_screen: CanvasLayer = $FighterUI/WaitScreen
 @onready var gunshot: AudioStreamPlayer2D = $Gunshot
 
 var attack: Attack

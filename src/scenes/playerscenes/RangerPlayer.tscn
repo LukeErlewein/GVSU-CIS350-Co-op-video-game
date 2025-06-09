@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://b5qi42nmnwsjx" path="res://src/scripts/playerscripts/RangerPlayer.gd" id="1_rkl73"]
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_7q8dk"]
-[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="3_gfmhh"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/playerscripts/HealthComponent.gd" id="3_gfmhh"]
 [ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/projectile.tscn" id="3_lrjuq"]
-[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="4_ci0ff"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/playerscripts/HitboxComponent.gd" id="4_ci0ff"]
 [ext_resource type="Texture2D" uid="uid://f1ru8hpx6lel" path="res://src/assets/Ranger.png" id="4_wyyoh"]
 [ext_resource type="Script" uid="uid://bev0dwxmfmofp" path="res://src/scripts/playerscripts/RangerCamera.gd" id="5_7q8dk"]
 [ext_resource type="Script" uid="uid://dgr7cpetyqicg" path="res://src/scripts/playerscripts/HealthTracking.gd" id="7_uhfby"]
