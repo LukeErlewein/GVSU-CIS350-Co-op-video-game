@@ -1,5 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://do5d4h3xsmbgt"]
-[gd_scene load_steps=31 format=4 uid="uid://do5d4h3xsmbgt"]
+[gd_scene load_steps=31 format=4 uid="uid://bywl6ovfjd2p8"]
 
 [ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_v48x7"]
 [ext_resource type="Texture2D" uid="uid://cktc8lksky5f0" path="res://src/assets/WastelandTileset.png" id="2_5r2sw"]
@@ -254,16 +253,11 @@ volume_db = -12.0
 stream = ExtResource("7_o4k1h")
 volume_db = -5.0
 
-[node name="Menu" parent="." instance=ExtResource("4_afads")]
-visible = false
-offset_right = 1152.0
-offset_bottom = 648.0
-
 [node name="VictoryScreen" parent="." instance=ExtResource("9_lt5th")]
 
 [node name="LossScreen" parent="." instance=ExtResource("10_o4k1h")]
 
-[node name="WaitScreen" parent="." instance=ExtResource("5_nonnb")]
+[node name="WaitScreen2" parent="." instance=ExtResource("5_nonnb")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
