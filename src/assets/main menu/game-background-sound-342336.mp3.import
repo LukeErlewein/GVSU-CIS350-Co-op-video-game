@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmoftlewnxj3i"
+path="res://.godot/imported/game-background-sound-342336.mp3-934a25c47f6e2f6ff5cfc82654789025.mp3str"
+
+[deps]
+
+source_file="res://src/assets/main menu/game-background-sound-342336.mp3"
+dest_files=["res://.godot/imported/game-background-sound-342336.mp3-934a25c47f6e2f6ff5cfc82654789025.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

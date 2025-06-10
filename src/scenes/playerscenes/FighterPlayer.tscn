@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://d2g2sm3bnk4tj"]
+[gd_scene load_steps=27 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
-[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="2_5qbrv"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/playerscripts/HealthComponent.gd" id="2_5qbrv"]
 [ext_resource type="PackedScene" uid="uid://7yqsmb8rlqdl" path="res://src/scenes/gameplayscenes/Bullet.tscn" id="2_p35ce"]
-[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="3_p35ce"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/playerscripts/HitboxComponent.gd" id="3_p35ce"]
 [ext_resource type="PackedScene" uid="uid://b25sec0k0iu7a" path="res://src/scenes/playerscenes/projectile.tscn" id="3_u66ln"]
 [ext_resource type="Texture2D" uid="uid://bev3iesc6dulj" path="res://src/assets/Fighter.png" id="4_6ro8l"]
 [ext_resource type="Script" uid="uid://b1lk7n5io5uc0" path="res://src/scripts/playerscripts/FighterCamera.gd" id="6_m1mhg"]
@@ -13,7 +13,6 @@
 [ext_resource type="Script" uid="uid://c2mmhlwrjr5u1" path="res://src/scripts/playerscripts/CoreLocator.gd" id="10_u66ln"]
 [ext_resource type="PackedScene" uid="uid://xrqcub83ayf0" path="res://src/scenes/playerscenes/SpellButton.tscn" id="11_0ohk6"]
 [ext_resource type="Script" uid="uid://c5xgoqs3jigbh" path="res://src/scripts/playerscripts/FighterSkillBar.gd" id="11_nv4wy"]
-[ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/WaitScreen.tscn" id="14_cw1yv"]
 [ext_resource type="AudioStream" uid="uid://c5j77eohtwwks" path="res://src/assets/audio/gun_shot.wav" id="15_6ro8l"]
 [ext_resource type="AudioStream" uid="uid://bfe23ayu52mqg" path="res://src/assets/audio/Fighter Audio/FighterAbility1.wav" id="16_mahsp"]
 [ext_resource type="AudioStream" uid="uid://ch1np6eh6o0aa" path="res://src/assets/audio/Fighter Audio/FighterAbility2.wav" id="16_o0ylm"]
@@ -221,8 +220,6 @@ layout_mode = 2
 [node name="SpellButton4" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-
-[node name="WaitScreen" parent="FighterUI" instance=ExtResource("14_cw1yv")]
 
 [node name="Audio" type="Node" parent="."]
 

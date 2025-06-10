@@ -93,6 +93,7 @@ func single_shot(transform: Transform2D, animation_name := "SprayBullets", damag
 
 	var new_attack = attack.duplicate()
 	new_attack.attack_damage = damage
+	new_attack.hurt_cell_holders = true
 	projectile.attack = new_attack
 	projectile.speed = speed
 	projectile.lifetime = lifetime

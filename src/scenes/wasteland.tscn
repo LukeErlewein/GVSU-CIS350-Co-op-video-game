@@ -1,13 +1,16 @@
-[gd_scene load_steps=28 format=4 uid="uid://do5d4h3xsmbgt"]
+[gd_scene load_steps=31 format=4 uid="uid://bywl6ovfjd2p8"]
 
 [ext_resource type="Script" uid="uid://bwlc1qklxdjx" path="res://src/scripts/wasteland.gd" id="1_v48x7"]
 [ext_resource type="Texture2D" uid="uid://cktc8lksky5f0" path="res://src/assets/WastelandTileset.png" id="2_5r2sw"]
 [ext_resource type="Script" uid="uid://d01npd7p4parf" path="res://src/scripts/gameplayscripts/EnemySpawnController.gd" id="3_5r2sw"]
-[ext_resource type="PackedScene" uid="uid://k8rs6ix3ky54" path="res://src/scenes/Menu.tscn" id="4_afads"]
+[ext_resource type="PackedScene" uid="uid://k8rs6ix3ky54" path="res://src/scenes/Menuscenes/Menu.tscn" id="4_afads"]
 [ext_resource type="PackedScene" uid="uid://dwprs02tko2ya" path="res://src/scenes/gameplayscenes/CoreHUD.tscn" id="5_khrfv"]
-[ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/WaitScreen.tscn" id="5_nonnb"]
+[ext_resource type="PackedScene" uid="uid://5cvy3eix8jn6" path="res://src/scenes/Menuscenes/WaitScreen.tscn" id="5_nonnb"]
 [ext_resource type="PackedScene" uid="uid://cjf3ya17vty25" path="res://src/scenes/gameplayscenes/Core.tscn" id="5_v48x7"]
 [ext_resource type="AudioStream" uid="uid://c3jj1e26vmul5" path="res://src/assets/audio/gameplay_music.wav" id="7_nonnb"]
+[ext_resource type="AudioStream" uid="uid://dmoftlewnxj3i" path="res://src/assets/main menu/game-background-sound-342336.mp3" id="7_o4k1h"]
+[ext_resource type="PackedScene" uid="uid://de464hx64qt67" path="res://src/scenes/Menuscenes/VictoryScreen.tscn" id="9_lt5th"]
+[ext_resource type="PackedScene" uid="uid://duslevbnj2r2r" path="res://src/scenes/Menuscenes/LossScreen.tscn" id="10_o4k1h"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5r2sw"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -177,9 +180,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="WaitScreen" parent="." instance=ExtResource("5_nonnb")]
-visible = false
-offset_right = 1920.0
-offset_bottom = 1080.0
 
 [node name="CoreHUD" parent="." instance=ExtResource("5_khrfv")]
 
@@ -247,7 +247,17 @@ max_distance = 11800.0
 
 [node name="GameplayMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_nonnb")
-volume_db = -21.582
+volume_db = -12.0
+
+[node name="MenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_o4k1h")
+volume_db = -5.0
+
+[node name="VictoryScreen" parent="." instance=ExtResource("9_lt5th")]
+
+[node name="LossScreen" parent="." instance=ExtResource("10_o4k1h")]
+
+[node name="WaitScreen2" parent="." instance=ExtResource("5_nonnb")]
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

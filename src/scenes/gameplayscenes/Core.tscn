@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://cjf3ya17vty25"]
 
-[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/HealthComponent.gd" id="1_rkllt"]
+[ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/playerscripts/HealthComponent.gd" id="1_rkllt"]
 [ext_resource type="Script" uid="uid://d0hxxyghh1k8m" path="res://src/scripts/gameplayscripts/Core.gd" id="1_w8q82"]
 [ext_resource type="Texture2D" uid="uid://4ngoyx82ic85" path="res://src/assets/power core/Core.png" id="2_4ua73"]
-[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/HitboxComponent.gd" id="2_xxp6h"]
+[ext_resource type="Script" uid="uid://bqsw4sdl65ilw" path="res://src/scripts/playerscripts/HitboxComponent.gd" id="2_xxp6h"]
 [ext_resource type="Texture2D" uid="uid://3bq04c3jqkek" path="res://src/assets/Abilities/LightBlueCircle.png" id="5_lo7qk"]
 [ext_resource type="AudioStream" uid="uid://cmqy25hvq75y4" path="res://src/assets/power core/PowerCharge.mp3" id="6_igpt1"]
 

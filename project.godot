@@ -18,7 +18,7 @@ config/features=PackedStringArray("4.4")
 [autoload]
 
 Global="*res://src/scripts/Global.gd"
-Multiplayer="*res://src/scripts/Multiplayer.gd"
+Multiplayer="*res://src/scripts/gameplayscripts/Multiplayer.gd"
 Noray="*res://addons/netfox.noray/noray.gd"
 PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
 

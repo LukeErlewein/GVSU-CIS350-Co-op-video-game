@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var core_charge_bar = $CoreStatusBox/CoreChargeBar
 @onready var stopwatch_label = $StopwatchLabel
 
-var core_health: Node = null  # Declare it here, at the top
+var core_health: Node = null
 var time_elapsed := 0.0
 var core_node: Core
 var game_running: bool = false
