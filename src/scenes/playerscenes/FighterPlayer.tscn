@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://d2g2sm3bnk4tj"]
+[gd_scene load_steps=27 format=3 uid="uid://d2g2sm3bnk4tj"]
 
 [ext_resource type="Script" uid="uid://dxmnl7e1a1s5p" path="res://src/scripts/playerscripts/FighterPlayer.gd" id="1_rwx8l"]
 [ext_resource type="Script" uid="uid://dgjjb82suvscb" path="res://src/scripts/playerscripts/HealthComponent.gd" id="2_5qbrv"]
@@ -220,8 +220,6 @@ layout_mode = 2
 [node name="SpellButton4" parent="FighterUI/SkillBar" instance=ExtResource("11_0ohk6")]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-
-[node name="WaitScreen" parent="FighterUI" instance=ExtResource("14_cw1yv")]
 
 [node name="Audio" type="Node" parent="."]
 
