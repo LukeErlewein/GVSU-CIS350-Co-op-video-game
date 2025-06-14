@@ -1,6 +1,6 @@
 class_name FighterPlayer extends CharacterBody2D
 
-@export var SPEED: float = 75
+@export var SPEED: float = 130
 @export var ACCELERATION: float = 5
 @export var FRICTION: float = 8
 
@@ -161,7 +161,7 @@ func explode_freeze_grenade(position: Vector2):
 	var radius = 200.0
 	var freeze_duration = 5.0
 
-	print("Freeze Grenade exploded at position: ", position)
+	print("Freeze Grenade exploded at: ", position)
 
 	var freeze_effect_scene := preload("res://src/scenes/gameplayscenes/FreezeMarker.tscn")
 	var freeze_effect = freeze_effect_scene.instantiate()
@@ -169,18 +169,14 @@ func explode_freeze_grenade(position: Vector2):
 	freeze_effect.modulate.a = 0.3
 	get_tree().current_scene.add_child(freeze_effect)
 
-	for body in get_tree().get_nodes_in_group("Enemies"):
-		var distance = body.global_position.distance_to(position)
-		print("Checking enemy: ", body.name, " distance: ", distance)
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		var distance = enemy.global_position.distance_to(position)
 		if distance <= radius:
-			if body.has_method("freeze"):
-				print("Freezing enemy: ", body.name)
-				body.freeze(freeze_duration)
+			if enemy.has_method("freeze"):
+				enemy.freeze(freeze_duration)
 
 	await get_tree().create_timer(freeze_duration).timeout
 	freeze_effect.queue_free()
-
-
 
 @rpc("any_peer", "call_local")
 func orbital_strike_shot(position: Vector2, damage: float = 100.0):

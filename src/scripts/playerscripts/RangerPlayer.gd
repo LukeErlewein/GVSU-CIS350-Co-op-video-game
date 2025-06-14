@@ -2,7 +2,7 @@ class_name RangerPlayer
 extends CharacterBody2D
 
 # Movement stats
-@export var SPEED: float = 65
+@export var SPEED: float = 110
 @export var ACCELERATION: float = 5
 @export var FRICTION: float = 8
 
@@ -110,7 +110,7 @@ func start_dash():
 
 	is_dashing = true
 	original_speed = SPEED
-	SPEED *= 6.0
+	SPEED *= 4.5
 
 	dash_timer = Timer.new()
 	dash_timer.wait_time = 1.0
