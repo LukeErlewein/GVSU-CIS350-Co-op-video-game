@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_w03jh")
 health = 200.0
-damage = 5.0
-speed = 30.0
+damage = 20.0
+speed = 50.0
 texture = ExtResource("2_5t22r")
 target = "PLAYERS"
 enemyType = "CELL_CARRIER"

@@ -15,5 +15,5 @@ animations = [{
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 show_behind_parent = true
-scale = Vector2(0.182781, 0.182781)
+scale = Vector2(0.3, 0.3)
 sprite_frames = SubResource("SpriteFrames_7ba1e")
