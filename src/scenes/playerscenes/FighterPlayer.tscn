@@ -136,6 +136,7 @@ limit_left = -400
 limit_top = -287
 limit_right = 1568
 limit_bottom = 1152
+position_smoothing_enabled = true
 script = ExtResource("6_m1mhg")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
