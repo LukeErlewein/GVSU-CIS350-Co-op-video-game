@@ -39,12 +39,6 @@ func sync_power(new_power: int) -> void:
 func sync_health(new_health: int) -> void:
 	health_component.health = new_health
 
-func _on_button_pressed() -> void:
-	if is_multiplayer_authority():
-		add_power(5)
-	else:
-		add_power.rpc(5)
-
 func _on_hitbox_component_body_entered(body: Node2D) -> void:
 	if not is_multiplayer_authority():
 		return

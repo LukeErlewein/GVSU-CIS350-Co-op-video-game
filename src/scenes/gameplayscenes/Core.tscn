@@ -150,13 +150,6 @@ shape = SubResource("CircleShape2D_4ua73")
 script = ExtResource("1_rkllt")
 metadata/_custom_type_script = "uid://dgjjb82suvscb"
 
-[node name="Button" type="Button" parent="."]
-offset_left = -39.0
-offset_top = 83.0
-offset_right = 37.0
-offset_bottom = 132.0
-text = "Charge"
-
 [node name="ChargeEffect" type="Sprite2D" parent="."]
 scale = Vector2(0.14898, 0.14898)
 texture = ExtResource("5_lo7qk")
@@ -172,5 +165,4 @@ stream = ExtResource("6_igpt1")
 volume_db = -5.0
 
 [connection signal="body_entered" from="HitboxComponent" to="." method="_on_hitbox_component_body_entered"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
