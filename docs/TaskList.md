@@ -77,8 +77,6 @@ This document is the designated task lists for the co-op video game.
 - **Expected Time**: 2 days
 - **Person Responsible**: Luke
 
-# To Do Task list
-
 ### Task #16: Bug fixing
 - **Description**: General fixing bugs
 - **Expected Time**: Entire project
@@ -94,7 +92,12 @@ This document is the designated task lists for the co-op video game.
 - **Expected Time**: 1 week
 - **Person Responsible**: Luke and Quentin
 
-### Task #:
-- **Description**:
-- **Expected Time**: 
-- **Person Responsible**: 
+### Task #19: Playtesting Implementation
+- **Description**: Implementation of all the feedback we got from the playtesting.
+- **Expected Time**: 3 days
+- **Person Responsible**: Luke and Quentin
+
+### Task #20: Documentation Updates
+- **Description**: Getting all the documentation ready for the final presentation and turn in of the project.
+- **Expected Time**: 1 week
+- **Person Responsible**: Luke and Quentin
