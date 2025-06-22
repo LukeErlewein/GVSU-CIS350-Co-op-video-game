@@ -9,6 +9,9 @@ ruthless enemies by using special abilities to their advantage.
 * Luke Erlewein (Project Lead)
 * Quentin Daniere (Lead Designer)
 
+# Video Demo
+[Video demo link](https://www.youtube.com/watch?v=FZndOLVo3zY)
+
 # Prerequisites
 In order to run this project the tool **7zip** will need to be downloaded.
 1. Go to https://www.7-zip.org/
