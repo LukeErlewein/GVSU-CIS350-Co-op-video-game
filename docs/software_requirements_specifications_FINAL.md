@@ -97,7 +97,7 @@ This document is the software requirements document for Core Protocol Zero.
 
 - [Object Diagram](ObjectDiagram.png)
 - [Communication Diagram](CommunicationDiagramGameplay.pdf)
-- [Use Case Diagram](use_case_diagram/Gameplayloop.png)
+- [Use Case Diagram](use_case_diagram/UseCaseDiagram.png)
 - [Trello Board](https://trello.com/b/MpvpjLm7/co-op-video-game)
 - [Project Github](https://github.com/LukeErlewein/GVSU-CIS350-Co-op-video-game)
 - [Gannt Chart](GanntChartPDF.pdf)
